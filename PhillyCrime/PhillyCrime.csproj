@@ -60,12 +60,9 @@
       <DependentUpon>PhillyCrimePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Misc\TextSupport.cs" />
-<<<<<<< HEAD
-    <Compile Include="Misc\TestClass1.cs" />
-=======
-    <Compile Include="Misc\TestClass2.cs" />
->>>>>>> origin/master
-  </ItemGroup>
+<Compile Include="Misc\TestClass1.cs" />
+<Compile Include="Misc\TestClass2.cs" />
+</ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
