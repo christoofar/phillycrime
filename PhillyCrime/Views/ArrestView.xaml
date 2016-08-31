@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="PhillyCrime.ArrestView">
+	<ContentView.Content>
+		<!-- Defendant fanfare -->
+			<Frame
+				OutlineColor="#CCCCCC"
+				BackgroundColor="#CCCCCC"
+				HasShadow="false"
+				WidthRequest="500"
+				HorizontalOptions="CenterAndExpand">
+				<StackLayout>
+					<Label
+						FontAttributes="Bold"
+						FontSize="30"
+						HorizontalOptions="StartAndExpand"
+						TextColor="Black"
+						x:Name="textDefendantName">DEFENDANT NAME, 45</Label>
+					<Label
+						FontAttributes="Bold"
+						FontSize="Large"
+						TextColor="Black">AGGRAVATED ASSAULT NO WEAPON</Label>
+					<StackLayout
+						Orientation="Horizontal">
+						<Label
+							FontAttributes="Bold"
+							FontSize="Medium"
+							TextColor="Black">Arrested:</Label>
+						<Label
+							FontSize="Medium">08/03/2016</Label>
+					</StackLayout>
+					<StackLayout
+						Orientation="Horizontal">
+						<Label
+							FontAttributes="Bold"
+							FontSize="Medium"
+							TextColor="Black">Suspect lives in:</Label>
+						<Label
+							FontSize="Medium">19125</Label>
+					</StackLayout>
+				</StackLayout>
+			</Frame>
+	</ContentView.Content>
+</ContentView>

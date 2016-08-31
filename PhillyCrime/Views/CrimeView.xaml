@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="PhillyCrime.CrimeView">
+	<ContentView.Content>
+		<StackLayout>
+			<!-- Crime particulars (if there are any) -->
+			<Frame
+				HasShadow="false"
+				WidthRequest="500"
+				HorizontalOptions="CenterAndExpand">
+				<StackLayout>
+					<Label
+						FontAttributes="Bold"
+						FontSize="Large">Original Crime Report</Label>
+					<Label>Indicent: DRIVING UNDER THE INFLUENCE</Label>
+					<Label>Location: 5700 BLOCK W GIRARD AV</Label>
+					<Label>Time: Monday, August 29, 2016 2:24 AM</Label>
+					<Label>Reporting Police District: 19</Label>
+					<Label>Police Service Area: 2</Label>
+					<Button HorizontalOptions="End" Text="View on Map >" x:Name="buttonMap" />
+				</StackLayout>
+			</Frame>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>
