@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Misc\EmptyTextFile.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
