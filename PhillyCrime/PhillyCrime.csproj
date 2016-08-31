@@ -60,7 +60,6 @@
       <DependentUpon>PhillyCrimePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Misc\TextSupport.cs" />
-    <Compile Include="Misc\TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
