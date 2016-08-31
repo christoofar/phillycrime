@@ -2,9 +2,9 @@
 
 namespace PhillyCrime
 {
-	public partial class PhillyCrimePage : ContentPage
+	public partial class ArrestPage : ContentPage
 	{
-		public PhillyCrimePage()
+		public ArrestPage()
 		{
 			InitializeComponent();
 

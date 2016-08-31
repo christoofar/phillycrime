@@ -3,7 +3,7 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:PhillyCrime"
-	x:Class="PhillyCrime.PhillyCrimePage" Title="Arrest Report">
+	x:Class="PhillyCrime.ArrestPage" Title="Arrest Report">
 	<ContentPage.Padding>
 		<OnPlatform
 			x:TypeArguments="Thickness"

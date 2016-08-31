@@ -8,7 +8,7 @@ namespace PhillyCrime
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new PhillyCrimePage());
+			MainPage = new NavigationPage(new ArrestPage());
 		}
 
 		protected override void OnStart()
