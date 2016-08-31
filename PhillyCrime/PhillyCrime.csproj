@@ -60,7 +60,11 @@
       <DependentUpon>PhillyCrimePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Misc\TextSupport.cs" />
+<<<<<<< HEAD
     <Compile Include="Misc\TestClass1.cs" />
+=======
+    <Compile Include="Misc\TestClass2.cs" />
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
