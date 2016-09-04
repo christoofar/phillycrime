@@ -8,8 +8,6 @@
 	<string>PhillyCrime</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.philadelinquency.phillycrime</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -48,5 +46,11 @@
 	<string>This lets us find crimes near you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This lets us find crimes near you</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>0.5.1</string>
 </dict>
 </plist>

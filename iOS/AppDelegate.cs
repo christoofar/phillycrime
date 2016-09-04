@@ -7,6 +7,7 @@ using UIKit;
 
 namespace PhillyCrime.iOS
 {
+
 	[Register("AppDelegate")]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 	{

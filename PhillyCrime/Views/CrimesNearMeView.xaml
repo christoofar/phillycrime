@@ -2,14 +2,23 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="PhillyCrime.ArrestListingPage"
 	xmlns:local="clr-namespace:PhillyCrime"
-		Title="Arrests">
+	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+	x:Class="PhillyCrime.CrimesNearMeView"
+	Title="Last 30 Days">
 	<ContentPage.Padding>
 		<OnPlatform
 			x:TypeArguments="Thickness"
 			iOS="0, 20, 0, 0" />
 	</ContentPage.Padding>
 	<ContentPage.Content>
+		<!-- Map of where crime happened (if applicable) -->
+		<maps:Map
+			WidthRequest="800"
+			HeightRequest="800"
+			x:Name="MyMap"
+			IsShowingUser="true"
+			MapType="Street">
+		</maps:Map>
 	</ContentPage.Content>
 </ContentPage>
