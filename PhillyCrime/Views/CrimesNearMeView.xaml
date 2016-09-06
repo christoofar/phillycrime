@@ -6,19 +6,101 @@
 	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
 	x:Class="PhillyCrime.CrimesNearMeView"
 	Title="Last 30 Days">
-	<ContentPage.Padding>
-		<OnPlatform
-			x:TypeArguments="Thickness"
-			iOS="0, 20, 0, 0" />
-	</ContentPage.Padding>
 	<ContentPage.Content>
-		<!-- Map of where crime happened (if applicable) -->
-		<maps:Map
-			WidthRequest="800"
-			HeightRequest="800"
-			x:Name="MyMap"
-			IsShowingUser="true"
-			MapType="Street">
-		</maps:Map>
+		<StackLayout
+			VerticalOptions="Fill"
+			Padding="0,0,0,0"
+			Spacing="0">
+			<!-- Map of where crime happened (if applicable) -->
+			<StackLayout
+				Padding="0,0,0,0"
+				Spacing="0"
+				VerticalOptions="FillAndExpand">
+				<local:CustomMap
+					x:Name="MyMap"
+					IsShowingUser="true"
+					MapType="Street"
+					>
+				</local:CustomMap>
+			</StackLayout>
+			<!-- Filtering capability -->
+			<StackLayout
+				Padding="0,0,0,0"
+				VerticalOptions="End"
+				HorizontalOptions="Center"
+				Spacing="0"
+				Orientation="Horizontal">
+				<Image
+					x:Name="filterHomicide"
+					Scale="1.0">
+					<Image.Source>
+						Images/h_on.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterRobbery"
+					Scale="1.0">
+					<Image.Source>
+						Images/ro_on.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterAssault"
+					Scale="1.0">
+					<Image.Source>
+						Images/a_on.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterBurglary"
+					Scale="1.0">
+					<Image.Source>
+						Images/b_on.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterTheft"
+					Scale="1.0">
+					<Image.Source>
+						Images/t_off.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterRape"
+					Scale="1.0">
+					<Image.Source>
+						Images/ra_on.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterAuto"
+					Scale="1.0">
+					<Image.Source>
+						Images/car_off.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterGuns"
+					Scale="1.0">
+					<Image.Source>
+						Images/g_off.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterProstition"
+					Scale="1.0">
+					<Image.Source>
+						Images/p_off.png
+					</Image.Source>
+				</Image>
+				<Image
+					x:Name="filterOther"
+					Scale="1.0">
+					<Image.Source>
+						Images/o_off.png
+					</Image.Source>
+				</Image>
+			</StackLayout>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

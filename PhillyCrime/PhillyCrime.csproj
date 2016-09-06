@@ -82,6 +82,8 @@
     <Compile Include="PlatformSpecificInterface.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\JsonWebClient.cs" />
+    <Compile Include="CustomMap.cs" />
+    <Compile Include="CustomPin.cs" />
 </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

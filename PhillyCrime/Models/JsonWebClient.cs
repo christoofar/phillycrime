@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Net;
 
-namespace PhillyCrime
+namespace PhillyCrime.Models
 {
 	public class JsonWebClient
 	{
@@ -19,6 +19,8 @@ namespace PhillyCrime
 		public async Task<System.IO.TextReader> DoRequestAsync(string url)
 		{
 			HttpWebRequest req = WebRequest.CreateHttp(url);
+			req.Accept = "application/json";
+			req.Headers["Accept-Encoding"] = "gzip,deflate";
 			//req.AllowReadStreamBuffering = true;
 			var tr = await DoRequestAsync(req);
 			return tr;

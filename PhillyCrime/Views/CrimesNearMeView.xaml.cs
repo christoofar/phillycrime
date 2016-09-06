@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 using System.Diagnostics;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Plugin.Geolocator;
+using PhillyCrime.Models;
 
 namespace PhillyCrime
 {
@@ -13,31 +16,94 @@ namespace PhillyCrime
 		//	Latitude: 39.9785737
 		//	Longitude: -75.1221699
 
+		MapSpan lastPosition = null;
 		Position currentPosition = new Position();
+		Filter currentFilter = Filter.Homicide |
+									 Filter.Robbery |
+									 Filter.Rape |
+									 Filter.Burglary |
+									 Filter.Assault;
 
+		IList<string> pins = new List<string>();
 		public CrimesNearMeView()
 		{
 			InitializeComponent();
+			MyMap.CustomPins = new List<CustomPin>();
+
+			MyMap.PropertyChanged += (sender, e) =>
+			{
+				try
+				{
+
+					if (!lastPosition.Equals(MyMap.VisibleRegion))
+					{
+						lastPosition = MyMap.VisibleRegion;
+						// User moved the map.  Recycle the pins.
+						//Data.Get30DayCrimeData(MyMap.VisibleRegion, this);
+						UpdateMap();
+					}
+				}
+				catch { }
+			};
 
 			this.Appearing += (sender, e) =>
 			{
 				CenterTheMap();
-				Data.Get30DayCrimeData(this);
+				UpdateMap();
 			};
 
 		}
 
-		public void DataFill(PhillyCrime.CrimeReport[] reports)
+		public Task<bool> UpdateMap()
 		{
-			MyMap.Pins.Clear();
+			return (Task<bool>)Task.Run(async () =>
+		   {
+			   var crime = await Data.Get30DayCrimeData(MyMap.VisibleRegion, currentFilter);
+			   DataFill(crime);
+			   return true;
+		   });
+		}
 
+		public void DataFill(CrimeReport[] reports)
+		{
 			foreach (var report in reports)
 			{
-				Pin pin = new Pin();
-				pin.Position = new Position(double.Parse(report.POINTY), double.Parse(report.POINTX));
-				pin.Address = report.LOCATIONBLOCK;
-				pin.Label = report.TEXTGENERALCODE;
-				MyMap.Pins.Add(pin);
+				List<CustomPin> toAdd = new List<CustomPin>();
+
+				if (pins.IndexOf(report.DCN) == -1)
+				{
+					var pin = new CustomPin
+					{
+						Pin = new Pin
+						{
+							Type = PinType.Place,
+							Position = new Position(report.Latitutde, report.Longitude),
+							Label = report.Title + report.Code,
+							Address = report.Address
+						},
+						Id = "Xamarin",
+						Url = "http://xamarin.com/about/",
+						CrimeType = report.Type
+					};
+
+					pins.Add(report.DCN);
+					toAdd.Add(pin);
+				}
+				else
+				{
+					int b = 0;
+				}
+
+
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					//Throw all the new pins on at once.
+					foreach (CustomPin pin in toAdd)
+					{
+						MyMap.CustomPins.Add(pin);
+						MyMap.Pins.Add(pin.Pin);
+					}
+				});
 			}
 		}
 
@@ -53,7 +119,7 @@ namespace PhillyCrime
 
 			try
 			{
-				
+
 				var locator = CrossGeolocator.Current;
 				locator.DesiredAccuracy = 50;
 				locator.AllowsBackgroundUpdates = true;
@@ -62,11 +128,11 @@ namespace PhillyCrime
 
 				currentPosition = new Position(position.Latitude, position.Longitude);
 
-				#if DEBUG
+#if DEBUG
 				Debug.WriteLine("Position Status: {0}", position.Timestamp);
 				Debug.WriteLine("Position Latitude: {0}", position.Latitude);
 				Debug.WriteLine("Position Longitude: {0}", position.Longitude);
-				#endif
+#endif
 
 			}
 			catch (Exception ex)
@@ -75,6 +141,7 @@ namespace PhillyCrime
 			}
 
 			var mapspan = MapSpan.FromCenterAndRadius(currentPosition, Distance.FromMiles(0.25));
+			lastPosition = mapspan;
 			MyMap.MoveToRegion(mapspan);
 		}
 

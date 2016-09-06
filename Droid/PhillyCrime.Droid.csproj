@@ -126,6 +126,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="PlatformSpecificImplementation.cs" />
+    <Compile Include="CustomMapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -141,6 +142,48 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\a_off.png" />
+    <AndroidResource Include="Resources\drawable\a_on.png" />
+    <AndroidResource Include="Resources\drawable\a_pin.png" />
+    <AndroidResource Include="Resources\drawable\b_off.png" />
+    <AndroidResource Include="Resources\drawable\b_on.png" />
+    <AndroidResource Include="Resources\drawable\car_off.png" />
+    <AndroidResource Include="Resources\drawable\car_on.png" />
+    <AndroidResource Include="Resources\drawable\f_off.png" />
+    <AndroidResource Include="Resources\drawable\f_on.png" />
+    <AndroidResource Include="Resources\drawable\f_pin.png" />
+    <AndroidResource Include="Resources\drawable\g_on.png" />
+    <AndroidResource Include="Resources\drawable\g_pin.png" />
+    <AndroidResource Include="Resources\drawable\h_off.png" />
+    <AndroidResource Include="Resources\drawable\h_on.png" />
+    <AndroidResource Include="Resources\drawable\m_off.png" />
+    <AndroidResource Include="Resources\drawable\m_on.png" />
+    <AndroidResource Include="Resources\drawable\m_pin.png" />
+    <AndroidResource Include="Resources\drawable\ra_off.png" />
+    <AndroidResource Include="Resources\drawable\ra_on.png" />
+    <AndroidResource Include="Resources\drawable\ra_pin.png" />
+    <AndroidResource Include="Resources\drawable\ro_off.png" />
+    <AndroidResource Include="Resources\drawable\ro_on.png" />
+    <AndroidResource Include="Resources\drawable\rv_on.png" />
+    <AndroidResource Include="Resources\drawable\rv_pin.png" />
+    <AndroidResource Include="Resources\drawable\t_off.png" />
+    <AndroidResource Include="Resources\drawable\t_on.png" />
+    <AndroidResource Include="Resources\drawable\t_pin.png" />
+    <AndroidResource Include="Resources\drawable\ta_on.png" />
+    <AndroidResource Include="Resources\drawable\ta_pin.png" />
+    <AndroidResource Include="Resources\drawable\vt_on.png" />
+    <AndroidResource Include="Resources\drawable\vt_pin.png" />
+    <AndroidResource Include="Resources\drawable\o_off.png" />
+    <AndroidResource Include="Resources\drawable\o_on.png" />
+    <AndroidResource Include="Resources\drawable\o_pin.png" />
+    <AndroidResource Include="Resources\drawable\p_off.png" />
+    <AndroidResource Include="Resources\drawable\p_on.png" />
+    <AndroidResource Include="Resources\drawable\p_pin.png" />
+    <AndroidResource Include="Resources\drawable\g_off.png" />
+    <AndroidResource Include="Resources\drawable\v_off.png" />
+    <AndroidResource Include="Resources\drawable\v_on.png" />
+    <AndroidResource Include="Resources\drawable\v_pin.png" />
+    <AndroidResource Include="Resources\drawable\pin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

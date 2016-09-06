@@ -30,6 +30,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <Optimize>true</Optimize>
@@ -82,7 +83,7 @@
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -150,6 +152,54 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="PlatformSpecificInterface.cs" />
+    <Compile Include="CustomMapRenderer.cs" />
+    <Compile Include="CustomMKAnnotationView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\a_off.png" />
+    <BundleResource Include="Images\a_on.png" />
+    <BundleResource Include="Images\a_pin.png" />
+    <BundleResource Include="Images\b_off.png" />
+    <BundleResource Include="Images\b_on.png" />
+    <BundleResource Include="Images\car_off.png" />
+    <BundleResource Include="Images\car_on.png" />
+    <BundleResource Include="Images\f_off.png" />
+    <BundleResource Include="Images\f_on.png" />
+    <BundleResource Include="Images\f_pin.png" />
+    <BundleResource Include="Images\g_off.png" />
+    <BundleResource Include="Images\g_on.png" />
+    <BundleResource Include="Images\g_pin.png" />
+    <BundleResource Include="Images\h_off.png" />
+    <BundleResource Include="Images\h_on.png" />
+    <BundleResource Include="Images\m_off.png" />
+    <BundleResource Include="Images\m_on.png" />
+    <BundleResource Include="Images\m_pin.png" />
+    <BundleResource Include="Images\o_off.png" />
+    <BundleResource Include="Images\o_on.png" />
+    <BundleResource Include="Images\o_pin.png" />
+    <BundleResource Include="Images\p_off.png" />
+    <BundleResource Include="Images\p_on.png" />
+    <BundleResource Include="Images\p_pin.png" />
+    <BundleResource Include="Images\ra_off.png" />
+    <BundleResource Include="Images\ra_on.png" />
+    <BundleResource Include="Images\ra_pin.png" />
+    <BundleResource Include="Images\ro_off.png" />
+    <BundleResource Include="Images\ro_on.png" />
+    <BundleResource Include="Images\rv_on.png" />
+    <BundleResource Include="Images\rv_pin.png" />
+    <BundleResource Include="Images\t_off.png" />
+    <BundleResource Include="Images\t_on.png" />
+    <BundleResource Include="Images\t_pin.png" />
+    <BundleResource Include="Images\ta_on.png" />
+    <BundleResource Include="Images\ta_pin.png" />
+    <BundleResource Include="Images\v_off.png" />
+    <BundleResource Include="Images\v_on.png" />
+    <BundleResource Include="Images\v_pin.png" />
+    <BundleResource Include="Images\vt_on.png" />
+    <BundleResource Include="Images\vt_pin.png" />
+    <BundleResource Include="Images\pin.png" />
+    <BundleResource Include="Images\ro_pin.png" />
+    <BundleResource Include="Images\b_pin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

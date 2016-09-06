@@ -11,6 +11,7 @@ namespace PhillyCrime.iOS
 				return true;
 			return false;
 		}
+
 	}
 }
 
