@@ -11,6 +11,8 @@ namespace PhillyCrime
 
 		public string Url { get; set; }
 
+		public string Occurred { get; set;}
+
 		public CrimeType CrimeType { get; set; }
 	}
 }

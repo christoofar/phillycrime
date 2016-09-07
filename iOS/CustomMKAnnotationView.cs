@@ -8,6 +8,8 @@ namespace PhillyCrime.iOS
 
 		public string Url { get; set; }
 
+		public string Occurred { get; set;}
+
 		public CustomMKAnnotationView(IMKAnnotation annotation, string id)
 			: base(annotation, id)
 		{

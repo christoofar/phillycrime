@@ -59,13 +59,14 @@ namespace PhillyCrime.Models
 	{
 
 		public string DCN { get; set; }
-		public string Occurred { get; set; }
+		public DateTime? Occurred { get; set; }
 		public double Longitude { get; set; }
 		public double Latitutde { get; set; }
 		public string Address { get; set; }
 		public CrimeType Type { get; set; }
 		public string Title { get; set; }
 		public string Code { get; set; }
+		public int ArrestCount { get; set; }
 	}
 
 }

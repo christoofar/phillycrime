@@ -13,7 +13,9 @@ namespace PhillyCrime.Models
 {
 	public class Data
 	{
-		private static string APIBASE = "http://192.168.1.30/phillycrime/api/";
+		//private static string APIBASE = "http://192.168.1.30/phillycrime/api/";
+		private static string APIBASE = "https://philadelinquency.com/phillycrime/api/";
+		//private static string APIBASE = "http://homeserver.local/phillycrime/api/";
 		private static string GET_30DAY = string.Format("{0}Values", APIBASE);
 
 		public Data()

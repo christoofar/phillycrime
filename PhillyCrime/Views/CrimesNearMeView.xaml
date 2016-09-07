@@ -5,7 +5,7 @@
 	xmlns:local="clr-namespace:PhillyCrime"
 	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
 	x:Class="PhillyCrime.CrimesNearMeView"
-	Title="Last 30 Days">
+	Title="10 Day Blotter">
 	<ContentPage.Content>
 		<StackLayout
 			VerticalOptions="Fill"
@@ -19,86 +19,135 @@
 				<local:CustomMap
 					x:Name="MyMap"
 					IsShowingUser="true"
-					MapType="Street"
-					>
+					MapType="Street">
 				</local:CustomMap>
 			</StackLayout>
 			<!-- Filtering capability -->
 			<StackLayout
-				Padding="0,0,0,0"
+				Padding="0,5,0,5"
 				VerticalOptions="End"
 				HorizontalOptions="Center"
-				Spacing="0"
+				Spacing="1"
 				Orientation="Horizontal">
 				<Image
 					x:Name="filterHomicide"
+					ClassId="filterHomicide"
 					Scale="1.0">
 					<Image.Source>
 						Images/h_on.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterRobbery"
+					ClassId="filterRobbery"
 					Scale="1.0">
 					<Image.Source>
 						Images/ro_on.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterAssault"
+					ClassId="filterAssault"
 					Scale="1.0">
 					<Image.Source>
 						Images/a_on.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterBurglary"
+					ClassId="filterBurglary"
 					Scale="1.0">
 					<Image.Source>
 						Images/b_on.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterTheft"
+					ClassId="filterTheft"
 					Scale="1.0">
 					<Image.Source>
 						Images/t_off.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterRape"
+					ClassId="filterRape"
 					Scale="1.0">
 					<Image.Source>
 						Images/ra_on.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterAuto"
+					ClassId="filterAuto"
 					Scale="1.0">
 					<Image.Source>
 						Images/car_off.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterGuns"
+					ClassId="filterGuns"
 					Scale="1.0">
 					<Image.Source>
 						Images/g_off.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
-					x:Name="filterProstition"
+					x:Name="filterProstitution"
+					ClassId="filterProstitution"
 					Scale="1.0">
 					<Image.Source>
 						Images/p_off.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 				<Image
 					x:Name="filterOther"
+					ClassId="filterOther"
 					Scale="1.0">
 					<Image.Source>
 						Images/o_off.png
 					</Image.Source>
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="OnTapGestureRecognizerTapped" />
+					</Image.GestureRecognizers>
 				</Image>
 			</StackLayout>
 		</StackLayout>
