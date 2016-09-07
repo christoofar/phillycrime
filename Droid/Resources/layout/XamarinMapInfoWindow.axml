@@ -35,6 +35,15 @@
                 android:layout_height="wrap_content"
                 android:text="InfoWindowSubtitle"
                 android:textColor="@android:color/black" />
+            <TextView
+                android:text="InfoWindowTime"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/InfoWindowTime"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/black"
+                android:textStyle="italic" />
         </LinearLayout>
         <ImageButton
             android:id="@+id/InfoWindowButton"

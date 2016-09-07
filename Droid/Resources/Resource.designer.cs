@@ -2651,6 +2651,9 @@ namespace PhillyCrime.Droid
 			// aapt resource value: 0x7f0b007e
 			public const int InfoWindowSubtitle = 2131427454;
 			
+			// aapt resource value: 0x7f0b00a8
+			public const int InfoWindowTime = 2131427496;
+			
 			// aapt resource value: 0x7f0b007d
 			public const int InfoWindowTitle = 2131427453;
 			

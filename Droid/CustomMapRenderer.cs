@@ -162,12 +162,17 @@ namespace PhillyCrime.Droid
 
 				var infoTitle = view.FindViewById<TextView> (Resource.Id.InfoWindowTitle);
 				var infoSubtitle = view.FindViewById<TextView> (Resource.Id.InfoWindowSubtitle);
+				var infoTime = view.FindViewById<TextView>(Resource.Id.InfoWindowTime);
 
 				if (infoTitle != null) {
 					infoTitle.Text = marker.Title;
 				}
 				if (infoSubtitle != null) {
 					infoSubtitle.Text = marker.Snippet;
+				}
+				if (infoTime != null)
+				{
+					infoTime.Text = customPin.Occurred;
 				}
 
 				return view;
