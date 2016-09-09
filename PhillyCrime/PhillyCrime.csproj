@@ -50,6 +50,9 @@
     <EmbeddedResource Include="Views\CrimesNearMeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\CrimeDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -84,6 +87,10 @@
     <Compile Include="Models\JsonWebClient.cs" />
     <Compile Include="CustomMap.cs" />
     <Compile Include="CustomPin.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Views\CrimeDetailPage.xaml.cs">
+      <DependentUpon>CrimeDetailPage.xaml</DependentUpon>
+    </Compile>
 </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

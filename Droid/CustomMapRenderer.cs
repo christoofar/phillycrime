@@ -135,12 +135,14 @@ namespace PhillyCrime.Droid
 				throw new Exception ("Custom pin not found");
 			}
 
-			if (!string.IsNullOrWhiteSpace (customPin.Url)) {
-				var url = Android.Net.Uri.Parse (customPin.Url);
-				var intent = new Intent (Intent.ActionView, url);
-				intent.AddFlags (ActivityFlags.NewTask);
-				Android.App.Application.Context.StartActivity (intent);
-			}
+			MessagingCenter.Send<CustomPin>(customPin, "ShowCrimeReport");
+
+			//if (!string.IsNullOrWhiteSpace (customPin.Url)) {
+			//	var url = Android.Net.Uri.Parse (customPin.Url);
+			//	var intent = new Intent (Intent.ActionView, url);
+			//	intent.AddFlags (ActivityFlags.NewTask);
+			//	Android.App.Application.Context.StartActivity (intent);
+			//}
 		}
 
 		public Android.Views.View GetInfoContents (Marker marker)

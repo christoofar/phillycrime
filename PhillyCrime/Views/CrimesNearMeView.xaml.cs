@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Diagnostics;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
@@ -16,7 +15,7 @@ namespace PhillyCrime
 		//	Latitude: 39.9785737
 		//	Longitude: -75.1221699
 
-		MapSpan lastPosition = null;
+		MapSpan lastPosition;
 		Position currentPosition = new Position();
 		Filter currentFilter = Filter.Homicide |
 									 Filter.Robbery |
@@ -29,6 +28,13 @@ namespace PhillyCrime
 		{
 			InitializeComponent();
 			MyMap.CustomPins = new List<CustomPin>();
+
+			// Start listener for pushpin events
+			MessagingCenter.Subscribe<CustomPin>(this, "ShowCrimeReport", (obj) =>
+			{
+				var crimeDetailPage = new CrimeDetailPage(obj);
+				Navigation.PushAsync(crimeDetailPage);
+			});
 
 			MyMap.PropertyChanged += (sender, e) =>
 			{
@@ -43,10 +49,12 @@ namespace PhillyCrime
 						UpdateMap();
 					}
 				}
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
 				catch { }
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
 			};
 
-			this.Appearing += (sender, e) =>
+			Appearing += (sender, e) =>
 			{
 				CenterTheMap();
 				UpdateMap();
@@ -74,7 +82,7 @@ namespace PhillyCrime
 
 		public void UpdateFilters()
 		{
-			List<string> types = new List<string>{ "filterHomicide",
+			var types = new List<string>{ "filterHomicide",
 				"filterAssault",
 				"filterBurglary",
 				"filterRobbery",
@@ -88,7 +96,7 @@ namespace PhillyCrime
 
 			foreach (string filter in types)
 			{
-				Image p = this.Content.FindByName<Image>(filter);
+				Image p = Content.FindByName<Image>(filter);
 				string imagesource = ((FileImageSource)p.Source).File;
 				if (imagesource.Contains("on"))
 				{
@@ -178,7 +186,7 @@ namespace PhillyCrime
 
 		public Task<bool> UpdateMap()
 		{
-			return (Task<bool>)Task.Run(async () =>
+			return Task.Run(async () =>
 		   {
 			   var crime = await Data.Get30DayCrimeData(MyMap.VisibleRegion, currentFilter);
 			   DataFill(crime);
@@ -190,7 +198,7 @@ namespace PhillyCrime
 		{
 			foreach (var report in reports)
 			{
-				List<CustomPin> toAdd = new List<CustomPin>();
+				var toAdd = new List<CustomPin>();
 
 				if (pins.IndexOf(report.DCN) == -1)
 				{
@@ -232,7 +240,9 @@ namespace PhillyCrime
 						},
 						() =>
 						{
+#pragma warning disable IDE0004 // Remove Unnecessary Cast
 							MessagingCenter.Send<CrimesNearMeView, CustomPin>((CrimesNearMeView)this, "DroidPin", pin);
+#pragma warning restore IDE0004 // Remove Unnecessary Cast
 						}, null, null);
 
 					}
@@ -258,6 +268,10 @@ namespace PhillyCrime
 				locator.AllowsBackgroundUpdates = true;
 
 				var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+
+				//Shut off GPS, we're done with it
+				locator.AllowsBackgroundUpdates = false;
+				var loc = locator.StopListeningAsync();
 
 				currentPosition = new Position(position.Latitude, position.Longitude);
 
