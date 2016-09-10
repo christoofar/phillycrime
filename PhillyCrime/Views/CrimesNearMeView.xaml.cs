@@ -211,7 +211,7 @@ namespace PhillyCrime
 							Label = report.Title,
 							Address = report.Address
 						},
-						Id = "Xamarin",
+						Id = report.DCN,
 						Url = "http://xamarin.com/about/",
 						Occurred = report.Occurred.GetValueOrDefault().ToString("dddd M/d h:mm tt"),
 						CrimeType = report.Type

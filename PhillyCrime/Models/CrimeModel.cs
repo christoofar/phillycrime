@@ -55,6 +55,56 @@ namespace PhillyCrime.Models
 		Other = 19
 	}
 
+	public class FullCrimeReport
+	{
+		public string DCN { get; set; }
+		public PhillyCrime.Models.Crime FullCrimeDetail { get; set; }
+		public PhillyCrime.Models.Arrest[] FullArrestDetails { get; set; }
+	}
+
+	public class Crime
+	{
+		public int ID { get; set; }
+		public string DC_DIST { get; set; }
+		public string SECTOR { get; set; }
+		public DateTime? DISPATCH_DATE_TIME { get; set; }
+		public System.DateTime? DISPATCH_DATE { get; set; }
+		public System.DateTime? DISPATCH_TIME { get; set; }
+		public string HOUR { get; set; }
+		public string DC_KEY { get; set; }
+		public string LOCATION_BLOCK { get; set; }
+		public string UCR_GENERAL { get; set; }
+		public int? OBJECTID { get; set; }
+		public string TEXT_GENERAL_CODE { get; set; }
+		public string POINT_X { get; set; }
+		public string POINT_Y { get; set; }
+		public string SHAPE { get; set; }
+		public string NEIGHBORHOOD { get; set; }
+		public string LAST_UPDATED_STR { get; set; }
+		public DateTime? LAST_UPDATED { get; set; }
+	}
+
+	public class Arrest
+	{
+		public int ID { get; set; }
+		public int? SimpleCaseNumber { get; set; }
+		public string CaseNumber { get; set; }
+		public string Defendant { get; set; }
+		public string DefendantZip { get; set; }
+		public string DCN { get; set; }
+		public string PoliceDistrict { get; set; }
+		public string ArrestingOfficer { get; set; }
+		public string DateOfBirth { get; set; }
+		public string PrimaryCharge { get; set; }
+		public DateTime? DateArrested { get; set; }
+		public string CaseYear { get; set; }
+		public string Bail { get; set; }
+		public string BailDate { get; set; }
+		public string Url { get; set; }
+		public DateTime? SuppressedExpires { get; set; }
+		public string SuspendCode { get; set; }
+	}
+
 	public class CrimeReport
 	{
 

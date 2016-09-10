@@ -23,14 +23,14 @@ namespace PhillyCrime.Models
 		{
 		}
 
-		public async static Task<CrimeReport[]> GetFullCrimeReport(string DCN)
+		public async static Task<FullCrimeReport> GetFullCrimeReport(string DCN)
 		{
 			JsonWebClient cli = new JsonWebClient();
 
 			string getUri = FULLREPORT + string.Format("/{0}/",
 													   DCN);
 
-			var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
+			var resp = await cli.DoRequestJsonAsync<FullCrimeReport>(getUri);
 			return resp;
 		}
 
