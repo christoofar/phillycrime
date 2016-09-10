@@ -2,7 +2,14 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:PhillyCrime"
 	x:Class="PhillyCrime.CrimeDetailPage">
 	<ContentPage.Content>
+		<StackLayout>
+			<ActivityIndicator x:Name="Indicator" VerticalOptions="CenterAndExpand" IsRunning="true" IsEnabled="true" />
+			<local:CrimeView IsVisible="false"
+				x:Name="CrimeView">
+			</local:CrimeView>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

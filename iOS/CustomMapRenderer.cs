@@ -159,6 +159,7 @@ namespace PhillyCrime.iOS
 			((CustomMKAnnotationView)annotationView).Id = customPin.Id;
 			((CustomMKAnnotationView)annotationView).Url = customPin.Url;
 			((CustomMKAnnotationView)annotationView).Occurred = customPin.Occurred;
+			((CustomMKAnnotationView)annotationView).Pin = customPin;
 			annotationView.CanShowCallout = true;
 
 			return annotationView;
@@ -167,10 +168,11 @@ namespace PhillyCrime.iOS
 		void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
 		{
 			var customView = e.View as CustomMKAnnotationView;
-			if (!string.IsNullOrWhiteSpace(customView.Url))
-			{
-				UIApplication.SharedApplication.OpenUrl(new Foundation.NSUrl(customView.Url));
-			}
+			MessagingCenter.Send<CustomPin>(customView.Pin, "ShowCrimeReport");
+			//if (!string.IsNullOrWhiteSpace(customView.Url))
+			//{
+			//	UIApplication.SharedApplication.OpenUrl(new Foundation.NSUrl(customView.Url));
+			//}
 		}
 
 		void OnDidSelectAnnotationView(object sender, MKAnnotationViewEventArgs e)
