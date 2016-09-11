@@ -36,6 +36,24 @@ namespace PhillyCrime
 				Navigation.PushAsync(crimeDetailPage);
 			});
 
+			// When app sleeps, shut off location tracing
+			MessagingCenter.Subscribe<App>(this, "GoingToSleep", (App obj) =>
+			{
+				if (MyMap != null)
+				{
+					MyMap.IsShowingUser = false;
+				}
+			});
+
+			// When app wakes up, turn on location tracing
+			MessagingCenter.Subscribe<App>(this, "WakingUp", (App obj) =>
+			{
+				if (MyMap != null)
+				{
+					MyMap.IsShowingUser = true;
+				}
+			});
+
 			MyMap.PropertyChanged += (sender, e) =>
 			{
 				try

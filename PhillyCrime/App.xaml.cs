@@ -54,11 +54,14 @@ namespace PhillyCrime
 		protected override void OnSleep()
 		{
 			// Handle when your app sleeps
+			MessagingCenter.Send(this, "GoingToSleep");
+
 		}
 
 		protected override void OnResume()
 		{
 			// Handle when your app resumes
+			MessagingCenter.Send(this, "WakingUp");
 		}
 	}
 
