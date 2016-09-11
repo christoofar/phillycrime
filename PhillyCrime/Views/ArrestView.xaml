@@ -21,7 +21,7 @@
 					<Label
 						FontAttributes="Bold"
 						FontSize="Large"
-						TextColor="Black">AGGRAVATED ASSAULT NO WEAPON</Label>
+						TextColor="Black" x:Name="textOffenseTitle">AGGRAVATED ASSAULT NO WEAPON</Label>
 					<StackLayout
 						Orientation="Horizontal">
 						<Label
@@ -29,7 +29,7 @@
 							FontSize="Medium"
 							TextColor="Black">Arrested:</Label>
 						<Label
-							FontSize="Medium">08/03/2016</Label>
+							FontSize="Medium" x:Name="textArrestDate">08/03/2016</Label>
 					</StackLayout>
 					<StackLayout
 						Orientation="Horizontal">
@@ -38,7 +38,7 @@
 							FontSize="Medium"
 							TextColor="Black">Suspect lives in:</Label>
 						<Label
-							FontSize="Medium">19125</Label>
+							FontSize="Medium" x:Name="textSuspectLivesIn">19125</Label>
 					</StackLayout>
 				</StackLayout>
 			</Frame>

@@ -49,7 +49,7 @@ namespace PhillyCrime.Droid
 				// Register a command to add a droid pin to the map
 				MessagingCenter.Subscribe<CrimesNearMeView, CustomPin>(this, "DroidPin", (sender, pin) =>
 				{
-					// do something whenever the "Hi" message is sent
+					// do something whenever the "DroidPin" message is sent
 					Device.BeginInvokeOnMainThread(() =>
 					{
 						var marker = new MarkerOptions();
@@ -158,6 +158,7 @@ namespace PhillyCrime.Droid
 
 				if (customPin.Id == "Xamarin") {
 					view = inflater.Inflate (Resource.Layout.XamarinMapInfoWindow, null);
+
 				} else {
 					view = inflater.Inflate (Resource.Layout.MapInfoWindow, null);
 				}
@@ -165,6 +166,67 @@ namespace PhillyCrime.Droid
 				var infoTitle = view.FindViewById<TextView> (Resource.Id.InfoWindowTitle);
 				var infoSubtitle = view.FindViewById<TextView> (Resource.Id.InfoWindowSubtitle);
 				var infoTime = view.FindViewById<TextView>(Resource.Id.InfoWindowTime);
+				var infoIcon = view.FindViewById<ImageView>(Resource.Id.InfoWindowIcon);
+
+				infoIcon.SetImageResource(Resource.Drawable.h_on);
+
+				int icon;
+				switch (customPin.CrimeType)
+				{
+					case Models.CrimeType.Homicide:
+						icon = Resource.Drawable.h_on;
+						break;
+					case Models.CrimeType.Robbery:
+						icon = Resource.Drawable.ro_on;
+						break;
+					case Models.CrimeType.Assault:
+						icon = Resource.Drawable.a_on;
+						break;
+					case Models.CrimeType.Burglary:
+						icon = Resource.Drawable.b_on;
+						break;
+					case Models.CrimeType.Rape:
+						icon = Resource.Drawable.ra_on;
+						break;
+					case Models.CrimeType.Theft:
+						icon = Resource.Drawable.t_on;
+						break;
+					case Models.CrimeType.Prostition:
+						icon = Resource.Drawable.p_on;
+						break;
+					case Models.CrimeType.TheftFromAuto:
+						icon = Resource.Drawable.ta_on;
+						break;
+					case Models.CrimeType.StolenVehicle:
+						icon = Resource.Drawable.vt_on;
+						break;
+					case Models.CrimeType.VehicleRecovery:
+						icon = Resource.Drawable.rv_on;
+						break;
+					case Models.CrimeType.Gun:
+						icon = Resource.Drawable.g_on;
+						break;
+					case Models.CrimeType.Other:
+						icon = Resource.Drawable.o_on;
+						break;
+					case Models.CrimeType.CriminalMischief:
+						icon = Resource.Drawable.m_on;
+						break;
+					case Models.CrimeType.DUI:
+						icon = Resource.Drawable.d_on;
+						break;
+					case Models.CrimeType.OtherSexAssault:
+						icon = Resource.Drawable.s_on;
+						break;
+					case Models.CrimeType.Narcotics:
+						icon = Resource.Drawable.n_on;
+						break;
+					default:
+						icon = Resource.Drawable.o_on;
+						break;
+				}
+
+				infoIcon.SetImageResource(icon);
 
 				if (infoTitle != null) {
 					infoTitle.Text = marker.Title;

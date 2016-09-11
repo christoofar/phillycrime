@@ -34,6 +34,22 @@ namespace PhillyCrime.iOS
 		public static UIImage Pin_Narcotics = UIImage.FromFile("Images/n_pin.png");
 		public static UIImage Pin_DUI = UIImage.FromFile("Images/d_pin.png");
 		public static UIImage Pin_Sex = UIImage.FromFile("Images/s_pin.png");
+		public static UIImage FS_Assault = UIImage.FromFile("Images/a_on.png");
+		public static UIImage FS_Homicide = UIImage.FromFile("Images/h_on.png");
+		public static UIImage FS_Burglary = UIImage.FromFile("Images/b_on.png");
+		public static UIImage FS_Robbery = UIImage.FromFile("Images/ro_on.png");
+		public static UIImage FS_Rape = UIImage.FromFile("Images/ra_on.png");
+		public static UIImage FS_Theft = UIImage.FromFile("Images/t_on.png");
+		public static UIImage FS_VehicleRecovery = UIImage.FromFile("Images/rv_on.png");
+		public static UIImage FS_Prostition = UIImage.FromFile("Images/p_on.png");
+		public static UIImage FS_Gun = UIImage.FromFile("Images/g_on.png");
+		public static UIImage FS_Other = UIImage.FromFile("Images/o_on.png");
+		public static UIImage FS_StolenVehicle = UIImage.FromFile("Images/vt_on.png");
+		public static UIImage FS_TheftFromAuto = UIImage.FromFile("Images/ta_on.png");
+		public static UIImage FS_CriminalMischief = UIImage.FromFile("Images/m_on.png");
+		public static UIImage FS_Narcotics = UIImage.FromFile("Images/n_on.png");
+		public static UIImage FS_DUI = UIImage.FromFile("Images/d_on.png");
+		public static UIImage FS_Sex = UIImage.FromFile("Images/s_on.png");
 
 		protected override void OnElementChanged(ElementChangedEventArgs<View> e)
 		{
@@ -82,7 +98,7 @@ namespace PhillyCrime.iOS
 			{
 				annotationView = new CustomMKAnnotationView(annotation, customPin.Id);
 			}
-			else 
+			else
 			{
 				// I'm not sure why but we have to really force the image off this annotation
 				// to prevent user confusion.
@@ -93,63 +109,77 @@ namespace PhillyCrime.iOS
 			{
 				case Models.CrimeType.Homicide:
 					annotationView.Image = Pin_Homicide;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Homicide);
 					break;
 				case Models.CrimeType.Robbery:
 					annotationView.Image = Pin_Robbery;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Robbery);
 					break;
 				case Models.CrimeType.Assault:
 					annotationView.Image = Pin_Assault;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Assault);
 					break;
 				case Models.CrimeType.Burglary:
 					annotationView.Image = Pin_Burglary;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Burglary);
 					break;
 				case Models.CrimeType.Rape:
 					annotationView.Image = Pin_Rape;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Rape);
 					break;
 				case Models.CrimeType.Theft:
 					annotationView.Image = Pin_Theft;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Theft);
 					break;
 				case Models.CrimeType.Prostition:
 					annotationView.Image = Pin_Prostition;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Prostition);
 					break;
 				case Models.CrimeType.TheftFromAuto:
 					annotationView.Image = Pin_TheftFromAuto;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_TheftFromAuto);
 					break;
 				case Models.CrimeType.StolenVehicle:
 					annotationView.Image = Pin_StolenVehicle;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_StolenVehicle);
 					break;
 				case Models.CrimeType.VehicleRecovery:
 					annotationView.Image = Pin_VehicleRecovery;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_VehicleRecovery);
 					break;
 				case Models.CrimeType.Gun:
 					annotationView.Image = Pin_Gun;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Gun);
 					break;
 				case Models.CrimeType.CriminalMischief:
 					annotationView.Image = Pin_CriminalMischief;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_CriminalMischief);
 					break;
 				case Models.CrimeType.DUI:
 					annotationView.Image = Pin_DUI;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_DUI);
 					break;
 				case Models.CrimeType.Narcotics:
 					annotationView.Image = Pin_Narcotics;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Narcotics);
 					break;
 				case Models.CrimeType.Other:
 					annotationView.Image = Pin_Other;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Other);
 					break;
 				case Models.CrimeType.OtherSexAssault:
 					annotationView.Image = Pin_Sex;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Sex);
 					break;
 				default:
 					annotationView.Image = Pin_Other;
+					annotationView.LeftCalloutAccessoryView = new UIImageView(FS_Other);
 					break;
-					
+
 			}
 
 			annotationView.CalloutOffset = new CGPoint(0, 0);
-			if (annotationView.Image != null)
-			{
-				annotationView.LeftCalloutAccessoryView = new UIImageView(annotationView.Image);
-			}
+
 			annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
 			UIStackView stackview = new UIStackView();
 			stackview.Axis = UILayoutConstraintAxis.Vertical;
@@ -205,7 +235,7 @@ namespace PhillyCrime.iOS
 		{
 			if (annotation == null)
 				return null;
-			
+
 			var position = new Position(annotation.Coordinate.Latitude, annotation.Coordinate.Longitude);
 			foreach (var pin in customPins)
 			{

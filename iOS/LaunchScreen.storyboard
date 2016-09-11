@@ -13,11 +13,26 @@
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="center" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <subviews/>
+                        <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6" translatesAutoresizingMaskIntoConstraints="NO" image="splash.png">
+                                <rect key="frame" x="141" y="69" width="317" height="462"/>
+                                <constraints>
+                                    <constraint id="51" firstAttribute="width" constant="317"/>
+                                    <constraint id="52" firstAttribute="height" constant="462"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="49" firstItem="Ze5-6b-2t3" firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="69"/>
+                            <constraint id="50" firstItem="Ze5-6b-2t3" firstAttribute="trailing" secondItem="6" secondAttribute="trailing" constant="141"/>
+                            <constraint id="53" firstItem="6" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="49"/>
+                            <constraint id="54" firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="69"/>
+                            <constraint id="55" firstItem="6" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="142"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -25,4 +40,69 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Images/a_off.png" width="30" height="30"/>
+        <image name="Images/a_on.png" width="30" height="30"/>
+        <image name="Images/a_pin.png" width="16" height="16"/>
+        <image name="Images/b_off.png" width="30" height="30"/>
+        <image name="Images/b_on.png" width="30" height="30"/>
+        <image name="Images/car_off.png" width="30" height="30"/>
+        <image name="Images/car_on.png" width="30" height="30"/>
+        <image name="Images/f_off.png" width="30" height="30"/>
+        <image name="Images/f_on.png" width="30" height="30"/>
+        <image name="Images/f_pin.png" width="16" height="16"/>
+        <image name="Images/g_off.png" width="30" height="30"/>
+        <image name="Images/g_on.png" width="30" height="30"/>
+        <image name="Images/g_pin.png" width="16" height="16"/>
+        <image name="Images/h_off.png" width="30" height="30"/>
+        <image name="Images/h_on.png" width="30" height="30"/>
+        <image name="Images/m_off.png" width="30" height="30"/>
+        <image name="Images/m_on.png" width="30" height="30"/>
+        <image name="Images/m_pin.png" width="16" height="16"/>
+        <image name="Images/o_off.png" width="30" height="30"/>
+        <image name="Images/o_on.png" width="30" height="30"/>
+        <image name="Images/o_pin.png" width="16" height="16"/>
+        <image name="Images/p_off.png" width="30" height="30"/>
+        <image name="Images/p_on.png" width="30" height="30"/>
+        <image name="Images/p_pin.png" width="16" height="16"/>
+        <image name="Images/ra_off.png" width="30" height="30"/>
+        <image name="Images/ra_on.png" width="30" height="30"/>
+        <image name="Images/ra_pin.png" width="16" height="16"/>
+        <image name="Images/ro_off.png" width="30" height="30"/>
+        <image name="Images/ro_on.png" width="30" height="30"/>
+        <image name="Images/rv_on.png" width="30" height="30"/>
+        <image name="Images/rv_pin.png" width="16" height="16"/>
+        <image name="Images/t_off.png" width="30" height="30"/>
+        <image name="Images/t_on.png" width="30" height="30"/>
+        <image name="Images/t_pin.png" width="16" height="16"/>
+        <image name="Images/ta_on.png" width="30" height="30"/>
+        <image name="Images/ta_pin.png" width="16" height="16"/>
+        <image name="Images/v_off.png" width="30" height="30"/>
+        <image name="Images/v_on.png" width="30" height="30"/>
+        <image name="Images/v_pin.png" width="16" height="16"/>
+        <image name="Images/vt_on.png" width="30" height="30"/>
+        <image name="Images/vt_pin.png" width="16" height="16"/>
+        <image name="Images/pin.png" width="32" height="32"/>
+        <image name="Images/ro_pin.png" width="16" height="16"/>
+        <image name="Images/b_pin.png" width="16" height="16"/>
+        <image name="Images/h_pin.png" width="16" height="16"/>
+        <image name="Images/d_off.png" width="30" height="30"/>
+        <image name="Images/d_pin.png" width="16" height="16"/>
+        <image name="Images/d_on.png" width="30" height="30"/>
+        <image name="Images/n_pin.png" width="16" height="16"/>
+        <image name="Images/n_on.png" width="30" height="30"/>
+        <image name="Images/n_off.png" width="30" height="30"/>
+        <image name="Images/s_off.png" width="30" height="30"/>
+        <image name="Images/s_pin.png" width="16" height="16"/>
+        <image name="Images/s_on.png" width="30" height="30"/>
+        <image name="Images/yes.png" width="35" height="35"/>
+        <image name="Images/no.png" width="35" height="35"/>
+        <image name="Images/filters.png" width="466" height="56"/>
+        <image name="Images/notice.png" width="64" height="64"/>
+        <image name="Images/TabIcons/gun.png" width="25" height="25"/>
+        <image name="Images/TabIcons/coding.png" width="25" height="25"/>
+        <image name="gun.png" width="25" height="25"/>
+        <image name="info.png" width="25" height="25"/>
+        <image name="splash.png" width="467" height="657"/>
+    </resources>
 </document>

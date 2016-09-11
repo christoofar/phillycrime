@@ -53,6 +53,9 @@
     <EmbeddedResource Include="Views\CrimeDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\BetaWelcome.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -90,6 +93,9 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Views\CrimeDetailPage.xaml.cs">
       <DependentUpon>CrimeDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BetaWelcome.xaml.cs">
+      <DependentUpon>BetaWelcome.xaml</DependentUpon>
     </Compile>
 </ItemGroup>
   <ItemGroup>

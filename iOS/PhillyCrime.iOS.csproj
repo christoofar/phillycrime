@@ -38,14 +38,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchUseSGen>true</MtouchUseSGen>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
@@ -55,7 +55,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchUseSGen>true</MtouchUseSGen>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>None</MtouchLink>
@@ -63,6 +63,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,7 +85,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARMv7s, ARM64</MtouchArch>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
@@ -163,6 +164,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Images\" />
+    <Folder Include="Images\TabIcons\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -234,6 +236,23 @@
     <BundleResource Include="Images\s_off.png" />
     <BundleResource Include="Images\s_pin.png" />
     <BundleResource Include="Images\s_on.png" />
+    <BundleResource Include="Images\yes.png" />
+    <BundleResource Include="Images\no.png" />
+    <BundleResource Include="Images\filters.png" />
+    <BundleResource Include="Images\notice.png" />
+    <BundleResource Include="Images\TabIcons\gun%403x.png" />
+    <BundleResource Include="Images\TabIcons\gun%402x.png" />
+    <BundleResource Include="Images\TabIcons\gun.png" />
+    <BundleResource Include="Images\TabIcons\coding%403x.png" />
+    <BundleResource Include="Images\TabIcons\coding%402x.png" />
+    <BundleResource Include="Images\TabIcons\coding.png" />
+    <BundleResource Include="Resources\gun%403x.png" />
+    <BundleResource Include="Resources\gun%402x.png" />
+    <BundleResource Include="Resources\gun.png" />
+    <BundleResource Include="Resources\info%403x.png" />
+    <BundleResource Include="Resources\info%402x.png" />
+    <BundleResource Include="Resources\info.png" />
+    <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

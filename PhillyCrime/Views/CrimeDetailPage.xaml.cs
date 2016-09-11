@@ -35,8 +35,16 @@ namespace PhillyCrime
 
 		public void DataFill(FullCrimeReport report)
 		{
-			Indicator.IsVisible = false;
-			Indicator.IsRunning = false;
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				Indicator.IsRunning = false;
+				MainLayout.Children.Remove(Indicator);
+			});
+			CrimeView.UpdateData(report);
+
+			// Was a single person arrested for this?
+			if (report.FullArrestDetails.Length == 1)
+				SingleArrestView.UpdateData(report.FullArrestDetails[0]);
 		}
 	}
 }
