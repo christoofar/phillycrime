@@ -5,42 +5,73 @@
 	x:Class="PhillyCrime.ArrestView">
 	<ContentView.Content>
 		<!-- Defendant fanfare -->
-			<Frame
-				OutlineColor="#CCCCCC"
-				BackgroundColor="#CCCCCC"
-				HasShadow="false"
-				WidthRequest="500"
-				HorizontalOptions="CenterAndExpand">
-				<StackLayout>
+		<Frame
+			OutlineColor="#CCCCCC"
+			BackgroundColor="#CCCCCC"
+			HasShadow="false"
+			WidthRequest="500"
+			HorizontalOptions="CenterAndExpand">
+			<StackLayout>
+				<Label
+					FontAttributes="Bold"
+					FontSize="30"
+					HorizontalOptions="StartAndExpand"
+					TextColor="Black"
+					x:Name="textDefendantName">DEFENDANT NAME, 45</Label>
+				<Label
+					FontAttributes="Bold"
+					FontSize="Large"
+					TextColor="Black"
+					x:Name="textOffenseTitle">AGGRAVATED ASSAULT NO WEAPON</Label>
+				<StackLayout
+					Orientation="Horizontal">
 					<Label
 						FontAttributes="Bold"
-						FontSize="30"
-						HorizontalOptions="StartAndExpand"
-						TextColor="Black"
-						x:Name="textDefendantName">DEFENDANT NAME, 45</Label>
+						FontSize="Medium"
+						TextColor="Black">Arrested:</Label>
 					<Label
-						FontAttributes="Bold"
-						FontSize="Large"
-						TextColor="Black" x:Name="textOffenseTitle">AGGRAVATED ASSAULT NO WEAPON</Label>
-					<StackLayout
-						Orientation="Horizontal">
-						<Label
-							FontAttributes="Bold"
-							FontSize="Medium"
-							TextColor="Black">Arrested:</Label>
-						<Label
-							FontSize="Medium" x:Name="textArrestDate">08/03/2016</Label>
-					</StackLayout>
-					<StackLayout
-						Orientation="Horizontal">
-						<Label
-							FontAttributes="Bold"
-							FontSize="Medium"
-							TextColor="Black">Suspect lives in:</Label>
-						<Label
-							FontSize="Medium" x:Name="textSuspectLivesIn">19125</Label>
-					</StackLayout>
+						FontSize="Medium"
+						x:Name="textArrestDate">08/03/2016</Label>
 				</StackLayout>
-			</Frame>
+				<StackLayout
+					Orientation="Horizontal">
+					<Label
+						FontAttributes="Bold"
+						FontSize="Medium"
+						TextColor="Black">Suspect lives in:</Label>
+					<Label
+						FontSize="Medium" TextColor="Blue"
+						x:Name="textSuspectLivesIn">
+						<Label.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnLivesInTapped" NumberOfTapsRequired="1"/>
+						</Label.GestureRecognizers>
+					</Label>
+				</StackLayout>
+				<StackLayout
+					Orientation="Horizontal">
+					<Label
+						FontAttributes="Bold"
+						FontSize="Medium"
+						TextColor="Black" x:Name="textBail"></Label>
+				</StackLayout>
+				<StackLayout
+					Orientation="Horizontal">
+					<Label
+						FontAttributes="Bold"
+						FontSize="Default"
+						TextColor="Black">Arresting Officer: </Label>
+					<Label
+						FontSize="Default"
+						x:Name="textArrestingOfficer"></Label>
+				</StackLayout>				
+				<StackLayout						
+					Orientation="Horizontal">
+					<Button
+						Text="View Docket"
+						x:Name="buttonDocket">
+					</Button>
+				</StackLayout>
+			</StackLayout>
+		</Frame>
 	</ContentView.Content>
 </ContentView>
