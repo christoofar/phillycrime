@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Gms.Common;
+using PushNotification.Plugin;
 
 namespace PhillyCrime.Droid
 {
@@ -24,6 +26,34 @@ namespace PhillyCrime.Droid
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
 			LoadApplication(new App());
+
+			if (IsPlayServicesAvailable())
+			{
+				PushNotification.Plugin.CrossPushNotification.Current.Register();
+			}
+		}
+
+		public bool IsPlayServicesAvailable()
+		{
+			int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+			if (resultCode != ConnectionResult.Success)
+			{
+				if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+				{
+					//Debug.("Error with Android notifications -> " + GoogleApiAvailability.Instance.GetErrorString(resultCode));
+				}
+				else
+				{
+					//Debug.WriteLine("Sorry, this device is not supported for notifications");
+					//Finish();
+				}
+				return false;
+			}
+			else
+			{
+				//Debug.WriteLine("Google Play Services is available.");
+				return true;
+			}
 		}
 	}
 }

@@ -131,6 +131,12 @@
     <Reference Include="System.Net.Http.Extensions.Compression.Core">
       <HintPath>..\packages\System.Net.Http.Extensions.Compression.Client.2.0.5\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\System.Net.Http.Extensions.Compression.Core.dll</HintPath>
     </Reference>
+    <Reference Include="PushNotification.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.PushNotification.1.2.4\lib\Xamarin.iOS10\PushNotification.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="PushNotification.Plugin">
+      <HintPath>..\packages\Xam.Plugin.PushNotification.1.2.4\lib\Xamarin.iOS10\PushNotification.Plugin.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhillyCrime\PhillyCrime.csproj">
@@ -173,6 +179,7 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <None Include="PushNotificationApplicationDelegate.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
