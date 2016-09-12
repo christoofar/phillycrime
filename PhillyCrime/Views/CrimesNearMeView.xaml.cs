@@ -74,7 +74,10 @@ namespace PhillyCrime
 
 			Appearing += (sender, e) =>
 			{
-				CenterTheMap();
+				if (lastPosition == null)
+				{
+					CenterTheMap();
+				}
 				UpdateMap();
 			};
 
