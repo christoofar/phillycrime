@@ -308,6 +308,18 @@ namespace PhillyCrime
 				Debug.WriteLine("Unable to get location, may need to increase timeout: " + ex);
 			}
 
+
+			// Check to see if the user has a primary location set and if not, offer to set it for her
+			if (Application.Current.Properties["PrimaryLat"] == null)
+			{
+				// OK, now we need to see if we're located in Philly
+				if (await DisplayAlert("Set Primary Location",
+									  "Would you like to use where you are right now as your primary location?", "Yes", "No"))
+				{
+					
+				}				
+			}
+
 			var mapspan = MapSpan.FromCenterAndRadius(currentPosition, Distance.FromMiles(0.25));
 			lastPosition = mapspan;
 			MyMap.MoveToRegion(mapspan);

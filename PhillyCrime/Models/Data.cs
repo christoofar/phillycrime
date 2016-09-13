@@ -18,9 +18,20 @@ namespace PhillyCrime.Models
 		//private static string APIBASE = "http://homeserver.local/phillycrime/api/";
 		private static string GET_30DAY = string.Format("{0}Values", APIBASE);
 		private static string FULLREPORT = string.Format("{0}Crime", APIBASE);
+		private static string PHILLY = string.Format("{0}Philly", APIBASE);
 
 		public Data()
 		{
+		}
+
+		public async static Task<bool> IsInPhilly(double longitude, double latitude)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string getUri = PHILLY + string.Format("/{0}/{1}/", longitude, latitude);
+
+			var resp = await cli.DoRequestJsonAsync<bool>(getUri);
+			return resp;
 		}
 
 		public async static Task<FullCrimeReport> GetFullCrimeReport(string DCN)
