@@ -15,6 +15,7 @@ namespace PhillyCrime
 		//	Latitude: 39.9785737
 		//	Longitude: -75.1221699
 
+		bool _initialized = false;
 		MapSpan lastPosition;
 		Position currentPosition = new Position();
 		Filter currentFilter = Filter.Homicide |
@@ -54,17 +55,18 @@ namespace PhillyCrime
 				}
 			});
 
+			// User moved map.
 			MyMap.PropertyChanged += (sender, e) =>
 			{
 				try
 				{
-
-					if (!lastPosition.Equals(MyMap.VisibleRegion))
+					if (_initialized)
 					{
-						lastPosition = MyMap.VisibleRegion;
-						// User moved the map.  Recycle the pins.
-						//Data.Get30DayCrimeData(MyMap.VisibleRegion, this);
-						UpdateMap();
+						if (!(MyMap.VisibleRegion.Equals(lastPosition)) || lastPosition == null)
+						{
+							lastPosition = MyMap.VisibleRegion;
+							UpdateMap();
+						}
 					}
 				}
 #pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
@@ -72,15 +74,26 @@ namespace PhillyCrime
 #pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
 			};
 
+			// User is coming to look at the map
 			Appearing += (sender, e) =>
 			{
-				if (lastPosition == null)
+				if (!_initialized)
 				{
 					CenterTheMap();
+					_initialized = true;
 				}
 				UpdateMap();
 			};
 
+			// Initialization should be complete, attempt to center the map.
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				if (!_initialized)
+				{
+					_initialized = true;
+					CenterTheMap();
+				}
+			});
 		}
 
 		void OnTapGestureRecognizerTapped(object sender, EventArgs args) 
@@ -274,52 +287,54 @@ namespace PhillyCrime
 		// We're going to find the centerpoint region best for displaying crime data.
 		public async void CenterTheMap()
 		{
-
-			if (DependencyService.Get<PlatformSpecificInterface>().CheckIfSimulator() && Device.OS == TargetPlatform.iOS)
-			{
-				Debug.WriteLine("We're running inside of an iOS similar, return fakey coordinates");
-				currentPosition = new Position(39.9785737, -75.122699);
-			}
-
-			try
+			// If there is no primary location already configured in the phone, use GPS
+			if (!Application.Current.Properties.ContainsKey("PrimaryLat"))
 			{
 
-				var locator = CrossGeolocator.Current;
-				locator.DesiredAccuracy = 50;
-				locator.AllowsBackgroundUpdates = true;
+				if (DependencyService.Get<PlatformSpecificInterface>().CheckIfSimulator() && Device.OS == TargetPlatform.iOS)
+				{
+					Debug.WriteLine("We're running inside of an iOS similar, return fakey coordinates");
+					currentPosition = new Position(39.9785737, -75.122699);
+				}
 
-				var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+				try
+				{
 
-				//Shut off GPS, we're done with it
-				locator.AllowsBackgroundUpdates = false;
-				var loc = locator.StopListeningAsync();
+					var locator = CrossGeolocator.Current;
+					locator.DesiredAccuracy = 50;
+					locator.AllowsBackgroundUpdates = true;
 
-				currentPosition = new Position(position.Latitude, position.Longitude);
+					var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+
+					//Shut off GPS, we're done with it
+					locator.AllowsBackgroundUpdates = false;
+					locator.StopListeningAsync();
+
+					currentPosition = new Position(position.Latitude, position.Longitude);
 
 #if DEBUG
-				Debug.WriteLine("Position Status: {0}", position.Timestamp);
-				Debug.WriteLine("Position Latitude: {0}", position.Latitude);
-				Debug.WriteLine("Position Longitude: {0}", position.Longitude);
+					Debug.WriteLine("Position Status: {0}", position.Timestamp);
+					Debug.WriteLine("Position Latitude: {0}", position.Latitude);
+					Debug.WriteLine("Position Longitude: {0}", position.Longitude);
 #endif
 
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine("Unable to get location, may need to increase timeout: " + ex);
-			}
-
-
-			// Check to see if the user has a primary location set and if not, offer to set it for her
-			if (Application.Current.Properties["PrimaryLat"] == null)
-			{
-				// OK, now we need to see if we're located in Philly
-				if (await DisplayAlert("Set Primary Location",
-									  "Would you like to use where you are right now as your primary location?", "Yes", "No"))
+				}
+				catch (Exception ex)
 				{
-					
-				}				
+					Debug.WriteLine("Unable to get location, may need to increase timeout: " + ex);
+				}
+			}
+			else
+			{
+				// We'll use the primary location then
+				currentPosition = new Position((double)Application.Current.Properties["PrimaryLat"],
+				                               (double)Application.Current.Properties["PrimaryLong"]);
 			}
 
+			// Attempt to check/set the primary position in the config
+			currentPosition = await Location.ConfigurePrimaryLocation(this, currentPosition);
+
+			// Snap to location
 			var mapspan = MapSpan.FromCenterAndRadius(currentPosition, Distance.FromMiles(0.25));
 			lastPosition = mapspan;
 			MyMap.MoveToRegion(mapspan);

@@ -104,6 +104,7 @@
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Location.cs" />
 </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

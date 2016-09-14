@@ -55,11 +55,25 @@ namespace PhillyCrime.Models
 		Other = 19
 	}
 
+	public class PoliceDistrict
+	{
+		public string District { get; set; }
+		public string PSA { get; set; }
+	}
+
 	public class FullCrimeReport
 	{
 		public string DCN { get; set; }
 		public PhillyCrime.Models.Crime FullCrimeDetail { get; set; }
 		public PhillyCrime.Models.Arrest[] FullArrestDetails { get; set; }
+	}
+
+	public class crime_notification
+	{
+		public string DeviceToken { get; set; }
+		public int DeviceType { get; set; }
+		public double Longitude { get; set; }
+		public double Latitude { get; set; }
 	}
 
 	public class Crime

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Extensions.Compression.Client;
 using System.Net.Http.Extensions.Compression.Core.Compressors;
 using System.Net.Http.Headers;
+using System.Diagnostics;
 
 namespace PhillyCrime.Models
 {
@@ -45,6 +46,20 @@ namespace PhillyCrime.Models
 			//req.AllowReadStreamBuffering = true;
 			var tr = await DoRequestAsync(resp);
 			return tr;
+		}
+
+		// Transmits data but we don't care what happens next
+		public async Task<bool> DoSilentPost(string url, string data)
+		{
+			var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
+			client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+			client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+
+			Debug.WriteLine("Posting to server...");
+			await client.PostAsync(url, new StringContent(data, System.Text.Encoding.UTF8, "application/json"));
+			Debug.WriteLine("Post complete.");
+
+			return true;
 		}
 
 		public async Task<T> DoRequestJsonAsync<T>(WebRequest req)

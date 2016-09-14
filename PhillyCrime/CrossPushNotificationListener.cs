@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Newtonsoft.Json.Linq;
 using PushNotification.Plugin;
 using PushNotification.Plugin.Abstractions;
+using Xamarin.Forms;
 
 namespace PhillyCrime
 {
@@ -33,6 +34,8 @@ namespace PhillyCrime
 		public void OnRegistered(string token, PushNotification.Plugin.Abstractions.DeviceType deviceType)
 		{
 			Debug.WriteLine(string.Format("Push Notification - Device Registered - Token : {0}", token));
+
+			Location.PostToken(token, deviceType);
 		}
 
 		public void OnUnregistered(PushNotification.Plugin.Abstractions.DeviceType deviceType)

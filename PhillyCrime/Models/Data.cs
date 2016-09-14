@@ -8,6 +8,7 @@ using System.Diagnostics;
 using PhillyCrime;
 using Xamarin.Forms.Maps;
 using PhillyCrime.Models;
+using Newtonsoft.Json;
 
 namespace PhillyCrime.Models
 {
@@ -19,18 +20,36 @@ namespace PhillyCrime.Models
 		private static string GET_30DAY = string.Format("{0}Values", APIBASE);
 		private static string FULLREPORT = string.Format("{0}Crime", APIBASE);
 		private static string PHILLY = string.Format("{0}Philly", APIBASE);
+		private static string PUSH = string.Format("{0}Push", APIBASE);
 
 		public Data()
 		{
 		}
 
-		public async static Task<bool> IsInPhilly(double longitude, double latitude)
+		public async static Task<bool> RegisterPushNotifications(string token, PushNotification.Plugin.Abstractions.DeviceType deviceType, double longitude, double latitude)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string getUri = PUSH;
+
+			var notification = new crime_notification();
+			notification.DeviceToken = token;
+			notification.DeviceType = Convert.ToInt32(deviceType);
+			notification.Longitude = longitude;
+			notification.Latitude = latitude;
+
+			Debug.WriteLine("About to post registration to server...");
+			await cli.DoSilentPost(getUri, JsonConvert.SerializeObject(notification));
+			return true;
+		}
+
+		public async static Task<PoliceDistrict> GetPoliceDistrict(double longitude, double latitude)
 		{
 			JsonWebClient cli = new JsonWebClient();
 
 			string getUri = PHILLY + string.Format("/{0}/{1}/", longitude, latitude);
 
-			var resp = await cli.DoRequestJsonAsync<bool>(getUri);
+			var resp = await cli.DoRequestJsonAsync<PoliceDistrict>(getUri);
 			return resp;
 		}
 

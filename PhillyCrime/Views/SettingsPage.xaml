@@ -5,6 +5,10 @@
 	xmlns:local="clr-namespace:PhillyCrime"		
 	x:Class="PhillyCrime.SettingsPage">
 	<ContentPage.Content>
-		
+		<ScrollView>
+			<StackLayout>
+				
+			</StackLayout>
+		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>
