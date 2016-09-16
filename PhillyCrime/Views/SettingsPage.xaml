@@ -4,159 +4,175 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:PhillyCrime"
 	x:Class="PhillyCrime.SettingsPage"
-	Padding="10,20,10,0">
+	Padding="5,20,0,0" BackgroundColor="White">
 	<ContentPage.Content>
 		<ScrollView>
-			<StackLayout>
+			<StackLayout Padding="0">
 				<Label
-					FontSize="Large"
+					FontSize="30"
 					FontAttributes="Bold">Settings</Label>
-				<Frame
-					HasShadow="false">
-					<StackLayout
-						Orientation="Horizontal">
-						<Label
-							VerticalTextAlignment="Center">Primary Location</Label>
-						<Button
-							x:Name="buttonPrimaryLocation"
-							Text="Location set" />
-					</StackLayout>
-				</Frame>
-				<Frame
-					HasShadow="false">
+				<Frame Padding="4"
+					HasShadow="false"
+					VerticalOptions="Start">
 					<StackLayout
 						Orientation="Vertical">
-						<Label
+						<Label FontAttributes="Bold"
 							VerticalTextAlignment="Center">Crime Filter</Label>
-									<StackLayout
-				Padding="0,5,0,5"
-				VerticalOptions="End"
-				HorizontalOptions="Center"
-				Spacing="1"
-				Orientation="Horizontal">
-				<Image
-					x:Name="filterHomicide"
-					ClassId="filterHomicide"
-					Scale="1.0">
-					<Image.Source>
+						<StackLayout
+							Padding="0,0,0,0"
+							VerticalOptions="End"
+							HorizontalOptions="Start"
+							Spacing="1"
+							Orientation="Horizontal">
+							<Image
+								x:Name="filterHomicide"
+								ClassId="filterHomicide"
+								Scale="1.0">
+								<Image.Source>
 						Images/h_on.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterRobbery"
-					ClassId="filterRobbery"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterRobbery"
+								ClassId="filterRobbery"
+								Scale="1.0">
+								<Image.Source>
 						Images/ro_on.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterAssault"
-					ClassId="filterAssault"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterAssault"
+								ClassId="filterAssault"
+								Scale="1.0">
+								<Image.Source>
 						Images/a_on.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterBurglary"
-					ClassId="filterBurglary"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterBurglary"
+								ClassId="filterBurglary"
+								Scale="1.0">
+								<Image.Source>
 						Images/b_on.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterTheft"
-					ClassId="filterTheft"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterTheft"
+								ClassId="filterTheft"
+								Scale="1.0">
+								<Image.Source>
 						Images/t_off.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterRape"
-					ClassId="filterRape"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterRape"
+								ClassId="filterRape"
+								Scale="1.0">
+								<Image.Source>
 						Images/ra_on.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterAuto"
-					ClassId="filterAuto"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterAuto"
+								ClassId="filterAuto"
+								Scale="1.0">
+								<Image.Source>
 						Images/car_off.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterGuns"
-					ClassId="filterGuns"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterGuns"
+								ClassId="filterGuns"
+								Scale="1.0">
+								<Image.Source>
 						Images/g_off.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterProstitution"
-					ClassId="filterProstitution"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterProstitution"
+								ClassId="filterProstitution"
+								Scale="1.0">
+								<Image.Source>
 						Images/p_off.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-				<Image
-					x:Name="filterOther"
-					ClassId="filterOther"
-					Scale="1.0">
-					<Image.Source>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+							<Image
+								x:Name="filterOther"
+								ClassId="filterOther"
+								Scale="1.0">
+								<Image.Source>
 						Images/o_off.png
 					</Image.Source>
-					<Image.GestureRecognizers>
-						<TapGestureRecognizer
-							Tapped="OnTapGestureRecognizerTapped" />
-					</Image.GestureRecognizers>
-				</Image>
-			</StackLayout>
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="OnTapGestureRecognizerTapped" />
+								</Image.GestureRecognizers>
+							</Image>
+						</StackLayout>
 					</StackLayout>
 				</Frame>
+				<Frame Padding="4"
+					HasShadow="false" VerticalOptions="Start">
+					<StackLayout
+						Orientation="Horizontal">
+						<Label FontAttributes="Bold"
+							VerticalTextAlignment="Center">Home Location</Label>
+						<Image Source="Images/h_on.png"></Image>
+						<Label
+							x:Name="buttonPrimaryLocation"
+								VerticalTextAlignment="Center"
+							Text="Location set"
+								TextColor="Teal"
+							/>
+					</StackLayout>
+				</Frame>
+				<Frame Padding="4,0,10,0" HasShadow="false">
+					<Label FontSize="Small" TextColor="Silver" FontAttributes="Italic">You can't get push notifications to your device without a location set.</Label>
+				</Frame>
+				<Frame Padding="4"
+					HasShadow="false" VerticalOptions="Start">
+					<StackLayout
+						Orientation="Horizontal">
+						<Label FontAttributes="Bold"
+							VerticalTextAlignment="Center">Neighborhood Blotters</Label>						
+					</StackLayout>
+				</Frame>				
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>
