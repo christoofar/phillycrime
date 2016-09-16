@@ -15,5 +15,10 @@ namespace PhillyCrime.Droid
 			}
 			return false;
 		}
+
+		public void ClearBadges()
+		{
+			//No-op.  Android doesn't support this
+		}
 	}
 }

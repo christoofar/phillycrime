@@ -11,6 +11,10 @@ namespace PhillyCrime
 		{
 			InitializeComponent();
 		}
+
+		void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+		{
+		}
 	}
 }
 

@@ -29,6 +29,7 @@ namespace PhillyCrime
 			else {
 				page.Children.Add(new BetaWelcome() { Icon = "info.png" });
 				page.Children.Add(new CrimesNearMeView() { Icon = "gun.png" });
+				page.Children.Add(new SettingsPage() { Icon = "info.png" });
 			}
 
 			//page.Children.Add(new BetaWelcome() {  });
@@ -48,6 +49,7 @@ namespace PhillyCrime
 
 		protected override void OnStart()
 		{
+			DependencyService.Get<PlatformSpecificInterface>().ClearBadges();
 		}
 
 		protected override void OnSleep()

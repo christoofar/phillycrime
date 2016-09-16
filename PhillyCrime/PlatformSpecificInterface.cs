@@ -6,5 +6,7 @@ namespace PhillyCrime
 	public interface PlatformSpecificInterface
 	{
 		bool CheckIfSimulator();
+
+		void ClearBadges();
 	}
 }
