@@ -12,6 +12,7 @@ namespace PhillyCrime.Models
 
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel;
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Linq;
 
@@ -53,6 +54,57 @@ namespace PhillyCrime.Models
 		OtherSexAssault = 17,
 		Fraud = 18,
 		Other = 19
+	}
+
+	public class Area
+	{
+		public PoliceDistrict PoliceDistrict { get; set; }
+		public Neighborhood Neighborhood { get; set; }
+	}
+
+	public class Neighborhood : INotifyPropertyChanged
+	{
+		string _name;
+		public string Name
+		{
+			get { return _name; }
+			set
+			{
+				if (_name != value)
+					_name = value;
+				OnPropertyChanged("Name");
+			}
+		}
+
+		int _id;
+		public int ID
+		{
+			get { return _id; }
+			set
+			{
+				if (_id != value)
+					_id = value;
+				OnPropertyChanged("ID");
+			}
+		}
+
+		bool _selected;
+		public bool Selected
+		{
+			get { return _selected; }
+			set
+			{
+				if (_selected != value)
+					_selected = value;
+				OnPropertyChanged("Selected");
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 
 	public class PoliceDistrict

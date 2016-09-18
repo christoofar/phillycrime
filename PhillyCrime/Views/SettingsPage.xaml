@@ -167,10 +167,18 @@
 				</Frame>
 				<Frame Padding="4"
 					HasShadow="false" VerticalOptions="Start">
-					<StackLayout
-						Orientation="Horizontal">
+					<StackLayout x:Name="listNeighborhoodLayout"
+						Orientation="Vertical">
 						<Label FontAttributes="Bold"
-							VerticalTextAlignment="Center">Neighborhood Blotters</Label>						
+							VerticalTextAlignment="Center">Neighborhood Blotters</Label>		
+						  <ListView x:Name="NeighborhoodListView">
+						    <ListView.ItemTemplate>
+						      <DataTemplate>
+						      	<SwitchCell Text="{Binding Name}" ClassId="{Binding ID}" On="{Binding Selected}" OnChanged="NeighborhoodSelected">
+								</SwitchCell>										
+						      </DataTemplate>
+						    </ListView.ItemTemplate>
+						  </ListView>
 					</StackLayout>
 				</Frame>				
 			</StackLayout>

@@ -43,13 +43,13 @@ namespace PhillyCrime.Models
 			return true;
 		}
 
-		public async static Task<PoliceDistrict> GetPoliceDistrict(double longitude, double latitude)
+		public async static Task<Area> Area(double longitude, double latitude)
 		{
 			JsonWebClient cli = new JsonWebClient();
 
 			string getUri = PHILLY + string.Format("/{0}/{1}/", longitude, latitude);
 
-			var resp = await cli.DoRequestJsonAsync<PoliceDistrict>(getUri);
+			var resp = await cli.DoRequestJsonAsync<Area>(getUri);
 			return resp;
 		}
 

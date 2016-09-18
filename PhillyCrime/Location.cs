@@ -73,9 +73,9 @@ namespace PhillyCrime
 				{
 					// OK, now we need to see if we're located in Philly.  We do this by asking the server
 					// what PPD district the device is in right now.
-					var policeDistrict = await Data.GetPoliceDistrict(currentPosition.Longitude, currentPosition.Latitude);
+					var area = await Data.Area(currentPosition.Longitude, currentPosition.Latitude);
 
-					if (policeDistrict != null)  // We're in Philly!
+					if (area != null)  // We're in Philly!
 					{
 						Position positionToUse = new Position();
 
@@ -86,8 +86,10 @@ namespace PhillyCrime
 							Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
 							Application.Current.Properties["PrimaryLat"] = currentPosition.Latitude;
 							Application.Current.Properties["PrimaryLong"] = currentPosition.Longitude;
-							Application.Current.Properties["PrimaryDistrict"] = policeDistrict.District;
-							Application.Current.Properties["PrimaryPSA"] = policeDistrict.PSA;
+							Application.Current.Properties["PrimaryDistrict"] = area.PoliceDistrict.District;
+							Application.Current.Properties["PrimaryPSA"] = area.PoliceDistrict.PSA;
+							Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
+							Application.Current.Properties["NeighborhoodID"] = area.Neighborhood.ID;
 							positionToUse = currentPosition;
 							await Application.Current.SavePropertiesAsync();
 							PostLocation();
