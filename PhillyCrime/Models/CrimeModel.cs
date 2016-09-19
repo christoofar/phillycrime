@@ -171,18 +171,132 @@ namespace PhillyCrime.Models
 		public string SuspendCode { get; set; }
 	}
 
-	public class CrimeReport
+	public class CrimeReport : INotifyPropertyChanged
 	{
 
-		public string DCN { get; set; }
-		public DateTime? Occurred { get; set; }
-		public double Longitude { get; set; }
-		public double Latitutde { get; set; }
-		public string Address { get; set; }
-		public CrimeType Type { get; set; }
-		public string Title { get; set; }
-		public string Code { get; set; }
-		public int ArrestCount { get; set; }
+		//public string DCN { get; set; }
+		//public DateTime? Occurred { get; set; }
+		//public double Longitude { get; set; }
+		//public double Latitutde { get; set; }
+		//public string Address { get; set; }
+		//public CrimeType Type { get; set; }
+		//public string Title { get; set; }
+		//public string Code { get; set; }
+		//public int ArrestCount { get; set; }
+
+		string _dcn;
+		public string DCN
+		{
+			get { return _dcn; }
+			set
+			{
+				if (_dcn != value)
+					_dcn = value;
+				OnPropertyChanged("DCN");
+			}
+		}
+
+		DateTime? _occurred;
+		public DateTime? Occurred
+		{
+			get { return _occurred; }
+			set
+			{
+				if (_occurred != value)
+					_occurred = value;
+				OnPropertyChanged("Occurred");
+			}
+		}
+
+		double _longitude;
+		public double Longitude
+		{
+			get { return _longitude; }
+			set
+			{
+				if (Math.Abs(_longitude - value) > Double.Epsilon)
+					_longitude = value;
+				OnPropertyChanged("Longitude");
+			}
+		}
+
+		double _latitude;
+		public double Latitude
+		{
+			get { return _latitude; }
+			set
+			{
+				if (Math.Abs(_latitude - value) > Double.Epsilon)
+					_latitude = value;
+				OnPropertyChanged("Latitude");
+			}
+		}
+
+		string _address;
+		public string Address
+		{
+			get { return _address; }
+			set
+			{
+				if (_address != value)
+					_address = value;
+				OnPropertyChanged("Address");
+			}
+		}
+
+		CrimeType _type;
+		public CrimeType Type
+		{
+			get { return _type; }
+			set
+			{
+				if (_type != value)
+					_type = value;
+				OnPropertyChanged("CrimeType");
+			}
+		}
+
+		string _title;
+		public string Title
+		{
+			get { return _title; }
+			set
+			{
+				if (_title != value)
+					_title = value;
+				OnPropertyChanged("Title");
+			}
+		}
+
+		string _code;
+		public string Code
+		{
+			get { return _code; }
+			set
+			{
+				if (_code != value)
+					_code = value;
+				OnPropertyChanged("Code");
+			}
+		}
+
+		int _arrestCount;
+		public int ArrestCount
+		{
+			get { return _arrestCount; }
+			set
+			{
+				if (_arrestCount != value)
+					_arrestCount = value;
+				OnPropertyChanged("ArrestCount");
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 
 }

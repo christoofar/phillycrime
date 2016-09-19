@@ -6,7 +6,7 @@
 	x:Class="PhillyCrime.SettingsPage"
 	Padding="5,20,0,0" BackgroundColor="White">
 	<ContentPage.Content>
-		<ScrollView>
+		<!--<ScrollView>-->
 			<StackLayout Padding="0">
 				<Label
 					FontSize="30"
@@ -170,7 +170,7 @@
 					<StackLayout x:Name="listNeighborhoodLayout"
 						Orientation="Vertical">
 						<Label FontAttributes="Bold"
-							VerticalTextAlignment="Center">Neighborhood Blotters</Label>		
+							VerticalTextAlignment="Center">Neighborhood Blotters (pick no more than 3)</Label>		
 						  <ListView x:Name="NeighborhoodListView">
 						    <ListView.ItemTemplate>
 						      <DataTemplate>
@@ -182,6 +182,6 @@
 					</StackLayout>
 				</Frame>				
 			</StackLayout>
-		</ScrollView>
+		<!--</ScrollView>-->
 	</ContentPage.Content>
 </ContentPage>

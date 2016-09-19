@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using PhillyCrime;
 using Xamarin.Forms.Maps;
-using PhillyCrime.Models;
-using Newtonsoft.Json;
 
 namespace PhillyCrime.Models
 {
@@ -21,6 +15,8 @@ namespace PhillyCrime.Models
 		private static string FULLREPORT = string.Format("{0}Crime", APIBASE);
 		private static string PHILLY = string.Format("{0}Philly", APIBASE);
 		private static string PUSH = string.Format("{0}Push", APIBASE);
+		private static string NEIGHBORHOOD = string.Format("{0}Neighborhood", APIBASE);
+		private static string BLOTTER = string.Format("{0}Blotter", APIBASE);
 
 		public Data()
 		{
@@ -41,6 +37,35 @@ namespace PhillyCrime.Models
 			Debug.WriteLine("About to post registration to server...");
 			await cli.DoSilentPost(getUri, JsonConvert.SerializeObject(notification));
 			return true;
+		}
+
+		public async static Task<CrimeReport[]> GetBlotter(int[] neighborhoods)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string hoods = "";
+			for (int i = 0; i < neighborhoods.Length; i++)
+			{
+				hoods += i.ToString();
+				if (i != neighborhoods.Length - 1)
+				{
+					hoods += ",";
+				}
+			}
+
+			string getUri = BLOTTER + string.Format("/{0}/", hoods);
+
+			var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
+			return resp;
+		}
+
+		public async static Task<Neighborhood[]> Neighborhoods()
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string getUri = NEIGHBORHOOD;
+			var resp = await cli.DoRequestJsonAsync<Neighborhood[]>(getUri);
+			return resp;
 		}
 
 		public async static Task<Area> Area(double longitude, double latitude)
@@ -79,13 +104,13 @@ namespace PhillyCrime.Models
 														  span.Center.Latitude,
 														  span.LongitudeDegrees,
 														  span.LatitudeDegrees,
-				                                          Convert.ToInt32(currentFilter));
+														  Convert.ToInt32(currentFilter));
 
 
 				var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
 				return resp;
 
-			} 
+			}
 			else
 			{
 				return new CrimeReport[0];

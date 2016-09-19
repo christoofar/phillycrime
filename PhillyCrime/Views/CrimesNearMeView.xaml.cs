@@ -241,7 +241,7 @@ namespace PhillyCrime
 						Pin = new Pin
 						{
 							Type = PinType.Place,
-							Position = new Position(report.Latitutde, report.Longitude),
+							Position = new Position(report.Latitude, report.Longitude),
 							Label = report.Title,
 							Address = report.Address
 						},

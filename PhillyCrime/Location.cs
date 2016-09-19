@@ -90,6 +90,10 @@ namespace PhillyCrime
 							Application.Current.Properties["PrimaryPSA"] = area.PoliceDistrict.PSA;
 							Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
 							Application.Current.Properties["NeighborhoodID"] = area.Neighborhood.ID;
+
+							// We have to store the selected neighborhoods in a file.  This will sync or create that file.
+							await App.UpdateNeighborhood(area.Neighborhood.ID, true);
+
 							positionToUse = currentPosition;
 							await Application.Current.SavePropertiesAsync();
 							PostLocation();
