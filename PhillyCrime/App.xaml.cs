@@ -36,6 +36,7 @@ namespace PhillyCrime
 			else {
 				page.Children.Add(new BetaWelcome() { Icon = "info.png" });
 				page.Children.Add(new CrimesNearMeView() { Icon = "gun.png" });
+				page.Children.Add(new BlotterPage() { Icon = "gun.png" });
 				page.Children.Add(new SettingsPage() { Icon = "info.png" });
 			}
 

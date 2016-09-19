@@ -2,18 +2,42 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:PhillyCrime;assembly=PhillyCrime"
 	x:Class="PhillyCrime.BlotterPage"
-	Title="Blotter" Padding="0,20,0,0">
+	Title="Blotter"
+	Padding="5,20,5,0">
 	<ContentPage.Content>
-		<StackLayout Orientation="Vertical">
-			<Label FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="10 Day Blotter" />
-			<ListView x:Name="blotterListView">
-			    <ListView.ItemTemplate>
-			      <DataTemplate>
-			      	<TextCell Text="{Binding Description}" ClassId="{Binding DCN}">
-					</TextCell>										
-			      </DataTemplate>
-			    </ListView.ItemTemplate>
+		<StackLayout
+			Orientation="Vertical" Padding="0,0,0,0">
+			<Label
+				FontSize="Large"
+				FontAttributes="Bold"
+				HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+				Text="10 Day Blotter" />
+			<ListView
+				x:Name="blotterListView" HasUnevenRows="true">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout								
+								Orientation="Horizontal" Padding="0,0,0,0">
+								<Image Source="Images/h_on.png" />
+								<StackLayout Padding="0,0,0,0" Spacing="0"
+									Orientation="Vertical">
+									<Label FontAttributes="Italic"
+										Text="{Binding Occurred}"/>									
+									<Label FontAttributes="Bold"
+										Text="{Binding Title}"/>
+									<Label
+										Text="{Binding Address}"/>
+								</StackLayout>
+							</StackLayout>
+						</ViewCell>
+						<!--<TextCell Text="{Binding Title}" ClassId="{Binding DCN}">
+					</TextCell>-->
+					</DataTemplate>
+				</ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
 	</ContentPage.Content>

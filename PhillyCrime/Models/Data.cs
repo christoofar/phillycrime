@@ -46,7 +46,7 @@ namespace PhillyCrime.Models
 			string hoods = "";
 			for (int i = 0; i < neighborhoods.Length; i++)
 			{
-				hoods += i.ToString();
+				hoods += neighborhoods[i].ToString();
 				if (i != neighborhoods.Length - 1)
 				{
 					hoods += ",";

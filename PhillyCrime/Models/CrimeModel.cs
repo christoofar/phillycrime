@@ -221,14 +221,14 @@ namespace PhillyCrime.Models
 		}
 
 		double _latitude;
-		public double Latitude
+		public double Latitutde
 		{
 			get { return _latitude; }
 			set
 			{
 				if (Math.Abs(_latitude - value) > Double.Epsilon)
 					_latitude = value;
-				OnPropertyChanged("Latitude");
+				OnPropertyChanged("Latitutde");
 			}
 		}
 

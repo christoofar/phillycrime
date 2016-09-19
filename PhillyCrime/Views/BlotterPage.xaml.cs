@@ -12,16 +12,18 @@ namespace PhillyCrime
 		public BlotterPage()
 		{
 			InitializeComponent();
+
 		}
 
-		protected override void OnAppearing()
+		protected async override void OnAppearing()
 		{
 			base.OnAppearing();
 
 			//Look for neighborhoods user subscribes to.
 			var ids = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.ID);
-			var hoods = Data.GetBlotter(ids.ToArray());
+			var hoods = await Data.GetBlotter(ids.ToArray());
 
+			blotterListView.ItemsSource = hoods;
 
 		}
 	}
