@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -91,6 +91,30 @@ PhillyBlotter will tell you if a suspect was charged with the reported crime and
 						<Label>Crime Detail</Label>
 					</StackLayout>
 				</Frame>
+				<Frame
+					Padding="0,0,0,0">
+					<StackLayout
+						Orientation="Horizontal">
+						<Image>
+							<Image.Source>
+						Images/yes.png
+					</Image.Source>
+						</Image>
+						<Label>Crime blotter in list view (map pins you can see converted to list)</Label>
+					</StackLayout>
+				</Frame>
+				<Frame
+					Padding="0,0,0,0">
+					<StackLayout
+						Orientation="Horizontal">
+						<Image>
+							<Image.Source>
+						Images/yes.png
+					</Image.Source>
+						</Image>
+						<Label>Settings screen</Label>
+					</StackLayout>
+				</Frame>				
 				<Label
 					HorizontalOptions="Start"
 					FontSize="Medium"
@@ -129,31 +153,7 @@ PhillyBlotter will tell you if a suspect was charged with the reported crime and
 						Images/no.png
 					</Image.Source>
 						</Image>
-						<Label>Crime blotter in list view (map pins you can see converted to list)</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/no.png
-					</Image.Source>
-						</Image>
 						<Label>Sharing a map pin(Facebook/Twitter/Email)</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/no.png
-					</Image.Source>
-						</Image>
-						<Label>Settings screen</Label>
 					</StackLayout>
 				</Frame>
 				<Frame

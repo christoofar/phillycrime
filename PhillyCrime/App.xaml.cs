@@ -57,7 +57,7 @@ namespace PhillyCrime
 			LoadNeighborhoods();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
-			MainPage = GetMainPage();
+			MainPage = new MainPage();
 		}
 
 		protected override void OnStart()
@@ -89,16 +89,24 @@ namespace PhillyCrime
 				var exists = await FileSystem.Current.LocalStorage.CheckExistsAsync("Neighborhoods.json");
 				if (exists == ExistenceCheckResult.FileExists)
 				{
-					file = await FileSystem.Current.LocalStorage.GetFileAsync("Neighborhoods.json");
-					await file.DeleteAsync();
+					try
+					{
+						file = await FileSystem.Current.LocalStorage.GetFileAsync("Neighborhoods.json");
+						await file.DeleteAsync();
+					}
+					catch { }
 				}
 
-				file = await FileSystem.Current.LocalStorage.CreateFileAsync("Neighborhoods.json", CreationCollisionOption.ReplaceExisting);
-
-				if (file != null)
+				try
 				{
-					await file.WriteAllTextAsync(JsonConvert.SerializeObject(Global.Neighborhoods.ToList()));
+					file = await FileSystem.Current.LocalStorage.CreateFileAsync("Neighborhoods.json", CreationCollisionOption.ReplaceExisting);
+
+					if (file != null)
+					{
+						await file.WriteAllTextAsync(JsonConvert.SerializeObject(Global.Neighborhoods.ToList()));
+					}
 				}
+				catch { }
 
 			}
 
@@ -147,15 +155,31 @@ namespace PhillyCrime
 			{
 				var file = await FileSystem.Current.LocalStorage.GetFileAsync("Neighborhoods.json");
 				string data = await file.ReadAllTextAsync();
-				if (Global.Neighborhoods != null)
+
+				if (data == "") // No data in the file due to a bad earlier return
 				{
-					lock (Global.Neighborhoods)
+					var hoods = await Models.Data.Neighborhoods();
+					if (hoods != null)
 					{
-						Global.Neighborhoods.Clear();
-						var hoods = JsonConvert.DeserializeObject<Models.Neighborhood[]>(data);
 						foreach (var p in hoods)
 						{
 							Global.Neighborhoods.Add(p);
+						}
+					}
+
+					await file.WriteAllTextAsync(JsonConvert.SerializeObject(hoods));
+				}
+				else {
+					if (Global.Neighborhoods != null)
+					{
+						lock (Global.Neighborhoods)
+						{
+							Global.Neighborhoods.Clear();
+							var hoods = JsonConvert.DeserializeObject<Models.Neighborhood[]>(data);
+							foreach (var p in hoods)
+							{
+								Global.Neighborhoods.Add(p);
+							}
 						}
 					}
 				}

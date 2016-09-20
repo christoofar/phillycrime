@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -19,6 +19,7 @@
 					<Label x:Name="Time">Time: Monday, August 29, 2016 2:24 AM</Label>
 					<Label x:Name="District">Reporting Police District: 19</Label>
 					<Label x:Name="PSA">Police Service Area: 2</Label>
+					<Label x:Name="DCN">DCN# 16-24-0001252</Label>
 					<Button HorizontalOptions="End" Text="View on Map >" x:Name="buttonMap" />
 				</StackLayout>
 			</Frame>

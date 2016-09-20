@@ -44,6 +44,10 @@ namespace PhillyCrime
 				Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME);
 				District.Text = string.Format("Police District: {0}", report.FullCrimeDetail.DC_DIST);
 				PSA.Text = string.Format("PSA: {0}", report.FullCrimeDetail.SECTOR);
+				DCN.Text = String.Format("DCN: {0}-{1}-{2}",
+										 report.DCN.Substring(2, 2),
+										 report.DCN.Substring(4, 2),
+										 report.DCN.Substring(6, report.DCN.Length - 6));
 
 				this.IsVisible = true;
 			});

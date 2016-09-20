@@ -266,6 +266,19 @@
     <BundleResource Include="Resources\info%402x.png" />
     <BundleResource Include="Resources\info.png" />
     <BundleResource Include="Resources\splash.png" />
+    <BundleResource Include="Images\police.png" />
+    <BundleResource Include="Images\police%402x.png" />
+    <BundleResource Include="Images\right%402x.png" />
+    <BundleResource Include="Images\right.png" />
+    <BundleResource Include="Images\hamburger.png" />
+    <BundleResource Include="Images\hamburger%402x.png" />
+    <BundleResource Include="Images\mappin.png" />
+    <BundleResource Include="Images\map.png" />
+    <BundleResource Include="Images\map%402x.png" />
+    <BundleResource Include="Images\config%402x.png" />
+    <BundleResource Include="Images\config.png" />
+    <BundleResource Include="Images\cop%402x.png" />
+    <BundleResource Include="Images\cop.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

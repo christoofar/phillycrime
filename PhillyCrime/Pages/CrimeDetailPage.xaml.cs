@@ -20,6 +20,15 @@ namespace PhillyCrime
 			GetCrimeDetails();
 		}
 
+		public CrimeDetailPage(CrimeReport report)
+		{
+			_pin = new CustomPin();
+			_pin.Id = report.DCN;
+			InitializeComponent();
+
+			GetCrimeDetails();
+		}
+
 		// Initialize view with data
 		public Task<bool> GetCrimeDetails()
 		{

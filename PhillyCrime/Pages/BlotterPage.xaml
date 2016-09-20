@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:PhillyCrime;assembly=PhillyCrime"
+	x:Class="PhillyCrime.BlotterPage"
+	Title="Local Blotter"
+	Padding="5,20,5,0">
+	<ContentPage.Content>
+		<StackLayout
+			Orientation="Vertical"
+			Padding="0,0,0,0">
+			<Label
+				x:Name="labelNoRecords"
+				TextColor="Gray"
+				HorizontalOptions="Center"
+				FontAttributes="Italic">You need to select your primary neighborhood(s) in the settings panel.</Label>
+			<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+				<ListView
+					IsVisible="false"
+					x:Name="blotterListView"
+					IsPullToRefreshEnabled="true"
+					HasUnevenRows="true"
+					ItemSelected="Handle_ItemSelected"
+					Refreshing="Handle_Refreshing">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout
+									Orientation="Horizontal"
+									Padding="1,0,1,0">
+									<Image
+										Source="{Binding ImageSource}" />
+									<StackLayout
+										HorizontalOptions="Fill"
+										Padding="0,0,0,0"
+										Spacing="0"
+										Orientation="Vertical">
+										<Label
+											FontAttributes="Bold"
+											Text="{Binding Title}" />
+										<Label
+											FontAttributes="Italic"
+											Text="{Binding Occurred, StringFormat='{0:dddd, MMM d h:mm tt}'}" />
+										<Label
+											Text="{Binding Address}" />
+									</StackLayout>
+									<Image
+										Source="Images/police.png"
+										IsVisible="{Binding HasArrests}" />
+									<Image
+										HorizontalOptions="EndAndExpand"
+										Source="Images/right.png" />
+								</StackLayout>
+							</ViewCell>
+							<!--<TextCell Text="{Binding Title}" ClassId="{Binding DCN}">
+					</TextCell>-->
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<ActivityIndicator
+						x:Name="activity"
+					IsVisible="true"
+					IsRunning="true"
+					VerticalOptions="FillAndExpand"
+					HorizontalOptions="FillAndExpand" />
+			</Grid>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

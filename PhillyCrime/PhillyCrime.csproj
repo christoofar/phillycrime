@@ -40,26 +40,25 @@
     <EmbeddedResource Include="Views\CrimeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ArrestPage.xaml" />
-    <EmbeddedResource Include="Views\CrimeListingPage.xaml">
+    <EmbeddedResource Include="Pages\BetaWelcome.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ArrestListingPage.xaml">
+    <EmbeddedResource Include="Pages\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CrimesNearMeView.xaml">
+    <EmbeddedResource Include="Pages\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CrimeDetailPage.xaml">
+    <EmbeddedResource Include="Pages\CrimeDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\BetaWelcome.xaml">
+    <EmbeddedResource Include="Pages\BlotterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\SettingsPage.xaml">
+    <EmbeddedResource Include="Pages\CrimesNearMeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\BlotterPage.xaml">
+    <EmbeddedResource Include="Pages\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -77,40 +76,38 @@
     <Compile Include="Views\CrimeView.xaml.cs">
       <DependentUpon>CrimeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ArrestPage.xaml.cs">
-      <DependentUpon>ArrestPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Misc\TextSupport.cs" />
-    <Compile Include="Views\CrimeListingPage.xaml.cs">
-      <DependentUpon>CrimeListingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ArrestListingPage.xaml.cs">
-      <DependentUpon>ArrestListingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\CrimeModel.cs" />
-    <Compile Include="Views\CrimesNearMeView.xaml.cs">
-      <DependentUpon>CrimesNearMeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PlatformSpecificInterface.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\JsonWebClient.cs" />
     <Compile Include="CustomMap.cs" />
     <Compile Include="CustomPin.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Views\CrimeDetailPage.xaml.cs">
-      <DependentUpon>CrimeDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BetaWelcome.xaml.cs">
-      <DependentUpon>BetaWelcome.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CrossPushNotificationListener.cs" />
-    <Compile Include="Views\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Location.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="Views\BlotterPage.xaml.cs">
+    <Compile Include="Pages\BetaWelcome.xaml.cs">
+      <DependentUpon>BetaWelcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterPage.xaml.cs">
+      <DependentUpon>MasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MasterPageItem.cs" />
+    <Compile Include="Pages\CrimeDetailPage.xaml.cs">
+      <DependentUpon>CrimeDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BlotterPage.xaml.cs">
       <DependentUpon>BlotterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CrimesNearMeView.xaml.cs">
+      <DependentUpon>CrimesNearMeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
 </ItemGroup>
   <ItemGroup>
@@ -174,6 +171,7 @@
     <Folder Include="Views\" />
     <Folder Include="Misc\" />
     <Folder Include="Models\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

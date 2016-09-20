@@ -2,15 +2,13 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:PhillyCrime"
+	xmlns:local="clr-namespace:PhillyCrime;assembly:PhillyCrime"
 	x:Class="PhillyCrime.SettingsPage"
+	Title="Settings"
 	Padding="5,20,0,0" BackgroundColor="White">
 	<ContentPage.Content>
 		<!--<ScrollView>-->
 			<StackLayout Padding="0">
-				<Label
-					FontSize="30"
-					FontAttributes="Bold">Settings</Label>
 				<Frame Padding="4"
 					HasShadow="false"
 					VerticalOptions="Start">
@@ -147,6 +145,7 @@
 						</StackLayout>
 					</StackLayout>
 				</Frame>
+				<!--
 				<Frame Padding="4"
 					HasShadow="false" VerticalOptions="Start">
 					<StackLayout
@@ -165,6 +164,7 @@
 				<Frame Padding="4,0,10,0" HasShadow="false">
 					<Label FontSize="Small" TextColor="Silver" FontAttributes="Italic">You can't get push notifications to your device without a location set.</Label>
 				</Frame>
+				-->
 				<Frame Padding="4"
 					HasShadow="false" VerticalOptions="Start">
 					<StackLayout x:Name="listNeighborhoodLayout"

@@ -77,6 +77,15 @@ namespace PhillyCrime
 			// User is coming to look at the map
 			Appearing += (sender, e) =>
 			{
+				// Do we have filters set?
+				if (Application.Current.Properties.ContainsKey("Filter"))
+				{
+					/* Yes! We need to reflect what we know */
+					Models.Filter setFilter = (Models.Filter)((int)Application.Current.Properties["Filter"]);
+					currentFilter = setFilter;
+					LoadFilters();
+				}
+
 				if (!_initialized)
 				{
 					CenterTheMap();
@@ -112,6 +121,59 @@ namespace PhillyCrime
 			}
 
 			UpdateFilters();
+		}
+
+		public void LoadFilters()
+		{
+			if (currentFilter.HasFlag(Filter.Homicide))
+				filterHomicide.Source = (((FileImageSource)filterHomicide.Source).File).Replace("off", "on");
+			else
+				filterHomicide.Source = (((FileImageSource)filterHomicide.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Assault))
+				filterAssault.Source = (((FileImageSource)filterAssault.Source).File).Replace("off", "on");
+			else
+				filterAssault.Source = (((FileImageSource)filterAssault.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Burglary))
+				filterBurglary.Source = (((FileImageSource)filterBurglary.Source).File).Replace("off", "on");
+			else
+				filterBurglary.Source = (((FileImageSource)filterBurglary.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Robbery))
+				filterRobbery.Source = (((FileImageSource)filterRobbery.Source).File).Replace("off", "on");
+			else
+				filterRobbery.Source = (((FileImageSource)filterRobbery.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Theft))
+				filterTheft.Source = (((FileImageSource)filterTheft.Source).File).Replace("off", "on");
+			else
+				filterTheft.Source = (((FileImageSource)filterTheft.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Rape))
+				filterRape.Source = (((FileImageSource)filterRape.Source).File).Replace("off", "on");
+			else
+				filterRape.Source = (((FileImageSource)filterRape.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Vehicle))
+				filterAuto.Source = (((FileImageSource)filterAuto.Source).File).Replace("off", "on");
+			else
+				filterAuto.Source = (((FileImageSource)filterAuto.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Gun))
+				filterGuns.Source = (((FileImageSource)filterGuns.Source).File).Replace("off", "on");
+			else
+				filterGuns.Source = (((FileImageSource)filterGuns.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Prostition))
+				filterProstitution.Source = (((FileImageSource)filterProstitution.Source).File).Replace("off", "on");
+			else
+				filterProstitution.Source = (((FileImageSource)filterProstitution.Source).File).Replace("on", "off");
+
+			if (currentFilter.HasFlag(Filter.Other))
+				filterOther.Source = (((FileImageSource)filterOther.Source).File).Replace("off", "on");
+			else
+				filterOther.Source = (((FileImageSource)filterOther.Source).File).Replace("on", "off");
 		}
 
 		public void UpdateFilters()

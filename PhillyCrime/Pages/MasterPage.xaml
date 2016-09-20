@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="PhillyCrime.MasterPage"
+	Padding="0,40,0,0"
+	BackgroundColor="#4B0082"
+	Icon="Images/hamburger.png"
+	Title="PhillyBlotter">
+	<ContentPage.Content>
+		<StackLayout
+			VerticalOptions="FillAndExpand"
+			BackgroundColor="Gray">
+			<ListView
+				x:Name="listView"
+				BackgroundColor="#4B0082"
+				VerticalOptions="FillAndExpand"
+				SeparatorVisibility="None">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout
+								Padding="15, 5, 15, 5"
+								Orientation="Horizontal">
+								<Image WidthRequest="30" HeightRequest="30"
+									Source="{Binding IconSource}" />
+								<Label
+									Text="{Binding Title}"
+									FontSize="Large"
+									TextColor="White" VerticalOptions="Center" />
+							</StackLayout>
+						</ViewCell>
+						<!--<ImageCell
+							Height="30"
+							Text="{Binding Title}"
+							TextColor="White"
+							ImageSource="{Binding IconSource}" />-->
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
