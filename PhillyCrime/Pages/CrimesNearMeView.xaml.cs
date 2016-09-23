@@ -28,6 +28,9 @@ namespace PhillyCrime
 		public CrimesNearMeView()
 		{
 			InitializeComponent();
+			MyMap.MoveToRegion(
+				MapSpan.FromCenterAndRadius(
+				new Position(39.952062, -75.163543), Distance.FromMiles(0.5)));
 			MyMap.CustomPins = new List<CustomPin>();
 
 			// Start listener for pushpin events
