@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhillyBlotter.Driod", "Droi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhillyCrime", "PhillyCrime\PhillyCrime.csproj", "{F9CFE071-431A-46CD-87EF-E8EDE9FCE224}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iOS", "iOS", "{6E7F072C-EFC1-4660-B3EF-604978331342}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Droid", "Droid", "{CCE07FCE-FC79-49B9-B3A9-20A4BA7D8E75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +57,8 @@ Global
 		{F9CFE071-431A-46CD-87EF-E8EDE9FCE224}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{F9CFE071-431A-46CD-87EF-E8EDE9FCE224}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{F9CFE071-431A-46CD-87EF-E8EDE9FCE224}.Debug|iPhone.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F3D20FE5-D5DA-4501-883C-ADA41877D4C5} = {6E7F072C-EFC1-4660-B3EF-604978331342}
 	EndGlobalSection
 EndGlobal
