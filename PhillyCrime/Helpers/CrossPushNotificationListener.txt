@@ -9,7 +9,7 @@ using PushNotification.Plugin;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace PhillyCrime.Helpers
+namespace PhillyBlotter.Helpers
 {
     //Class to handle push notifications listens to events such as registration, unregistration, message arrival and errors.
     public class  CrossPushNotificationListener : IPushNotificationListener

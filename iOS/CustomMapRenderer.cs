@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoreGraphics;
-using PhillyCrime;
-using PhillyCrime.iOS;
+using PhillyBlotter;
+using PhillyBlotter.iOS;
 using MapKit;
 using UIKit;
 using Xamarin.Forms;
@@ -11,7 +11,7 @@ using Xamarin.Forms.Maps.iOS;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
-namespace PhillyCrime.iOS
+namespace PhillyBlotter.iOS
 {
 	public class CustomMapRenderer : MapRenderer
 	{

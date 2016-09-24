@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Xamarin.Forms.Maps;
 
-namespace PhillyCrime.Models
+namespace PhillyBlotter.Models
 {
 	public class Data
 	{

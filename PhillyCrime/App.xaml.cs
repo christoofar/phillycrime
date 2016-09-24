@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 using System.Collections.ObjectModel;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public partial class App : Application
 	{

@@ -6,7 +6,7 @@ using Foundation;
 using PushNotification.Plugin;
 using UIKit;
 
-namespace PhillyCrime.iOS
+namespace PhillyBlotter.iOS
 {
 
 	[Register("AppDelegate")]

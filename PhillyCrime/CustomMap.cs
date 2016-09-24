@@ -2,7 +2,7 @@
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public class CustomMap : Map
 	{

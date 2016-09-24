@@ -1,7 +1,7 @@
-﻿using System;
-using Android.OS;
-[assembly: Xamarin.Forms.Dependency (typeof (PhillyCrime.Droid.PlatformSpecific_Droid))]
-namespace PhillyCrime.Droid
+﻿using Android.OS;
+
+[assembly: Xamarin.Forms.Dependency(typeof(PhillyBlotter.Droid.PlatformSpecific_Droid))]
+namespace PhillyBlotter.Droid
 {
 	public class PlatformSpecific_Droid : PlatformSpecificInterface
 	{

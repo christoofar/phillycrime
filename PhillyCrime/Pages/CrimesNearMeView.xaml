@@ -2,9 +2,9 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:PhillyCrime"
+	xmlns:local="clr-namespace:PhillyBlotter"
 	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-	x:Class="PhillyCrime.CrimesNearMeView"
+	x:Class="PhillyBlotter.CrimesNearMeView"
 	Title="10 Day Crime Map">
 	<ContentPage.Content>
 		<StackLayout

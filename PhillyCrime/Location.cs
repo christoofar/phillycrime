@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PhillyCrime.Models;
+using PhillyBlotter.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public class Location
 	{

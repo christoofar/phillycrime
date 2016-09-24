@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public partial class CrimeMap : ContentPage
 	{

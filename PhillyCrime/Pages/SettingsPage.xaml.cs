@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
-using PhillyCrime.Models;
+using PhillyBlotter.Models;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public partial class SettingsPage : ContentPage
 	{

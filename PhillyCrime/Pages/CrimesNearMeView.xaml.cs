@@ -5,9 +5,9 @@ using System.Diagnostics;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Plugin.Geolocator;
-using PhillyCrime.Models;
+using PhillyBlotter.Models;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public partial class CrimesNearMeView : ContentPage
 	{

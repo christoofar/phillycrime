@@ -5,7 +5,7 @@ using PushNotification.Plugin;
 using PushNotification.Plugin.Abstractions;
 using Xamarin.Forms;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public enum DeviceType
 	{

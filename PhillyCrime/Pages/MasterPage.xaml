@@ -2,7 +2,7 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="PhillyCrime.MasterPage"
+	x:Class="PhillyBlotter.MasterPage"
 	Padding="0,40,0,0"
 	BackgroundColor="#4B0082"
 	Icon="Images/hamburger.png"

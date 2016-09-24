@@ -4,10 +4,10 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
 using System.Diagnostics;
-using PhillyCrime;
-using PhillyCrime.Models;
+using PhillyBlotter;
+using PhillyBlotter.Models;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public partial class CrimeView : ContentView
 	{

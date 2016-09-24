@@ -6,7 +6,7 @@ using System.Net.Http.Extensions.Compression.Core.Compressors;
 using System.Net.Http.Headers;
 using System.Diagnostics;
 
-namespace PhillyCrime.Models
+namespace PhillyBlotter.Models
 {
 	public class JsonWebClient
 	{

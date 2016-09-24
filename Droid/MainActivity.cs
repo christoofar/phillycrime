@@ -10,7 +10,7 @@ using Android.OS;
 using Android.Gms.Common;
 using PushNotification.Plugin;
 
-namespace PhillyCrime.Droid
+namespace PhillyBlotter.Droid
 {
 	[Activity(Label = "PhillyBlotter", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

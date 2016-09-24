@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms.Maps;
-using PhillyCrime.Models;
+using PhillyBlotter.Models;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public class CustomPin
 	{

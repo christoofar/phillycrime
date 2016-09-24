@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
 				  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-				  xmlns:local="clr-namespace:PhillyCrime;assembly=PhillyCrime"
-				  x:Class="PhillyCrime.MainPage">
+				  xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter"
+				  x:Class="PhillyBlotter.MainPage">
   <MasterDetailPage.Master>
   	<local:MasterPage x:Name="masterPage" />
   </MasterDetailPage.Master>

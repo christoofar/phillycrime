@@ -2,8 +2,8 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:PhillyCrime"
-	x:Class="PhillyCrime.BetaWelcome"
+	xmlns:local="clr-namespace:PhillyBlotter"
+	x:Class="PhillyBlotter.BetaWelcome"
 	Title="Welcome" Padding="20,20,20,20">
 	<ContentPage.Content>
 		<ScrollView>

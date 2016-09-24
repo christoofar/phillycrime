@@ -2,9 +2,10 @@
 using ObjCRuntime;
 using UIKit;
 using Foundation;
+using PhillyBlotter;
 
-[assembly: Xamarin.Forms.Dependency(typeof(PhillyCrime.iOS.PlatformSpecific_iOS))]
-namespace PhillyCrime.iOS
+[assembly: Xamarin.Forms.Dependency(typeof(PhillyBlotter.iOS.PlatformSpecific_iOS))]
+namespace PhillyBlotter.iOS
 {
 	public class PlatformSpecific_iOS : PlatformSpecificInterface
 	{

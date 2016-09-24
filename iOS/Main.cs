@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace PhillyCrime.iOS
+namespace PhillyBlotter.iOS
 {
 	public class Application
 	{

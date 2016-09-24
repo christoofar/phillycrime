@@ -1,7 +1,7 @@
 ﻿using MapKit;
-using PhillyCrime;
+using PhillyBlotter;
 
-namespace PhillyCrime.iOS
+namespace PhillyBlotter.iOS
 {
 	public class CustomMKAnnotationView : MKAnnotationView
 	{

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
-using PhillyCrime.Models;
+using PhillyBlotter.Models;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public partial class ArrestView : ContentView
 	{

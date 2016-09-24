@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using PhillyBlotter;
 using Plugin.CurrentActivity;
 using PushNotification.Plugin;
 

@@ -5,14 +5,14 @@ using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Widget;
-using PhillyCrime;
-using PhillyCrime.Droid;
+using PhillyBlotter;
+using PhillyBlotter.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
 
 [assembly:ExportRenderer (typeof(CustomMap), typeof(CustomMapRenderer))]
-namespace PhillyCrime.Droid
+namespace PhillyBlotter.Droid
 {
 	public class CustomMapRenderer : MapRenderer, GoogleMap.IInfoWindowAdapter, IOnMapReadyCallback
 	{

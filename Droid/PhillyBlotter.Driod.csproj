@@ -6,7 +6,7 @@
     <ProjectGuid>{1E9EBFD2-1675-4739-82DD-FC2351FAAB17}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>PhillyCrime.Droid</RootNamespace>
+    <RootNamespace>PhillyBlotter.Droid</RootNamespace>
     <AssemblyName>PhillyCrime.Droid</AssemblyName>
     <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
@@ -130,12 +130,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhillyCrime\PhillyCrime.csproj">
-      <Project>{F9CFE071-431A-46CD-87EF-E8EDE9FCE224}</Project>
-      <Name>PhillyCrime</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,6 +238,12 @@
       <Version>1.0.2.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhillyCrime\PhillyBlotter.csproj">
+      <Project>{F9CFE071-431A-46CD-87EF-E8EDE9FCE224}</Project>
+      <Name>PhillyBlotter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

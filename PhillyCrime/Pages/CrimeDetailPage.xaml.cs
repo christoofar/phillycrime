@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PhillyCrime;
-using PhillyCrime.Models;
+using PhillyBlotter;
+using PhillyBlotter.Models;
 
 using Xamarin.Forms;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public partial class CrimeDetailPage : ContentPage
 	{

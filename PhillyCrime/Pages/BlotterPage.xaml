@@ -2,8 +2,8 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:PhillyCrime;assembly=PhillyCrime"
-	x:Class="PhillyCrime.BlotterPage"
+	xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter"
+	x:Class="PhillyBlotter.BlotterPage"
 	Title="Local Blotter"
 	Padding="5,20,5,0">
 	<ContentPage.Content>

@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	public interface PlatformSpecificInterface
 	{

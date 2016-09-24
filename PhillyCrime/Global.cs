@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using PhillyCrime.Models;
+using PhillyBlotter.Models;
 using Xamarin.Forms;
 
-namespace PhillyCrime
+namespace PhillyBlotter
 {
 	/// <summary>
 	/// This holds data that needs to be visible, usable everywhere.
