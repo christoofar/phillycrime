@@ -21,6 +21,8 @@
 					x:Name="blotterListView"
 					IsPullToRefreshEnabled="true"
 					HasUnevenRows="true"
+						IsGroupingEnabled="true"
+						GroupDisplayBinding="{Binding DayName}"
 					ItemSelected="Handle_ItemSelected"
 					Refreshing="Handle_Refreshing">
 					<ListView.ItemTemplate>

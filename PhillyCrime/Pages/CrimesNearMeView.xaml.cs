@@ -33,34 +33,21 @@ namespace PhillyBlotter
 				new Position(39.952062, -75.163543), Distance.FromMiles(0.5)));
 			MyMap.CustomPins = new List<CustomPin>();
 
-			// Start listener for pushpin events
-			MessagingCenter.Subscribe<CustomPin>(this, "ShowCrimeReport", (obj) =>
-			{
-				var crimeDetailPage = new CrimeDetailPage(obj);
-				Navigation.PushAsync(crimeDetailPage);
-			});
-
-			// When app sleeps, shut off location tracing
-			MessagingCenter.Subscribe<App>(this, "GoingToSleep", (App obj) =>
+			Disappearing += (object sender, EventArgs e) =>
 			{
 				if (MyMap != null)
 				{
 					MyMap.IsShowingUser = false;
 				}
-			});
+				MessagingCenter.Unsubscribe<CustomPin>(this, "ShowCrimeReport");
+				MessagingCenter.Unsubscribe<App>(this, "GoingToSleep");
+				MessagingCenter.Unsubscribe<App>(this, "WakingUp");
+			};
 
-			// When app wakes up, turn on location tracing
-			MessagingCenter.Subscribe<App>(this, "WakingUp", (App obj) =>
-			{
-				if (MyMap != null)
-				{
-					MyMap.IsShowingUser = true;
-				}
-			});
 
 			// User moved map.
 			MyMap.PropertyChanged += (sender, e) =>
-			{
+			{				
 				try
 				{
 					if (_initialized)
@@ -80,6 +67,31 @@ namespace PhillyBlotter
 			// User is coming to look at the map
 			Appearing += (sender, e) =>
 			{
+				// Start listener for pushpin events
+				MessagingCenter.Subscribe<CustomPin>(this, "ShowCrimeReport", (obj) =>
+				{
+					var crimeDetailPage = new CrimeDetailPage(obj);
+					Navigation.PushAsync(crimeDetailPage);
+				});
+
+				// When app sleeps, shut off location tracing
+				MessagingCenter.Subscribe<App>(this, "GoingToSleep", (App obj) =>
+				{
+					if (MyMap != null)
+					{
+						MyMap.IsShowingUser = false;
+					}
+				});
+
+				// When app wakes up, turn on location tracing
+				MessagingCenter.Subscribe<App>(this, "WakingUp", (App obj) =>
+				{
+					if (MyMap != null)
+					{
+						MyMap.IsShowingUser = true;
+					}
+				});
+
 				// Do we have filters set?
 				if (Application.Current.Properties.ContainsKey("Filter"))
 				{
@@ -95,6 +107,7 @@ namespace PhillyBlotter
 					_initialized = true;
 				}
 				UpdateMap();
+				MyMap.IsShowingUser = true;
 			};
 
 			// Initialization should be complete, attempt to center the map.
@@ -402,7 +415,10 @@ namespace PhillyBlotter
 			// Snap to location
 			var mapspan = MapSpan.FromCenterAndRadius(currentPosition, Distance.FromMiles(0.25));
 			lastPosition = mapspan;
-			MyMap.MoveToRegion(mapspan);
+			if (MyMap != null)
+			{
+				MyMap.MoveToRegion(mapspan);
+			}
 		}
 
 	}

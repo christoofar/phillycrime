@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using System.Collections;
 
 namespace PhillyBlotter.Models
 {
@@ -12,7 +13,9 @@ namespace PhillyBlotter.Models
 
 	using System;
 	using System.Collections.Generic;
+	using System.Collections.ObjectModel;
 	using System.ComponentModel;
+	using System.Globalization;
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Linq;
 
@@ -171,6 +174,24 @@ namespace PhillyBlotter.Models
 		public string SuspendCode { get; set; }
 	}
 
+	public class Group : ObservableCollection<CrimeReport>
+	{
+		public Group(string dayname, CrimeReport[] crimes)
+		{
+			DayName = dayname;
+			foreach (CrimeReport crime in crimes)
+			{
+				this.Add(crime);
+			}
+		}
+
+		public string DayName
+		{
+			get;
+			private set;
+		}
+	}
+
 	public class CrimeReport : INotifyPropertyChanged
 	{
 
@@ -205,6 +226,39 @@ namespace PhillyBlotter.Models
 				if (_occurred != value)
 					_occurred = value;
 				OnPropertyChanged("Occurred");
+			}
+		}
+
+		int WeekNumber(DateTime date)
+		{
+			var calendar = System.Globalization.CultureInfo.CurrentCulture.Calendar;
+			return calendar.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
+		}
+
+		// This puts a user-friendly groupable timeframe on the incident date
+		public string OccurredDateType
+		{
+			get
+			{
+				DateTime date = _occurred.Value.Date;
+				DateTime now = DateTime.Now.Date;
+
+				if (date == now) return "Today";
+				if (date == now.AddDays(-1)) return "Yesterday";
+
+				// *This week*
+				// We will keep labeling individual days until we reach the next Sunday
+				if (WeekNumber(date) == WeekNumber(now))
+				{
+					return date.DayOfWeek.ToString();
+				}
+
+				if (WeekNumber(date) == WeekNumber(now) - 1)
+				{
+					return date.DayOfWeek.ToString() + " (Last week)";
+				}
+
+				return "Earlier";
 			}
 		}
 

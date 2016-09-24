@@ -16,12 +16,17 @@ namespace PhillyBlotter.Droid
 {
 	public class CustomMapRenderer : MapRenderer, GoogleMap.IInfoWindowAdapter, IOnMapReadyCallback
 	{
-		GoogleMap map;
+		static GoogleMap map;
 		List<CustomPin> customPins;
 
 		public override void OnViewRemoved(Android.Views.View child)
 		{
 			base.OnViewRemoved(child);
+			if (map != null)
+			{
+				customPins.Clear();
+				map.SetInfoWindowAdapter(null);
+			}
 		}
 
 		protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<View> e)

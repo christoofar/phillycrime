@@ -83,6 +83,13 @@ namespace PhillyBlotter
 						if (await askingPage.DisplayAlert("Set Primary Location",
 											  "Would you like to use where you are right now as your primary location?", "Yes", "No"))
 						{
+
+							/* if we got back nothing from the server then we were fooled */
+							if (area.PoliceDistrict == null || area.Neighborhood == null)
+							{
+								return new Position(39.952062, -75.163543);
+							}
+
 							Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
 							Application.Current.Properties["PrimaryLat"] = currentPosition.Latitude;
 							Application.Current.Properties["PrimaryLong"] = currentPosition.Longitude;

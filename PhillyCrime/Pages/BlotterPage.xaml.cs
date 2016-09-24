@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,9 +31,6 @@ namespace PhillyBlotter
 
 		void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
 		{
-			int b = 0;
-			Debug.WriteLine(e.SelectedItem.ToString());
-
 			var crimeDetailPage = new CrimeDetailPage((CrimeReport)e.SelectedItem);
 			Navigation.PushAsync(crimeDetailPage);
 		}
@@ -63,7 +61,10 @@ namespace PhillyBlotter
 				activity.IsRunning = false;
 				activity.IsVisible = false;
 				var hoods = await Data.GetBlotter(ids.ToArray());
-				blotterListView.ItemsSource = hoods;
+
+				var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
+
+				blotterListView.ItemsSource = dategroup;
 			}
 
 			blotterListView.EndRefresh();
