@@ -100,9 +100,16 @@ namespace PhillyBlotter.iOS
 			}
 			else
 			{
-				// I'm not sure why but we have to really force the image off this annotation
-				// to prevent user confusion.
+				// OK we really need to clean the hell out of this pin, because it's
+				// got garbage on it.
 				annotationView.Image = null;
+				annotationView.LeftCalloutAccessoryView.Dispose();
+				annotationView.RightCalloutAccessoryView.Dispose();
+				if (annotationView.DetailCalloutAccessoryView != null)
+				{
+					annotationView.DetailCalloutAccessoryView.Dispose();
+				}
+
 			}
 
 			switch (customPin.CrimeType)
