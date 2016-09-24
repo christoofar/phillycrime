@@ -42,7 +42,7 @@ namespace PhillyBlotter
 		/// <returns>The push notifications.</returns>
 		private async static Task<bool> RegisterPushNotifications()
 		{
-			if (!_locationRegistered && _deviceToken != "" && _primarylong > 0.00)
+			if (!_locationRegistered && _deviceToken != "" && Math.Abs(_primarylong) > 0.00)
 			{
 				// We only need to do this once.  It will happen every time app is started fresh.
 				// If network doesn't make it through, oh well.
