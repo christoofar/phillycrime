@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using PushNotification.Plugin;
 using PushNotification.Plugin.Abstractions;
 using Xamarin.Forms;
+using Newtonsoft.Json;
 
 namespace PhillyBlotter
 {
@@ -28,7 +29,15 @@ namespace PhillyBlotter
 
 		public void OnMessage(JObject values, PushNotification.Plugin.Abstractions.DeviceType deviceType)
 		{
-			Debug.WriteLine("Message Arrived");
+			Debug.WriteLine($"Message Arrived: {values.ToString()}");
+			if (deviceType == PushNotification.Plugin.Abstractions.DeviceType.Android)
+			{
+				var p = JObject.Parse(values.ToString());
+				if (p != null && p["info"] != null && p["info"].ToString() == "blotter")
+				{
+					//DependencyService.Get<PlatformSpecificInterface>().BringToForeground();
+				}
+			}
 		}
 
 		public void OnRegistered(string token, PushNotification.Plugin.Abstractions.DeviceType deviceType)
@@ -45,6 +54,9 @@ namespace PhillyBlotter
 
 		public bool ShouldShowNotification()
 		{
+			if (Device.OS == TargetPlatform.Android)
+				return true;
+			
 			return true;
 		}
 	}

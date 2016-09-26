@@ -5,14 +5,16 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using PhillyBlotter;
+using PhillyBlotter.Droid;
 using Plugin.CurrentActivity;
 using PushNotification.Plugin;
+using Xamarin.Forms;
 
 namespace PhillyCrime.Droid
 {
 	//You can specify additional application information in this attribute
     [Application]
-    public class MainApplication : Application, Application.IActivityLifecycleCallbacks
+    public class MainApplication : Android.App.Application, Android.App.Application.IActivityLifecycleCallbacks
     {
 		public static Context AppContext;
 
@@ -27,6 +29,10 @@ namespace PhillyCrime.Droid
 			AppContext = this.ApplicationContext;
 
 			CrossPushNotification.Initialize<CrossPushNotificationListener>("623924830057");
+			CrossPushNotification.NotificationContentTitleKey = "title";
+			CrossPushNotification.NotificationContentTextKey = "text";
+			CrossPushNotification.NotificationContentDataKey = "info";
+			CrossPushNotification.IconResource = Resource.Drawable.police;
 
             RegisterActivityLifecycleCallbacks(this);
 			//A great place to initialize Xamarin.Insights and Dependency Services!
@@ -41,7 +47,6 @@ namespace PhillyCrime.Droid
 
 			if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Kitkat)
 			{
-
 				PendingIntent pintent = PendingIntent.GetService(AppContext, 0, new Intent(AppContext, typeof(PushNotificationService)), 0);
 				AlarmManager alarm = (AlarmManager)AppContext.GetSystemService(Context.AlarmService);
 				alarm.Cancel(pintent);

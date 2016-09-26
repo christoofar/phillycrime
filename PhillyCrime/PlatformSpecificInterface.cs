@@ -8,5 +8,7 @@ namespace PhillyBlotter
 		bool CheckIfSimulator();
 
 		void ClearBadges();
+
+		void BringToForeground();
 	}
 }

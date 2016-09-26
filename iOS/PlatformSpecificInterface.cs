@@ -24,6 +24,10 @@ namespace PhillyBlotter.iOS
 			notification.ApplicationIconBadgeNumber = -1;
 			UIApplication.SharedApplication.ScheduleLocalNotification(notification);
 		}
+
+		public void BringToForeground()
+		{
+		}
 	}
 }
 

@@ -273,6 +273,9 @@
     <BundleResource Include="Images\config.png" />
     <BundleResource Include="Images\cop%402x.png" />
     <BundleResource Include="Images\cop.png" />
+    <BundleResource Include="Images\b_pin%402x.png" />
+    <BundleResource Include="Images\a_pin%402x.png" />
+    <BundleResource Include="Images\ro_pin%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

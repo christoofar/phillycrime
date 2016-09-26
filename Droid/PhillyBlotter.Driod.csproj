@@ -136,6 +136,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="PlatformSpecificImplementation.cs" />
     <Compile Include="CustomMapRenderer.cs" />
+    <Compile Include="GcmBroadcastReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -228,6 +229,24 @@
     <AndroidResource Include="Resources\drawable-hdpi\config.png" />
     <AndroidResource Include="Resources\drawable-hdpi\cop.png" />
     <AndroidResource Include="Resources\drawable-hdpi\map.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\a_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\b_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\d_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\f_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\g_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\h_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\m_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\n_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\o_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\p_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ra_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ro_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rv_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\s_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\t_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ta_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\v_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\vt_pin.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />

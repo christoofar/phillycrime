@@ -1,4 +1,7 @@
-﻿using Android.OS;
+﻿using System;
+using Android.Content;
+using Android.OS;
+using PhillyCrime.Droid;
 
 [assembly: Xamarin.Forms.Dependency(typeof(PhillyBlotter.Droid.PlatformSpecific_Droid))]
 namespace PhillyBlotter.Droid
@@ -19,6 +22,13 @@ namespace PhillyBlotter.Droid
 		public void ClearBadges()
 		{
 			//No-op.  Android doesn't support this
+		}
+
+		public void BringToForeground()
+		{
+			var intent = new Intent(MainApplication.AppContext, typeof(MainActivity));
+			intent.AddFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome);
+			MainApplication.AppContext.StartActivity(intent);
 		}
 	}
 }
