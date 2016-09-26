@@ -276,6 +276,21 @@
     <BundleResource Include="Images\b_pin%402x.png" />
     <BundleResource Include="Images\a_pin%402x.png" />
     <BundleResource Include="Images\ro_pin%402x.png" />
+    <BundleResource Include="Images\d_pin%402x.png" />
+    <BundleResource Include="Images\f_pin%402x.png" />
+    <BundleResource Include="Images\g_pin%402x.png" />
+    <BundleResource Include="Images\h_pin%402x.png" />
+    <BundleResource Include="Images\m_pin%402x.png" />
+    <BundleResource Include="Images\n_pin%402x.png" />
+    <BundleResource Include="Images\o_pin%402x.png" />
+    <BundleResource Include="Images\p_pin%402x.png" />
+    <BundleResource Include="Images\ra_pin%402x.png" />
+    <BundleResource Include="Images\rv_pin%402x.png" />
+    <BundleResource Include="Images\s_pin%402x.png" />
+    <BundleResource Include="Images\t_pin%402x.png" />
+    <BundleResource Include="Images\ta_pin%402x.png" />
+    <BundleResource Include="Images\v_pin%402x.png" />
+    <BundleResource Include="Images\vt_pin%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

@@ -136,13 +136,13 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="PlatformSpecificImplementation.cs" />
     <Compile Include="CustomMapRenderer.cs" />
-    <Compile Include="GcmBroadcastReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
+    <None Include="GcmBroadcastReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
