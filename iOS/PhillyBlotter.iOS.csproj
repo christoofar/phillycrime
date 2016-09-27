@@ -291,6 +291,8 @@
     <BundleResource Include="Images\ta_pin%402x.png" />
     <BundleResource Include="Images\v_pin%402x.png" />
     <BundleResource Include="Images\vt_pin%402x.png" />
+    <BundleResource Include="Images\user_on_map.png" />
+    <BundleResource Include="Images\user_on_map%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
