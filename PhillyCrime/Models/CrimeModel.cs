@@ -18,6 +18,7 @@ namespace PhillyBlotter.Models
 	using System.Globalization;
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Linq;
+	using Xamarin.Forms;
 
 	[Flags]
 	public enum Filter
@@ -176,16 +177,16 @@ namespace PhillyBlotter.Models
 
 	public class Group : ObservableCollection<CrimeReport>
 	{
-		public Group(string dayname, CrimeReport[] crimes)
+		public Group(string groupName, CrimeReport[] crimes)
 		{
-			DayName = dayname;
+			GroupName = groupName;
 			foreach (CrimeReport crime in crimes)
 			{
 				this.Add(crime);
 			}
 		}
 
-		public string DayName
+		public string GroupName
 		{
 			get;
 			private set;
@@ -342,9 +343,66 @@ namespace PhillyBlotter.Models
 			set
 			{
 				if (_arrestCount != value)
+				{
 					_arrestCount = value;
-				OnPropertyChanged("ArrestCount");
-				OnPropertyChanged("HasArrests");
+					OnPropertyChanged("ArrestCount");
+					OnPropertyChanged("HasArrests");
+				}
+			}
+		}
+
+		bool _hasProximity = false;
+		public bool HasProximity
+		{
+			get { return _hasProximity; }
+		}
+
+		double _feet;
+		public double Feet
+		{
+			get { return _feet; }
+			set
+			{
+				if (_feet != value)
+				{
+					_feet = value;
+					_hasProximity = true;
+					OnPropertyChanged("Feet");
+				}
+			}
+		}
+
+		public string Proximity
+		{
+			get
+			{
+				if (_feet <= 500) return "Very close";
+				if (_feet > 500 && _feet <= 1000) return "Close";
+				if (_feet > 1000) return "Nearby";
+				return "In Area";
+			}
+		}
+
+		public FormattedString FormattedAddress
+		{
+			get
+			{
+				if (HasProximity)
+				{
+					return new FormattedString
+					{
+						Spans = {
+						new Span { Text = Address, FontAttributes=FontAttributes.Italic },
+							new Span { Text = "\r\n " + Feet + "ft. away", ForegroundColor=Color.Red, FontSize=10 } }
+					};
+				}
+
+				return new FormattedString
+				{
+					Spans = {
+					new Span { Text = Address, FontAttributes=FontAttributes.Italic }
+					}
+				};
 			}
 		}
 

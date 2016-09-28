@@ -53,7 +53,23 @@ namespace PhillyBlotter
 
 			// Was a single person arrested for this?
 			if (report.FullArrestDetails.Length == 1)
+			{
 				SingleArrestView.UpdateData(report.FullArrestDetails[0]);
+			}
+			else
+			{
+				foreach (var arrest in report.FullArrestDetails)
+				{
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						MultipleArrestsView view = new MultipleArrestsView();
+						view.UpdateData(arrest);
+						MultipleNotice.IsVisible = true;
+						MultipleArrestContent.Children.Add(view);
+						MultipleArrestContent.IsVisible = true;
+					});
+				}
+			}
 		}
 	}
 }

@@ -222,13 +222,13 @@
     <AndroidResource Include="Resources\drawable-hdpi\right.png" />
     <AndroidResource Include="Resources\drawable\hamburger.png" />
     <AndroidResource Include="Resources\drawable-hdpi\hamburger.png" />
-    <AndroidResource Include="Resources\drawable\map.png" />
+    <AndroidResource Include="Resources\drawable\radar.png" />
     <AndroidResource Include="Resources\drawable\cop.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\cop.png" />
     <AndroidResource Include="Resources\drawable\config.png" />
     <AndroidResource Include="Resources\drawable-hdpi\config.png" />
     <AndroidResource Include="Resources\drawable-hdpi\cop.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\map.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\radar.png" />
     <AndroidResource Include="Resources\drawable-hdpi\a_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\b_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\d_pin.png" />
@@ -247,6 +247,12 @@
     <AndroidResource Include="Resources\drawable-hdpi\ta_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\v_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\vt_pin.png" />
+    <AndroidResource Include="Resources\drawable\alert.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\alert.png" />
+    <AndroidResource Include="Resources\drawable\map.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\map.png" />
+    <AndroidResource Include="Resources\drawable\checklist.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\checklist.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />

@@ -12,13 +12,22 @@ namespace PhillyBlotter
 {
 	public partial class BlotterPage : ContentPage
 	{
+		bool _distanceFormat = false;  // Signifies that we're going to show a distance blotter
+
 		public BlotterPage()
 		{
 			InitializeComponent();
-
 		}
 
-		async void Handle_Refreshing(object sender, System.EventArgs e)
+
+		public BlotterPage(bool distanceFormat = false)
+		{
+			InitializeComponent();
+
+			_distanceFormat = distanceFormat;
+		}
+
+		public async void Handle_Refreshing(object sender, System.EventArgs e)
 		{
 			await Refresh();
 		}
@@ -29,7 +38,7 @@ namespace PhillyBlotter
 			await Refresh();
 		}
 
-		void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+		public void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
 		{
 			var crimeDetailPage = new CrimeDetailPage((CrimeReport)e.SelectedItem);
 			Navigation.PushAsync(crimeDetailPage);
@@ -52,19 +61,34 @@ namespace PhillyBlotter
 			}
 			else
 			{
-				var nameList = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.Name);
-				string hoodNames = string.Join("/", nameList);
-				Title = hoodNames;
+				if (!_distanceFormat)
+				{
+					var nameList = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.Name);
+					string hoodNames = string.Join("/", nameList);
+					Title = hoodNames;
+				}
+				else
+				{
+					Title = "1 Mile Blotter";
+				}
 
 				labelNoRecords.IsVisible = false;
 				blotterListView.IsVisible = true;
 				activity.IsRunning = false;
 				activity.IsVisible = false;
-				var hoods = await Data.GetBlotter(ids.ToArray());
 
-				var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
-
-				blotterListView.ItemsSource = dategroup;
+				if (!_distanceFormat)
+				{
+					var hoods = await Data.GetBlotter(ids.ToArray());
+					var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
+					blotterListView.ItemsSource = dategroup;
+				}
+				else
+				{
+					var crimes = await Data.GetLocalBlotter((double)Application.Current.Properties["PrimaryLat"], (double)Application.Current.Properties["PrimaryLong"], 5280.00);
+					var proximitygroup = crimes.GroupBy(item => item.Proximity, (key, group) => new Group(key, group.ToArray()));
+					blotterListView.ItemsSource = proximitygroup;
+				}
 			}
 
 			blotterListView.EndRefresh();

@@ -60,6 +60,9 @@
     <EmbeddedResource Include="Pages\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\MultipleArrestsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -109,6 +112,10 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="OnPlatformList.cs" />
+    <Compile Include="Pages\OneMileBlotterPage.cs" />
+    <Compile Include="Views\MultipleArrestsView.xaml.cs">
+      <DependentUpon>MultipleArrestsView.xaml</DependentUpon>
+    </Compile>
 </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

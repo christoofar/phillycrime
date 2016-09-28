@@ -28,9 +28,15 @@ namespace PhillyBlotter
 			});
 			masterPageItems.Add(new MasterPageItem
 			{
-				Title = "Local Blotter",
-				IconSource = "Images/cop.png",
+				Title = "Neighborhood Blotter",
+				IconSource = "Images/checklist.png",
 				TargetType = typeof(BlotterPage)
+			});
+			masterPageItems.Add(new MasterPageItem
+			{
+				Title = "1 Mile Blotter",
+				IconSource = "Images/radar.png",
+				TargetType = typeof(OneMileBlotterPage)
 			});
 			masterPageItems.Add(new MasterPageItem
 			{

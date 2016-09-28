@@ -41,8 +41,9 @@ namespace PhillyBlotter
 
 				Description.Text = string.Format("{0}", report.FullCrimeDetail.TEXT_GENERAL_CODE);
 				Address.Text = string.Format("Location: {0}", report.FullCrimeDetail.LOCATION_BLOCK);
-				Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME);
+				Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.ToString("dddd MMMM d h:mm tt"));
 				District.Text = string.Format("Police District: {0}", report.FullCrimeDetail.DC_DIST);
+
 				PSA.Text = string.Format("PSA: {0}", report.FullCrimeDetail.SECTOR);
 				DCN.Text = String.Format("DCN: {0}-{1}-{2}",
 										 report.DCN.Substring(2, 2),

@@ -22,7 +22,7 @@
 					IsPullToRefreshEnabled="true"
 					HasUnevenRows="true"
 						IsGroupingEnabled="true"
-						GroupDisplayBinding="{Binding DayName}"
+						GroupDisplayBinding="{Binding GroupName}"
 					ItemSelected="Handle_ItemSelected"
 					Refreshing="Handle_Refreshing">
 					<ListView.ItemTemplate>
@@ -44,8 +44,7 @@
 										<Label
 											FontAttributes="Italic"
 											Text="{Binding Occurred, StringFormat='{0:dddd, MMM d h:mm tt}'}" />
-										<Label
-											Text="{Binding Address}" />
+											<Label FormattedText="{Binding FormattedAddress}" />
 									</StackLayout>
 									<Image
 										Source="Images/police.png"

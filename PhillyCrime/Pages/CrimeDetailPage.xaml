@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:PhillyBlotter;assembly:PhillyBlotter"
 	x:Class="PhillyBlotter.CrimeDetailPage"
+		Padding="5,0,5,0"
 	Title="Crime Details">
 	<ContentPage.Content>
 		<ScrollView>
@@ -14,14 +15,30 @@
 					VerticalOptions="CenterAndExpand"
 					IsRunning="true"
 					IsEnabled="true" />
+				<Frame
+					Padding="5,5,5,5"
+					HasShadow="false"
+					IsVisible="false"
+					x:Name="MultipleNotice" BackgroundColor="#4B0082">
+					<StackLayout Padding="0,0,0,0" Spacing="10" Orientation="Horizontal">
+						<Image Source="Images/alert.png"></Image>
+						<Label
+							FontAttributes="Bold" FontSize="Medium" TextColor="White">Multiple charges have been filed with this crime report.</Label>
+					</StackLayout>
+				</Frame>
 				<local:ArrestView
 					IsVisible="false"
 					x:Name="SingleArrestView">
-				</local:ArrestView>				
+				</local:ArrestView>
+				<StackLayout
+					IsVisible="false"
+					Orientation="Vertical"
+					x:Name="MultipleArrestContent">
+				</StackLayout>
 				<local:CrimeView
 					IsVisible="false"
 					x:Name="CrimeView">
-				</local:CrimeView>				
+				</local:CrimeView>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

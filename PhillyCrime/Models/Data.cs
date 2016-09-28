@@ -22,7 +22,9 @@ namespace PhillyBlotter.Models
 		{
 		}
 
-		public async static Task<bool> RegisterPushNotifications(string token, PushNotification.Plugin.Abstractions.DeviceType deviceType, double longitude, double latitude)
+		public async static Task<bool> RegisterPushNotifications(string token, 
+		                    PushNotification.Plugin.Abstractions.DeviceType deviceType, 
+		                    double longitude, double latitude)
 		{
 			JsonWebClient cli = new JsonWebClient();
 
@@ -39,6 +41,11 @@ namespace PhillyBlotter.Models
 			return true;
 		}
 
+		/// <summary>
+		/// Gets the 10-day blotter given an array of neighborhood IDs. The Neighborhoods are found using the call to Neighborhoods().
+		/// </summary>
+		/// <returns>The blotter.</returns>
+		/// <param name="neighborhoods">Neighborhoods.</param>
 		public async static Task<CrimeReport[]> GetBlotter(int[] neighborhoods)
 		{
 			JsonWebClient cli = new JsonWebClient();
@@ -59,6 +66,26 @@ namespace PhillyBlotter.Models
 			return resp;
 		}
 
+		/// <summary>
+		/// This pulls a hyper-local 10 day blotter based on a position and a radius distance.
+		/// </summary>
+		/// <returns>The local blotter.</returns>
+		/// <param name="latitutde">Latitutde.</param>
+		/// <param name="longitude">Longitude.</param>
+		/// <param name="distance">Distance.</param>
+		public async static Task<CrimeReport[]> GetLocalBlotter(double latitutde, double longitude, double distance)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string getUri = BLOTTER + string.Format($"/{latitutde}/{longitude}/{distance}/");
+
+			var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
+			return resp;
+		}
+
+		/// <summary>
+		/// Returns the neighborhoods of Philly
+		/// </summary>
 		public async static Task<Neighborhood[]> Neighborhoods()
 		{
 			JsonWebClient cli = new JsonWebClient();
@@ -68,6 +95,13 @@ namespace PhillyBlotter.Models
 			return resp;
 		}
 
+		/// <summary>
+		/// Returns specific details (neighborhood, local police district) using the specified longitude and latitude.
+		/// It's used to determine where someone is in Philadelphia in relation to community resources and which
+		/// neighborhood they're in.
+		/// </summary>
+		/// <param name="longitude">Longitude.</param>
+		/// <param name="latitude">Latitude.</param>
 		public async static Task<Area> Area(double longitude, double latitude)
 		{
 			JsonWebClient cli = new JsonWebClient();
@@ -78,6 +112,11 @@ namespace PhillyBlotter.Models
 			return resp;
 		}
 
+		/// <summary>
+		/// Gets the full crime report using the District Control Number identifier from police.
+		/// </summary>
+		/// <returns>The full crime report.</returns>
+		/// <param name="DCN">Dcn.</param>
 		public async static Task<FullCrimeReport> GetFullCrimeReport(string DCN)
 		{
 			JsonWebClient cli = new JsonWebClient();
@@ -89,6 +128,13 @@ namespace PhillyBlotter.Models
 			return resp;
 		}
 
+		/// <summary>
+		/// Returns the 10 day crime blotter.
+		/// TODO: Rename this to 10 Day.
+		/// </summary>
+		/// <returns>The day crime data.</returns>
+		/// <param name="span">A MapSpan object describing the viewport of the device the user can see.</param>
+		/// <param name="currentFilter">The crime filter to use to limit what crime data is retured.</param>
 		public async static Task<CrimeReport[]> Get30DayCrimeData(MapSpan span, Filter currentFilter)
 		{
 

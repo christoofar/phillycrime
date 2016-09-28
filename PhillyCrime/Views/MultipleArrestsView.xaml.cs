@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 using PhillyBlotter.Models;
+using Xamarin.Forms;
 
 namespace PhillyBlotter
 {
-	public partial class ArrestView : ContentView
+	public partial class MultipleArrestsView : ContentView
 	{
 		Arrest _report;
 		string _url = "";
 
-		public ArrestView()
+		public MultipleArrestsView()
 		{
 			InitializeComponent();
 			buttonDocket.Clicked += ButtonDocket_Clicked;
@@ -88,4 +88,3 @@ namespace PhillyBlotter
 		}
 	}
 }
-
