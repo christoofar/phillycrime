@@ -136,6 +136,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="PlatformSpecificImplementation.cs" />
     <Compile Include="CustomMapRenderer.cs" />
+    <Compile Include="CustomLocationMapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -253,6 +254,8 @@
     <AndroidResource Include="Resources\drawable-hdpi\map.png" />
     <AndroidResource Include="Resources\drawable\checklist.png" />
     <AndroidResource Include="Resources\drawable-hdpi\checklist.png" />
+    <AndroidResource Include="Resources\drawable\locatorpin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\locatorpin.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />

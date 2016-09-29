@@ -44,6 +44,12 @@ namespace PhillyBlotter
 				IconSource = "Images/config.png",
 				TargetType = typeof(SettingsPage)
 			});
+			masterPageItems.Add(new MasterPageItem
+			{
+				Title = "Set Your Primary Location",
+				IconSource = "Images/config.png",
+				TargetType = typeof(LocationPickerPage)
+			});
 
 			listView.ItemsSource = masterPageItems;
 		}

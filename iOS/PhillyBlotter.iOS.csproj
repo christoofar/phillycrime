@@ -187,6 +187,7 @@
     <Compile Include="PlatformSpecificInterface.cs" />
     <Compile Include="CustomMapRenderer.cs" />
     <Compile Include="CustomMKAnnotationView.cs" />
+    <Compile Include="CustomLocationMapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Images\a_off.png" />
@@ -297,6 +298,8 @@
     <BundleResource Include="Images\alert.png" />
     <BundleResource Include="Images\checklist.png" />
     <BundleResource Include="Images\checklist%402x.png" />
+    <BundleResource Include="Images\locatorpin.png" />
+    <BundleResource Include="Images\locatorpin%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

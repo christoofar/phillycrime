@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter"
+	xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+	x:Class="PhillyBlotter.LocationPickerPage"
+	Title="Set your location">
+	<ContentPage.Content>
+		<StackLayout
+			Orientation="Vertical"
+			VerticalOptions="Fill"
+			Padding="5,5,5,5"
+			Spacing="0">
+			<Frame
+				HasShadow="false"
+				Padding="5,5,5,5"
+				BackgroundColor="#DDDDDD">
+				<Label
+					TextColor="Black"
+					FontSize="12"
+					HorizontalTextAlignment="Center"
+					>Move the map so the pin is on your primary location.
+Your identity and location will remain secret.</Label>
+			</Frame>
+			<!-- Location picker map -->
+			<Grid VerticalOptions="FillAndExpand" x:Name="MapControl">				
+			</Grid>
+			<Label
+				TextColor="Black"
+				FontSize="Small"
+				HorizontalTextAlignment="Center">
+				Keep me informed of crimes happening within
+				</Label>
+			<StackLayout 					
+				Orientation="Horizontal"
+				HorizontalOptions="FillAndExpand" Padding="10,4,10,4" Spacing="30">
+				<Slider Maximum="5280" Minimum="500" x:Name="CrimeSlider" ValueChanged="SliderChangedValue"
+					HorizontalOptions="FillAndExpand">
+				</Slider>
+				<Label
+					FontSize="Medium"
+					VerticalTextAlignment="Center" WidthRequest="100" HorizontalTextAlignment="End" HorizontalOptions="End" x:Name="CrimeRadiusText">500 ft.</Label>
+			</StackLayout>
+			<Button BackgroundColor="#DDDDDD" Text="Save Location"></Button>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -11,43 +11,6 @@ namespace PhillyBlotter
 {
 	public partial class App : Application
 	{
-
-		public static Page GetMainPage()
-		{
-			// Replace the ExamplePage with whatever page is appropriate to start off your app
-			//  - Like your login page, or home screen, or whatever
-
-			// The root page allows navigation to work on Android.
-			NavigationPage root = new NavigationPage();
-			root.Title = "Blotter";
-			NavigationPage.SetHasNavigationBar(root, false);
-
-			// This is really the main page
-			TabbedPage page = new TabbedPage();
-			page.Title = "Blotter";
-			NavigationPage.SetHasNavigationBar(page, false);
-
-
-			// This beta period will expire 12/30/2016
-			if (System.DateTime.Now > System.DateTime.Parse("2016-12-30"))
-			{
-				page.Children.Add(new BetaWelcome() { Icon = "info.png" });
-			}
-			else {
-				page.Children.Add(new BetaWelcome() { Icon = "info.png" });
-				page.Children.Add(new CrimesNearMeView() { Icon = "gun.png" });
-				page.Children.Add(new BlotterPage() { Icon = "gun.png" });
-				page.Children.Add(new SettingsPage() { Icon = "info.png" });
-			}
-
-			//page.Children.Add(new BetaWelcome() {  });
-			//page.Children.Add(new CrimesNearMeView() {  });
-
-			root.PushAsync(page);
-
-			return root;
-		}
-
 		public App()
 		{
 			InitializeComponent();
@@ -56,6 +19,7 @@ namespace PhillyBlotter
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 			LoadNeighborhoods();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
 
 			MainPage = new MainPage();
 		}

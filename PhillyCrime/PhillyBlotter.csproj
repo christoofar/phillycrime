@@ -63,6 +63,9 @@
     <EmbeddedResource Include="Views\MultipleArrestsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\LocationPickerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -116,6 +119,10 @@
     <Compile Include="Views\MultipleArrestsView.xaml.cs">
       <DependentUpon>MultipleArrestsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LocationPickerPage.xaml.cs">
+      <DependentUpon>LocationPickerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocationMap.cs" />
 </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
