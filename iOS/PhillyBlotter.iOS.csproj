@@ -300,6 +300,8 @@
     <BundleResource Include="Images\checklist%402x.png" />
     <BundleResource Include="Images\locatorpin.png" />
     <BundleResource Include="Images\locatorpin%402x.png" />
+    <BundleResource Include="Images\checkmark-yes.png" />
+    <BundleResource Include="Images\checkmark-yes%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

@@ -23,6 +23,11 @@ namespace PhillyBlotter
 			InitializeComponent();
 		}
 
+		void OnPrimaryLocationClicked(object sender, System.EventArgs e)
+		{
+			Navigation.PushAsync(new LocationPickerPage());
+		}
+
 		void OnTapGestureRecognizerTapped(object sender, EventArgs args)
 		{
 			var imageSender = (Image)sender;

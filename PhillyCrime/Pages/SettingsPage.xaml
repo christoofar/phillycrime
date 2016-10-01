@@ -5,17 +5,26 @@
 	xmlns:local="clr-namespace:PhillyBlotter;assembly:PhillyBlotter"
 	x:Class="PhillyBlotter.SettingsPage"
 	Title="Settings"
-	Padding="5,20,0,0" BackgroundColor="White">
+	Padding="5,20,0,0" BackgroundColor="White">	
 	<ContentPage.Content>
 		<!--<ScrollView>-->
 			<StackLayout Padding="0">
+									<Label FontAttributes="Bold"
+							VerticalTextAlignment="Center">Configure your location:</Label>
+				<Frame Padding="4" HasShadow="false">
+				<StackLayout Orientation="Horizontal">
+					<Button Clicked="OnPrimaryLocationClicked" Text=" Set Primary Location... " BackgroundColor="Silver"></Button>
+					<Image x:Name="checkImage" IsVisible="false" Source="Images/checkmark-yes.png"></Image>
+					<Label x:Name="labelLocation" TextColor="Gray" VerticalTextAlignment="Center">Location not set</Label>
+				</StackLayout>
+				</Frame>
 				<Frame Padding="4"
 					HasShadow="false"
 					VerticalOptions="Start">
 					<StackLayout
 						Orientation="Vertical">
 						<Label FontAttributes="Bold"
-							VerticalTextAlignment="Center">Crime Filter</Label>
+							VerticalTextAlignment="Center">When you open a crime map, filter it by...</Label>
 						<StackLayout
 							Padding="0,0,0,0"
 							VerticalOptions="End"
