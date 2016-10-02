@@ -130,6 +130,8 @@ namespace PhillyBlotter.Models
 		public int DeviceType { get; set; }
 		public double Longitude { get; set; }
 		public double Latitude { get; set; }
+		public double Radius { get; set; }
+		public string Version { get; set; }
 	}
 
 	public class Crime

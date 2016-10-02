@@ -42,7 +42,7 @@ Your identity and location will remain secret.</Label>
 					FontSize="Medium"
 					VerticalTextAlignment="Center" WidthRequest="100" HorizontalTextAlignment="End" HorizontalOptions="End" x:Name="CrimeRadiusText">500 ft.</Label>
 			</StackLayout>
-			<Button BackgroundColor="#DDDDDD" Text="Save Location"></Button>
+			<Button BackgroundColor="#DDDDDD" Text="Save Location" Clicked="OnSaveButtonClicked"></Button>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

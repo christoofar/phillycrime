@@ -12,7 +12,10 @@ using PushNotification.Plugin;
 
 namespace PhillyBlotter.Droid
 {
-	[Activity(Label = "PhillyBlotter", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, 
+
+
+
+	[Activity(Label = "PhillyBlotter", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = false, 
 	          ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{

@@ -17,6 +17,7 @@ namespace PhillyCrime.Droid
     public class MainApplication : Android.App.Application, Android.App.Application.IActivityLifecycleCallbacks
     {
 		public static Context AppContext;
+		public static bool Foreground = false;
 
         public MainApplication(IntPtr handle, JniHandleOwnership transer)
           :base(handle, transer)
@@ -39,6 +40,7 @@ namespace PhillyCrime.Droid
 
 			//This service will keep your app receiving push even when closed.             
 			StartPushService();
+			Foreground = true;
         }
 
 		public static void StartPushService()
@@ -67,12 +69,14 @@ namespace PhillyCrime.Droid
         public override void OnTerminate()
         {
             base.OnTerminate();
+			Foreground = false;
             UnregisterActivityLifecycleCallbacks(this);
         }
 
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
             CrossCurrentActivity.Current.Activity = activity;
+			Foreground = true;
         }
 
         public void OnActivityDestroyed(Activity activity)
@@ -81,11 +85,13 @@ namespace PhillyCrime.Droid
 
         public void OnActivityPaused(Activity activity)
         {
+			Foreground = false;
         }
 
         public void OnActivityResumed(Activity activity)
         {
             CrossCurrentActivity.Current.Activity = activity;
+			Foreground = true;
         }
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
@@ -99,6 +105,7 @@ namespace PhillyCrime.Droid
 
         public void OnActivityStopped(Activity activity)
         {
+			Foreground = false;
         }
     }
 }

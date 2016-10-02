@@ -35,7 +35,16 @@ namespace PhillyBlotter
 				var p = JObject.Parse(values.ToString());
 				if (p != null && p["info"] != null && p["info"].ToString() == "blotter")
 				{
-					//DependencyService.Get<PlatformSpecificInterface>().BringToForeground();
+					MessagingCenter.Send<object, string>(Global.MessagingInstance, "Notification", p["text"].ToString());
+				}
+			}
+
+			if (deviceType == PushNotification.Plugin.Abstractions.DeviceType.iOS)
+			{
+				var p = JObject.Parse(values.ToString());
+				if (p != null && p["alert"] != null)
+				{
+					MessagingCenter.Send<object, string>(Global.MessagingInstance, "Notification", p["alert"].ToString());
 				}
 			}
 		}
@@ -59,5 +68,6 @@ namespace PhillyBlotter
 			
 			return true;
 		}
+
 	}
 }

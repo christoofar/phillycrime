@@ -10,5 +10,7 @@ namespace PhillyBlotter
 		void ClearBadges();
 
 		void BringToForeground();
+
+		bool IsInForeground();
 	}
 }

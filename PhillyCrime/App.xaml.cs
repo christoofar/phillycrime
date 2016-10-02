@@ -42,6 +42,39 @@ namespace PhillyBlotter
 			MessagingCenter.Send(this, "WakingUp");
 		}
 
+		public static async Task<bool> ClearNeighborhoods()
+		{
+			foreach (var hood in Global.Neighborhoods)
+			{
+				hood.Selected = false;
+			}
+
+			IFile file;
+			var exists = await FileSystem.Current.LocalStorage.CheckExistsAsync("Neighborhoods.json");
+			if (exists == ExistenceCheckResult.FileExists)
+			{
+				try
+				{
+					file = await FileSystem.Current.LocalStorage.GetFileAsync("Neighborhoods.json");
+					await file.DeleteAsync();
+				}
+				catch { }
+			}
+
+			try
+			{
+				file = await FileSystem.Current.LocalStorage.CreateFileAsync("Neighborhoods.json", CreationCollisionOption.ReplaceExisting);
+
+				if (file != null)
+				{
+					await file.WriteAllTextAsync(JsonConvert.SerializeObject(Global.Neighborhoods.ToList()));
+				}
+			}
+			catch { }
+
+			return true;
+		}
+
 		public static async Task<bool> UpdateNeighborhood(int hoodID, bool selected)
 		{
 			// This is a real drag but we gotta update the global vars and the local file.

@@ -28,6 +28,11 @@ namespace PhillyBlotter.iOS
 		public void BringToForeground()
 		{
 		}
+
+		public bool IsInForeground()
+		{
+			return UIApplication.SharedApplication.ApplicationState == UIApplicationState.Active;
+		}
 	}
 }
 

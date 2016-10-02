@@ -20,10 +20,26 @@ namespace PhillyBlotter
 			MapMarker.WidthRequest = 20;
 			MapMarker.VerticalOptions = LayoutOptions.Center;
 			MapMarker.HorizontalOptions = LayoutOptions.Center;
+			MyMap.MapType = MapType.Hybrid;
 
-			MyMap.MoveToRegion(
-				MapSpan.FromCenterAndRadius(
-				new Position(39.952062, -75.163543), Distance.FromMiles(0.5)));
+			if (Application.Current.Properties.ContainsKey("PrimaryLat"))
+			{
+				MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position((double)Application.Current.Properties["PrimaryLat"],
+																			(double)Application.Current.Properties["PrimaryLong"]), Distance.FromMiles(0.5)));
+
+				if (Application.Current.Properties.ContainsKey("CrimeRadius"))
+				{
+					MyMap.Circle.Radius = (double)Application.Current.Properties["CrimeRadius"] * 0.3048;
+					CrimeSlider.Value = (double)Application.Current.Properties["CrimeRadius"];
+				}
+			}
+			else
+			{
+				MyMap.MoveToRegion(
+						MapSpan.FromCenterAndRadius(
+						new Position(39.952062, -75.163543), Distance.FromMiles(0.5)));
+			}
+
 		}
 
 
@@ -34,7 +50,15 @@ namespace PhillyBlotter
 			MapControl.Children.Add(MyMap);
 			MapControl.Children.Add(MapMarker);
 
-			JumpToWhereIAm(null, null);
+			if (Application.Current.Properties.ContainsKey("CrimeRadius"))
+			{
+				MyMap.Circle.Radius = (double)Application.Current.Properties["CrimeRadius"] * 0.3048;
+				CrimeSlider.Value = (double)Application.Current.Properties["CrimeRadius"];
+			}
+			else
+			{
+				JumpToWhereIAm(null, null);	
+			}
 
 			MyMap.PropertyChanged += (sender, e) =>
 			{
@@ -44,6 +68,14 @@ namespace PhillyBlotter
 				}
 			};
 
+		}
+
+		async void OnSaveButtonClicked(object sender, System.EventArgs e)
+		{
+			// Save this stuff
+			Location.Fresh();
+			await Location.SavePrimaryLocation(new Position(MyMap.VisibleRegion.Center.Latitude, MyMap.VisibleRegion.Center.Longitude), CrimeSlider.Value);
+			await Navigation.PopAsync(true);
 		}
 
 		void SliderChangedValue(object sender, Xamarin.Forms.ValueChangedEventArgs e)
@@ -91,7 +123,6 @@ namespace PhillyBlotter
 
 			MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(ps, Distance.FromMiles(0.25)));
 			MyMap.IsShowingUser = false;
-			MyMap.MapType = MapType.Hybrid;
 		}
 	}
 }

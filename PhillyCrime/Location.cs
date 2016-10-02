@@ -13,6 +13,7 @@ namespace PhillyBlotter
 		static PushNotification.Plugin.Abstractions.DeviceType _deviceType;
 		static double _primarylat = 0.00;
 		static double _primarylong = 0.00;
+		static double _radius = 0.00;
 		static bool _locationRegistered = false;
 
 		public Location()
@@ -31,6 +32,29 @@ namespace PhillyBlotter
 		{
 			_primarylat = latitude;
 			_primarylong = longitude;
+			// We have a radius?
+			if (Application.Current.Properties.ContainsKey("CrimeRadius"))
+			{
+				_radius = (double)Application.Current.Properties["CrimeRadius"];
+			}
+			else
+			{
+				_radius = 750;
+			}
+			await RegisterPushNotifications();
+		}
+
+		// Sets the Location handler so the next change to location will trigger a POST to the server
+		public static void Fresh()
+		{
+			_locationRegistered = false;
+		}
+
+		public static async void PostLocation(double longitude, double latitude, double radius)
+		{
+			_primarylat = latitude;
+			_primarylong = longitude;
+			_radius = radius;
 			await RegisterPushNotifications();
 		}
 
@@ -47,8 +71,44 @@ namespace PhillyBlotter
 				// We only need to do this once.  It will happen every time app is started fresh.
 				// If network doesn't make it through, oh well.
 				_locationRegistered = true;
-				await Data.RegisterPushNotifications(_deviceToken, _deviceType, _primarylong, _primarylat);
+				await Data.RegisterPushNotifications(_deviceToken, _deviceType, _primarylong, _primarylat, _radius);
 			}
+			return true;
+		}
+
+		public static async Task<bool> SavePrimaryLocation(Position currentPosition, double radius)
+		{
+			// OK, now we need to see if we're located in Philly.  We do this by asking the server
+			// what PPD district the device is in right now.
+			var area = await Data.Area(currentPosition.Longitude, currentPosition.Latitude);
+
+			if (area != null)
+			{
+				/* if we got back nothing from the server then we were fooled */
+				if (area.PoliceDistrict == null || area.Neighborhood == null)
+				{
+					return true;
+				}
+
+				Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
+				Application.Current.Properties["PrimaryLat"] = currentPosition.Latitude;
+				Application.Current.Properties["PrimaryLong"] = currentPosition.Longitude;
+				Application.Current.Properties["CrimeRadius"] = radius; //Default starting value.  User can change it.
+				Application.Current.Properties["PrimaryDistrict"] = area.PoliceDistrict.District;
+				Application.Current.Properties["PrimaryPSA"] = area.PoliceDistrict.PSA;
+				Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
+				Application.Current.Properties["NeighborhoodID"] = area.Neighborhood.ID;
+
+				// Clear all the selected neighborhoods
+				await App.ClearNeighborhoods();
+
+				// This new primary location is what we'll use as the primary neighborhood.
+				await App.UpdateNeighborhood(area.Neighborhood.ID, true);
+
+				await Application.Current.SavePropertiesAsync();
+				PostLocation(currentPosition.Longitude, currentPosition.Latitude, radius);
+			}
+
 			return true;
 		}
 
@@ -93,6 +153,7 @@ namespace PhillyBlotter
 							Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
 							Application.Current.Properties["PrimaryLat"] = currentPosition.Latitude;
 							Application.Current.Properties["PrimaryLong"] = currentPosition.Longitude;
+							Application.Current.Properties["CrimeRadius"] = 750.0; //Default starting value.  User can change it.
 							Application.Current.Properties["PrimaryDistrict"] = area.PoliceDistrict.District;
 							Application.Current.Properties["PrimaryPSA"] = area.PoliceDistrict.PSA;
 							Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
@@ -145,8 +206,8 @@ namespace PhillyBlotter
 		static void PostLocation()
 		{
 			// This is required to get hyper-local crime push notifications to work
-			Location.PostLocation((double)Application.Current.Properties["PrimaryLat"],
-								  (double)Application.Current.Properties["PrimaryLong"]);
+			Location.PostLocation((double)Application.Current.Properties["PrimaryLong"],
+								  (double)Application.Current.Properties["PrimaryLat"]);
 		}
 }
 }

@@ -21,5 +21,10 @@ namespace PhillyBlotter
 		{
 			base.Handle_Refreshing(sender, e);
 		}
+
+		new public void OnSettingsButtonClicked(object sender, System.EventArgs e)
+		{
+			base.OnSettingsButtonClicked(sender, e);
+		}
 	}
 }

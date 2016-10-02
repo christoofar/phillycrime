@@ -63,6 +63,14 @@ namespace PhillyBlotter
 		{
 			base.OnAppearing();
 
+			// Is a primary location already set?
+			if (Application.Current.Properties.ContainsKey("PrimaryLat"))
+			{
+				labelLocationHint.IsVisible = false;
+				checkImage.IsVisible = true;
+				labelLocation.Text = "Location is set";
+			}
+
 			// Do we have filters set?
 			if (Application.Current.Properties.ContainsKey("Filter"))
 			{

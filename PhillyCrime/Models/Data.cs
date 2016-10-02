@@ -22,6 +22,28 @@ namespace PhillyBlotter.Models
 		{
 		}
 
+
+		public async static Task<bool> RegisterPushNotifications(string token,
+					PushNotification.Plugin.Abstractions.DeviceType deviceType,
+					double longitude, double latitude, double radius)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string getUri = PUSH;
+
+			var notification = new crime_notification();
+			notification.DeviceToken = token;
+			notification.DeviceType = Convert.ToInt32(deviceType);
+			notification.Longitude = longitude;
+			notification.Latitude = latitude;
+			notification.Radius = radius;
+			notification.Version = Global.VERSION;
+
+			Debug.WriteLine($"About to post registration to server... LONG: {longitude}  LAT: {latitude}");
+			await cli.DoSilentPost(getUri, JsonConvert.SerializeObject(notification));
+			return true;
+		}
+
 		public async static Task<bool> RegisterPushNotifications(string token, 
 		                    PushNotification.Plugin.Abstractions.DeviceType deviceType, 
 		                    double longitude, double latitude)
@@ -35,8 +57,9 @@ namespace PhillyBlotter.Models
 			notification.DeviceType = Convert.ToInt32(deviceType);
 			notification.Longitude = longitude;
 			notification.Latitude = latitude;
+			notification.Version = Global.VERSION;
 
-			Debug.WriteLine("About to post registration to server...");
+			Debug.WriteLine($"About to post registration to server... LONG: {longitude}  LAT: {latitude}");
 			await cli.DoSilentPost(getUri, JsonConvert.SerializeObject(notification));
 			return true;
 		}

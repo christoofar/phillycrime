@@ -10,11 +10,14 @@
 		<StackLayout
 			Orientation="Vertical"
 			Padding="0,0,0,0">
-			<Label
-				x:Name="labelNoRecords"
-				TextColor="Gray"
-				HorizontalOptions="Center"
-				FontAttributes="Italic">You need to select your primary neighborhood(s) in the settings panel.</Label>
+			<StackLayout x:Name="warningPanel">
+				<Label
+					x:Name="labelNoRecords"
+					TextColor="Gray"
+					HorizontalOptions="Center"
+					FontAttributes="Italic">You need to select your primary neighborhood(s) in the settings panel.</Label>
+				<Button HorizontalOptions="Center" x:Name="buttonSettings" Text="Select Neighborhoods..." Clicked="OnSettingsButtonClicked"></Button>
+			</StackLayout>
 			<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 				<ListView
 					IsVisible="false"

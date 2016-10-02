@@ -137,6 +137,7 @@
     <Compile Include="PlatformSpecificImplementation.cs" />
     <Compile Include="CustomMapRenderer.cs" />
     <Compile Include="CustomLocationMapRenderer.cs" />
+    <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -229,7 +230,6 @@
     <AndroidResource Include="Resources\drawable\config.png" />
     <AndroidResource Include="Resources\drawable-hdpi\config.png" />
     <AndroidResource Include="Resources\drawable-hdpi\cop.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\radar.png" />
     <AndroidResource Include="Resources\drawable-hdpi\a_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\b_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\d_pin.png" />
@@ -250,12 +250,17 @@
     <AndroidResource Include="Resources\drawable-hdpi\vt_pin.png" />
     <AndroidResource Include="Resources\drawable\alert.png" />
     <AndroidResource Include="Resources\drawable-hdpi\alert.png" />
-    <AndroidResource Include="Resources\drawable\map.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\map.png" />
     <AndroidResource Include="Resources\drawable\checklist.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\checklist.png" />
     <AndroidResource Include="Resources\drawable\locatorpin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\locatorpin.png" />
+    <AndroidResource Include="Resources\drawable\checkmark_yes.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\checkmark_yes.png" />
+    <AndroidResource Include="Resources\drawable\map.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\map.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\checklist.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\radar.png" />
+    <AndroidResource Include="Resources\drawable\splash.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\splash.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />

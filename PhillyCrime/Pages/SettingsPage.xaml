@@ -14,10 +14,11 @@
 				<Frame Padding="4" HasShadow="false">
 				<StackLayout Orientation="Horizontal">
 					<Button Clicked="OnPrimaryLocationClicked" Text=" Set Primary Location... " BackgroundColor="Silver"></Button>
-					<Image x:Name="checkImage" IsVisible="false" Source="Images/checkmark-yes.png"></Image>
-					<Label x:Name="labelLocation" TextColor="Gray" VerticalTextAlignment="Center">Location not set</Label>
+					<Image x:Name="checkImage" IsVisible="false" Source="Images/checkmark_yes.png"></Image>
+					<Label x:Name="labelLocation" TextColor="Gray" VerticalTextAlignment="Center"> Location not set</Label>
 				</StackLayout>
 				</Frame>
+							<Label x:Name="labelLocationHint" TextColor="Red" FontAttributes="Italic" VerticalTextAlignment="Center"> Setting a location allows you to see crime by distance and get push notifications of serious crime near you.</Label>
 				<Frame Padding="4"
 					HasShadow="false"
 					VerticalOptions="Start">

@@ -20,6 +20,7 @@ namespace PhillyBlotter
 			});
 
 			InitializeComponent();
+
 			_instance = this;
 
 			masterPage.ListView.ItemSelected += OnItemSelected;
@@ -45,5 +46,6 @@ namespace PhillyBlotter
 				IsPresented = false;
 			}
 		}
+
 	}
 }

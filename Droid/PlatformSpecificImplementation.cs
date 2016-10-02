@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using PhillyCrime.Droid;
@@ -29,6 +31,11 @@ namespace PhillyBlotter.Droid
 			var intent = new Intent(MainApplication.AppContext, typeof(MainActivity));
 			intent.AddFlags(ActivityFlags.NewTask | ActivityFlags.TaskOnHome);
 			MainApplication.AppContext.StartActivity(intent);
+		}
+
+		public bool IsInForeground()
+		{
+			return true;
 		}
 	}
 }

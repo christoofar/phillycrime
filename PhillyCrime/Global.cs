@@ -15,7 +15,11 @@ namespace PhillyBlotter
 	/// </summary>
 	public class Global
 	{
+
+		public static string VERSION = "APK12";
 		public static ObservableCollection<Neighborhood> Neighborhoods = new ObservableCollection<Neighborhood>();
+
+		public static object MessagingInstance { get; set; }
 
 		public async static Task<bool> NeighborhoodSyncSettings()
 		{
@@ -23,8 +27,9 @@ namespace PhillyBlotter
 			return true;
 		}
 
-		public Global()
+		static Global()
 		{
+			MessagingInstance = new object();
 		}
 
 	}

@@ -260,7 +260,6 @@
     <BundleResource Include="Resources\info%403x.png" />
     <BundleResource Include="Resources\info%402x.png" />
     <BundleResource Include="Resources\info.png" />
-    <BundleResource Include="Resources\splash.png" />
     <BundleResource Include="Images\police.png" />
     <BundleResource Include="Images\police%402x.png" />
     <BundleResource Include="Images\right%402x.png" />
@@ -268,8 +267,6 @@
     <BundleResource Include="Images\hamburger.png" />
     <BundleResource Include="Images\hamburger%402x.png" />
     <BundleResource Include="Images\mappin.png" />
-    <BundleResource Include="Images\map.png" />
-    <BundleResource Include="Images\map%402x.png" />
     <BundleResource Include="Images\config%402x.png" />
     <BundleResource Include="Images\config.png" />
     <BundleResource Include="Images\cop%402x.png" />
@@ -300,8 +297,13 @@
     <BundleResource Include="Images\checklist%402x.png" />
     <BundleResource Include="Images\locatorpin.png" />
     <BundleResource Include="Images\locatorpin%402x.png" />
-    <BundleResource Include="Images\checkmark-yes.png" />
-    <BundleResource Include="Images\checkmark-yes%402x.png" />
+    <BundleResource Include="Images\checkmark_yes.png" />
+    <BundleResource Include="Images\checkmark_yes%402x.png" />
+    <BundleResource Include="Images\map.png" />
+    <BundleResource Include="Images\map%402x.png" />
+    <BundleResource Include="Resources\pbsplash1.jpg" />
+    <BundleResource Include="Images\radar.png" />
+    <BundleResource Include="Images\radar%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
@@ -318,10 +320,6 @@
       <Project>{F9CFE071-431A-46CD-87EF-E8EDE9FCE224}</Project>
       <Name>PhillyBlotter</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Images\radar%402x.png" />
-    <AndroidResource Include="Images\radar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

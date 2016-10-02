@@ -16,22 +16,20 @@
                     <view key="view" contentMode="center" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                        <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedWhite" white="0" alpha="1"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6" translatesAutoresizingMaskIntoConstraints="NO" image="splash.png">
-                                <rect key="frame" x="141" y="69" width="317" height="462"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6" translatesAutoresizingMaskIntoConstraints="NO" image="pbsplash1.jpg" misplaced="YES">
+                                <rect key="frame" x="135" y="55" width="330" height="490"/>
                                 <constraints>
-                                    <constraint id="51" firstAttribute="width" constant="317"/>
-                                    <constraint id="52" firstAttribute="height" constant="462"/>
+                                    <constraint id="25" firstAttribute="width" constant="307"/>
+                                    <constraint id="26" firstAttribute="height" constant="454"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint id="49" firstItem="Ze5-6b-2t3" firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="69"/>
-                            <constraint id="50" firstItem="Ze5-6b-2t3" firstAttribute="trailing" secondItem="6" secondAttribute="trailing" constant="141"/>
-                            <constraint id="53" firstItem="6" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="49"/>
-                            <constraint id="54" firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="69"/>
-                            <constraint id="55" firstItem="6" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="142"/>
+                            <constraint id="23" firstItem="Ze5-6b-2t3" firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="73"/>
+                            <constraint id="24" firstItem="6" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="146"/>
+                            <constraint id="31" firstItem="Ze5-6b-2t3" firstAttribute="trailing" secondItem="6" secondAttribute="trailing" constant="147"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -103,6 +101,19 @@
         <image name="Images/TabIcons/coding.png" width="25" height="25"/>
         <image name="gun.png" width="25" height="25"/>
         <image name="info.png" width="25" height="25"/>
-        <image name="splash.png" width="467" height="657"/>
+        <image name="Images/police.png" width="30" height="30"/>
+        <image name="Images/right.png" width="30" height="30"/>
+        <image name="Images/hamburger.png" width="14" height="15"/>
+        <image name="Images/mappin.png" width="35" height="35"/>
+        <image name="Images/config.png" width="30" height="30"/>
+        <image name="Images/cop.png" width="30" height="30"/>
+        <image name="Images/user_on_map.png" width="30" height="30"/>
+        <image name="Images/alert.png" width="30" height="30"/>
+        <image name="Images/checklist.png" width="30" height="30"/>
+        <image name="Images/locatorpin.png" width="24" height="24"/>
+        <image name="Images/checkmark_yes.png" width="30" height="30"/>
+        <image name="Images/map.png" width="30" height="30"/>
+        <image name="pbsplash1.jpg" width="1532" height="1200"/>
+        <image name="Images/radar.png" width="30" height="30"/>
     </resources>
 </document>

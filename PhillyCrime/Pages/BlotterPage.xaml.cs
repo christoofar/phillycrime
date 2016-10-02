@@ -38,6 +38,18 @@ namespace PhillyBlotter
 			await Refresh();
 		}
 
+		public async void OnSettingsButtonClicked(object sender, System.EventArgs e)
+		{
+			if (_distanceFormat)
+			{
+				await Navigation.PushAsync(new LocationPickerPage());
+			}
+			else
+			{
+				await Navigation.PushAsync(new SettingsPage());
+			}
+		}
+
 		public void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
 		{
 			var crimeDetailPage = new CrimeDetailPage((CrimeReport)e.SelectedItem);
@@ -47,14 +59,29 @@ namespace PhillyBlotter
 		async Task<bool> Refresh()
 		{
 
+			if (_distanceFormat)
+			{
+				// If there's no lat/long, don't load this screen but change the warning.
+				if (!Application.Current.Properties.ContainsKey("PrimaryLat"))
+				{
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						labelNoRecords.Text = "You need to set a primary location in order to use this feature.";
+						buttonSettings.Text = "Set Primary Location...";
+						activity.IsRunning = false;
+						activity.IsVisible = false;
+					});
+					return true;
+				}
+			}
+
 			//Look for neighborhoods user subscribes to.
 			var ids = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.ID);
-
 
 			if (ids.Count() == 0)
 			{
 				// You need to select a primary neighborhood.
-				labelNoRecords.IsVisible = true;
+				warningPanel.IsVisible = true;
 				blotterListView.IsVisible = false;
 				activity.IsRunning = false;
 				activity.IsVisible = false;
@@ -72,7 +99,7 @@ namespace PhillyBlotter
 					Title = "1 Mile Blotter";
 				}
 
-				labelNoRecords.IsVisible = false;
+				warningPanel.IsVisible = false;
 				blotterListView.IsVisible = true;
 				activity.IsRunning = false;
 				activity.IsVisible = false;
