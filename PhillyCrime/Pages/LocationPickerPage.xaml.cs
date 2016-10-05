@@ -74,8 +74,12 @@ namespace PhillyBlotter
 		{
 			// Save this stuff
 			Location.Fresh();
-			await Location.SavePrimaryLocation(new Position(MyMap.VisibleRegion.Center.Latitude, MyMap.VisibleRegion.Center.Longitude), CrimeSlider.Value);
-			await Navigation.PopAsync(true);
+			try
+			{
+				await Location.SavePrimaryLocation(new Position(MyMap.VisibleRegion.Center.Latitude, MyMap.VisibleRegion.Center.Longitude), CrimeSlider.Value);
+				await Navigation.PopAsync(true);
+			}
+			catch { } 
 		}
 
 		void SliderChangedValue(object sender, Xamarin.Forms.ValueChangedEventArgs e)
