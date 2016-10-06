@@ -151,6 +151,12 @@ namespace PhillyBlotter.Models
 			return resp;
 		}
 
+		public async static Task<CrimeReport[]> Get30DayCrimeData(double longitude, double latitude, double longDelta, double latDelta, Filter currentFilter)
+		{
+			MapSpan span = new MapSpan(new Position(latitude, longitude), latDelta, longDelta);
+			return await Get30DayCrimeData(span, currentFilter);
+		}
+
 		/// <summary>
 		/// Returns the 10 day crime blotter.
 		/// TODO: Rename this to 10 Day.
