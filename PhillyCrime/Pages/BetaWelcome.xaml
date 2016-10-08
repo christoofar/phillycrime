@@ -14,7 +14,7 @@
 					FontAttributes="Bold">PhillyBlotter</Label>
 				<Label
 					HorizontalOptions="CenterAndExpand"
-					FontSize="Large">Welcome to Testing!</Label>
+					FontSize="Large">APK 13</Label>
 				<Label
 					HorizontalOptions="Start"
 					FontSize="Medium"

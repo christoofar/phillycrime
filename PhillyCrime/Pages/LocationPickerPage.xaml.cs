@@ -113,7 +113,18 @@ namespace PhillyBlotter
 			locator.DesiredAccuracy = 50;
 			locator.AllowsBackgroundUpdates = true;
 
-			var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+			Plugin.Geolocator.Abstractions.Position position = new Plugin.Geolocator.Abstractions.Position();
+			try
+			{
+				position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+			}
+			catch
+			{
+				// For whatever reason getting GPS is blowing up on us. :-(
+				position = new Plugin.Geolocator.Abstractions.Position();
+				position.Latitude = 39.952062;
+				position.Longitude = -75.163543;
+			}
 
 			//Shut off GPS, we're done with it
 			locator.AllowsBackgroundUpdates = false;

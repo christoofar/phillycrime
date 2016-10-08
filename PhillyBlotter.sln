@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhillyBlotter.iOS", "iOS\Ph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhillyBlotter.Driod", "Droid\PhillyBlotter.Driod.csproj", "{1E9EBFD2-1675-4739-82DD-FC2351FAAB17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPopup", "FormsPopup\FormsPopup\FormsPopup\FormsPopup.csproj", "{CA22517D-4B83-43F5-A23F-9207229D2024}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,18 @@ Global
 		{1E9EBFD2-1675-4739-82DD-FC2351FAAB17}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{1E9EBFD2-1675-4739-82DD-FC2351FAAB17}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{1E9EBFD2-1675-4739-82DD-FC2351FAAB17}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Release|iPhone.Build.0 = Release|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{CA22517D-4B83-43F5-A23F-9207229D2024}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="PhillyBlotter.SearchPage"
+	Title="Search Crime Reports"
+		Padding="5,5,5,5">
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout Padding="0,0,0,0">
+				<!-- Police District -->
+				<Label
+					FontAttributes="Bold"
+					VerticalTextAlignment="Center">Area to Search</Label>				
+					<Grid Padding="0,0,0,0">
+						<Grid.RowDefinitions>
+				    	<RowDefinition Height="*" />
+				    	<RowDefinition Height="*" />
+				    	<RowDefinition Height="*" />						
+				  	</Grid.RowDefinitions>					
+				    <Grid.ColumnDefinitions>
+				    	<ColumnDefinition Width="*" />
+				    	<ColumnDefinition Width="*" />					
+				    	<ColumnDefinition Width="2*" />						
+					</Grid.ColumnDefinitions>
+
+					<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center">Neighborhood</Label>
+					<Picker Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" SelectedIndex="0">
+						<Picker.Items>
+							<x:String>Entire City</x:String>
+						</Picker.Items>
+					</Picker>
+					
+					<Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center">Police District</Label>
+					<Picker Grid.Row="1" Grid.Column="2">
+						<Picker.Items>
+							<x:String>01</x:String>
+							<x:String>02</x:String>
+							<x:String>03</x:String>
+							<x:String>04</x:String>
+							<x:String>05</x:String>
+						</Picker.Items>
+					</Picker>
+					<Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center">Police Service Area</Label>					
+					<Picker Grid.Row="2" Grid.Column="2" SelectedIndex="0">
+						<Picker.Items>
+							<x:String>All</x:String>
+							<x:String>All</x:String>
+							<x:String>All</x:String>
+							<x:String>All</x:String>							
+						</Picker.Items>
+					</Picker>
+				</Grid>
+				<!-- Date -->	
+				<BoxView HeightRequest="1" BackgroundColor="#EEEEEE"></BoxView>								
+				<Label
+					FontAttributes="Bold"
+					VerticalTextAlignment="Center">Date</Label>
+				<Grid>
+					  <Grid.RowDefinitions>
+					    <RowDefinition Height="*" />
+					    <RowDefinition Height="*" />
+					  </Grid.RowDefinitions>					
+					  <Grid.ColumnDefinitions>
+					    <ColumnDefinition Width="50" />
+					    <ColumnDefinition Width="2*" />
+					    <ColumnDefinition Width="*" />						
+					  </Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">From</Label>
+					<DatePicker Format="MMMM d yyyy" Grid.Row="0" Grid.Column="1" HorizontalOptions="Fill"></DatePicker>
+					<TimePicker Format="h tt" Grid.Row="0" Grid.Column="2"></TimePicker>					
+					<Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">To</Label>
+					<DatePicker Format="MMMM d yyyy" Grid.Row="1" Grid.Column="1"></DatePicker>
+					<TimePicker Format="h tt" Grid.Row="1" Grid.Column="2"></TimePicker>					
+				</Grid>
+				<!-- Crime Type Filter -->
+				<BoxView HeightRequest="1" BackgroundColor="#EEEEEE"></BoxView>								
+				<Label
+					FontAttributes="Bold"
+					VerticalTextAlignment="Center">Types of Crime:</Label>
+				<StackLayout
+					Padding="0,0,0,0"
+					VerticalOptions="End"
+					HorizontalOptions="Start"
+					Spacing="1"
+					Orientation="Horizontal">
+					<Image
+						x:Name="filterHomicide"
+						ClassId="filterHomicide"
+						Scale="1.0">
+						<Image.Source>
+						Images/h_on.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterRobbery"
+						ClassId="filterRobbery"
+						Scale="1.0">
+						<Image.Source>
+						Images/ro_on.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterAssault"
+						ClassId="filterAssault"
+						Scale="1.0">
+						<Image.Source>
+						Images/a_on.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterBurglary"
+						ClassId="filterBurglary"
+						Scale="1.0">
+						<Image.Source>
+						Images/b_on.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterTheft"
+						ClassId="filterTheft"
+						Scale="1.0">
+						<Image.Source>
+						Images/t_off.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterRape"
+						ClassId="filterRape"
+						Scale="1.0">
+						<Image.Source>
+						Images/ra_on.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterAuto"
+						ClassId="filterAuto"
+						Scale="1.0">
+						<Image.Source>
+						Images/car_off.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterGuns"
+						ClassId="filterGuns"
+						Scale="1.0">
+						<Image.Source>
+						Images/g_off.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterProstitution"
+						ClassId="filterProstitution"
+						Scale="1.0">
+						<Image.Source>
+						Images/p_off.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+					<Image
+						x:Name="filterOther"
+						ClassId="filterOther"
+						Scale="1.0">
+						<Image.Source>
+						Images/o_off.png
+					</Image.Source>
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="OnTapGestureRecognizerTapped" />
+						</Image.GestureRecognizers>
+					</Image>
+				</StackLayout>
+				<!-- Search by DCN -->
+				<BoxView HeightRequest="1" BackgroundColor="#EEEEEE"></BoxView>				
+				<StackLayout>
+					<Label
+					FontAttributes="Bold"
+					VerticalTextAlignment="Center">District Control Number (DCN):</Label>
+					<Entry Keyboard="Numeric"></Entry>
+				</StackLayout>
+				<Button HorizontalOptions="FillAndExpand" BackgroundColor="#4B0082" TextColor="White" FontAttributes="Bold" Text="Search"></Button>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

@@ -26,9 +26,9 @@ namespace PhillyBlotter.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::PhillyBlotter.Droid.Resource.Attribute.actionBarSize;
 			global::PCLStorage.Resource.String.ApplicationName = global::PhillyBlotter.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::PhillyBlotter.Droid.Resource.String.Hello;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::PhillyBlotter.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

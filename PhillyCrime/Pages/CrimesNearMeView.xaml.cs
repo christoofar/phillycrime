@@ -28,18 +28,30 @@ namespace PhillyBlotter
 
 		async void JumpToWhereIAm(object sender, System.EventArgs e)
 		{
+			Plugin.Geolocator.Abstractions.Position position = null;
 			MyMap.IsShowingUser = true;
 			var locator = CrossGeolocator.Current;
 			locator.DesiredAccuracy = 50;
 			locator.AllowsBackgroundUpdates = true;
 
-			var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+			try
+			{
+				position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+				Position ps = new Position(position.Latitude, position.Longitude);
+				MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(ps, Distance.FromMiles(0.5)));
+			}
+			catch
+			{
+				// this sucks
+				return;
+			}
+			finally
+			{
+				//Shut off GPS, we're done with it
+				locator.AllowsBackgroundUpdates = false;
+				await locator.StopListeningAsync();
+			}
 
-			//Shut off GPS, we're done with it
-			locator.AllowsBackgroundUpdates = false;
-			await locator.StopListeningAsync();
-			Position ps = new Position(position.Latitude, position.Longitude);
-			MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(ps, Distance.FromMiles(0.5)));
 		}
 
 		public CrimesNearMeView()
@@ -73,6 +85,7 @@ namespace PhillyBlotter
 						{
 							lastPosition = MyMap.VisibleRegion;
 							UpdateMap();
+							System.GC.Collect();
 						}
 					}
 				}

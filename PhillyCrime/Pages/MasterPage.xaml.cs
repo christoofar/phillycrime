@@ -79,6 +79,12 @@ namespace PhillyBlotter
 			});
 			masterPageItems.Add(new MasterPageItem
 			{
+				Title = "Search Crimes",
+				IconSource = "Images/radar.png",
+				TargetType = typeof(SearchPage)
+			});
+			masterPageItems.Add(new MasterPageItem
+			{
 				Title = "Settings",
 				IconSource = "Images/config.png",
 				TargetType = typeof(SettingsPage)
