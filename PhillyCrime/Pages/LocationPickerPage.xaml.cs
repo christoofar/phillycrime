@@ -111,7 +111,7 @@ namespace PhillyBlotter
 			MyMap.IsShowingUser = true;
 			var locator = CrossGeolocator.Current;
 			locator.DesiredAccuracy = 50;
-			locator.AllowsBackgroundUpdates = true;
+			//locator.AllowsBackgroundUpdates = true;
 
 			Plugin.Geolocator.Abstractions.Position position = new Plugin.Geolocator.Abstractions.Position();
 			try
@@ -127,8 +127,8 @@ namespace PhillyBlotter
 			}
 
 			//Shut off GPS, we're done with it
-			locator.AllowsBackgroundUpdates = false;
-			await locator.StopListeningAsync();
+			//locator.AllowsBackgroundUpdates = false;
+			//await locator.StopListeningAsync();
 			Position ps = new Position(position.Latitude, position.Longitude);
 
 			MyMap.Circle = new CustomCircle();

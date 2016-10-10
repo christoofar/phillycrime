@@ -74,7 +74,6 @@ namespace PhillyBlotter
 						foreach (var item in e.OldItems.Cast<T>())
 							Remove(item);
 						break;
-					// TODO: add other operations.
 					default:
 						this.Clear();
 						foreach (var item in realData)

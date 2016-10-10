@@ -1,174 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage
+<pages:PopupPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:PhillyBlotter"
+	xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter"
+	xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+	BindingContext="{x:Static local:ViewModelLocator.WelcomeFeatureViewModel}"
 	x:Class="PhillyBlotter.BetaWelcome"
-	Title="Welcome" Padding="20,20,20,20">
-	<ContentPage.Content>
-		<ScrollView>
-			<StackLayout>
-				<Label
-					HorizontalOptions="CenterAndExpand"
-					FontSize="30"
-					FontAttributes="Bold">PhillyBlotter</Label>
-				<Label
-					HorizontalOptions="CenterAndExpand"
-					FontSize="Large">APK 13</Label>
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Medium"
-					FontAttributes="Bold"
-					TextColor="#cc6600"
-					HorizontalTextAlignment="Start">This test app will expire on December 30, 2016</Label>
-				<Image
-					HorizontalOptions="CenterAndExpand"
-					Source="Images/filters.png">
-				</Image>
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Medium"
-					FontAttributes="Bold"
-					HorizontalTextAlignment="Start">What are these circles?</Label>
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Small"
-					HorizontalTextAlignment="Start">
-H - Homicide     A - Assaults    R - Robbery
-B - Burglary     T - Theft      R - Rape
-Car - Auto crimes  
-G - Gun/Weapon Violations  P-Prostition
-O - Everything else (Narcotics / Vandalism / Parole violation, etc)
-					
-				</Label>
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Medium"
-					FontAttributes="Bold"
-					HorizontalTextAlignment="Start">What is PhillyBlotter?</Label>
-				<Label
-					HorizontalOptions="Start"
-					HorizontalTextAlignment="Start">
-PhillyBlotter is a crime app that allows you to see what crime has recently happened at your present location (within the last 10 days).  The data comes directly from the Philadelinquency Crime Center that aggregates data from the Philly police and Courtwatch.
-
-PhillyBlotter will tell you if a suspect was charged with the reported crime and send you push notifications about important crimes and arrests that have happened near you as the data arrives to the Crime Center.
-			</Label>
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Medium"
-					FontAttributes="Bold"
-					HorizontalTextAlignment="Start">What's in this edition</Label>
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Medium"
-					HorizontalTextAlignment="Start">Presently the main app screen (the crime map) is done and so is the crime detail page.  As more functions are finished I will release new alpha builds to your phone.</Label>
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Medium"
-					FontAttributes="Bold"
-					HorizontalTextAlignment="Start">Features that are working for this release</Label>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/yes.png
-					</Image.Source>
-						</Image>
-						<Label>Main map screen</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/yes.png
-					</Image.Source>
-						</Image>
-						<Label>Crime Detail</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/yes.png
-					</Image.Source>
-						</Image>
-						<Label>Crime blotter in list view (map pins you can see converted to list)</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/yes.png
-					</Image.Source>
-						</Image>
-						<Label>Settings screen</Label>
-					</StackLayout>
-				</Frame>				
-				<Label
-					HorizontalOptions="Start"
-					FontSize="Medium"
-					FontAttributes="Bold"
-					HorizontalTextAlignment="Start">Still workin' on it! (For now these features are disabled on your phone)</Label>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/no.png
-					</Image.Source>
-						</Image>
-						<Label>Show arrests on map (change the circle pins to a shield)</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/no.png
-					</Image.Source>
-						</Image>
-						<Label>Search (crime incidents and arrests based off dates, names, crime types)</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/no.png
-					</Image.Source>
-						</Image>
-						<Label>Sharing a map pin(Facebook/Twitter/Email)</Label>
-					</StackLayout>
-				</Frame>
-				<Frame
-					Padding="0,0,0,0">
-					<StackLayout
-						Orientation="Horizontal">
-						<Image>
-							<Image.Source>
-						Images/no.png
-					</Image.Source>
-						</Image>
-						<Label>Push hot crime and hot arrest notifications</Label>
-					</StackLayout>
-				</Frame>
-			</StackLayout>
-		</ScrollView>
-	</ContentPage.Content>
-</ContentPage>
+	Title="Welcome"
+	Padding="20,0,20,60"
+	BackgroundColor="#DD000000">
+	<pages:PopupPage.Content>
+		<StackLayout>
+			<Label
+				HorizontalOptions="CenterAndExpand"
+				FontSize="38"
+				FontAttributes="Bold"
+				TextColor="White">PhillyBlotter</Label>
+			<Label
+				HorizontalOptions="CenterAndExpand"
+				FontSize="Large"
+				TextColor="White">APK 13</Label>
+			<Label
+				HorizontalOptions="Start"
+				FontSize="Medium"
+				FontAttributes="Bold"
+				TextColor="#cc6600"
+				HorizontalTextAlignment="Start">This test app will expire on December 30, 2016</Label>
+			<Grid
+				RowSpacing="0"
+				VerticalOptions="FillAndExpand">
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="2*" />
+					<RowDefinition
+						Height=".7*" />
+				</Grid.RowDefinitions>
+				<cv:CarouselView
+					ItemsSource="{Binding Features}"
+					x:Name="CarouselFeatures"
+					ItemSelected="Handle_ItemSelected">
+					<cv:CarouselView.ItemTemplate>
+						<DataTemplate>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition
+										Height="*" />
+									<RowDefinition
+										Height="Auto" />
+								</Grid.RowDefinitions>
+								<Image
+									Grid.RowSpan="2"
+									Aspect="AspectFill"
+									Source="{Binding ImageUrl}" />
+								<StackLayout
+									Grid.Row="1"
+									BackgroundColor="#80000000"
+									Padding="15">
+									<Label
+										TextColor="White"
+										Text="{Binding Description}"
+										FontSize="16"
+										HorizontalOptions="Center"
+										VerticalOptions="CenterAndExpand" />
+								</StackLayout>
+							</Grid>
+						</DataTemplate>
+					</cv:CarouselView.ItemTemplate>
+				</cv:CarouselView>
+			</Grid>
+						<Button VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="#4B0082" TextColor="White" FontAttributes="Bold" Text="Start Using PhillyBlotter!" Clicked="ClosePopup"></Button>
+		</StackLayout>
+	</pages:PopupPage.Content>
+</pages:PopupPage>

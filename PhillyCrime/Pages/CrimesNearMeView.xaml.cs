@@ -6,6 +6,8 @@ using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Plugin.Geolocator;
 using PhillyBlotter.Models;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
 
 namespace PhillyBlotter
 {
@@ -54,9 +56,35 @@ namespace PhillyBlotter
 
 		}
 
+		void LaunchBeta()
+		{
+			Task.Run(async () =>
+			{
+				await StartBeta();
+			});
+		}
+
+		async Task<bool> StartBeta()
+		{
+			/* Check welcome flag to see if user is aware of beta. */
+			if (Application.Current.Properties.ContainsKey("WELCOME"))
+			{
+				if ((string)Application.Current.Properties["WELCOME"] == Global.VERSION)
+				{
+					return true;
+				}
+			}
+
+			var welcome = new BetaWelcome();
+			PopupNavigation.PushAsync(welcome, true).RunSynchronously();
+
+			return true;
+		}
+
 		public CrimesNearMeView()
 		{
 			InitializeComponent();
+
 			MyMap.MoveToRegion(
 				MapSpan.FromCenterAndRadius(
 				new Position(39.952062, -75.163543), Distance.FromMiles(0.5)));
@@ -72,7 +100,6 @@ namespace PhillyBlotter
 				MessagingCenter.Unsubscribe<App>(this, "GoingToSleep");
 				MessagingCenter.Unsubscribe<App>(this, "WakingUp");
 			};
-
 
 			// User moved map.
 			MyMap.PropertyChanged += (sender, e) =>
@@ -135,6 +162,7 @@ namespace PhillyBlotter
 				{
 					CenterTheMap();
 					_initialized = true;
+
 				}
 				UpdateMap();
 				MyMap.IsShowingUser = true;
@@ -410,13 +438,13 @@ namespace PhillyBlotter
 
 					var locator = CrossGeolocator.Current;
 					locator.DesiredAccuracy = 50;
-					locator.AllowsBackgroundUpdates = true;
+					//locator.AllowsBackgroundUpdates = true;
 
 					var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
 
 					//Shut off GPS, we're done with it
-					locator.AllowsBackgroundUpdates = false;
-					locator.StopListeningAsync();
+					//locator.AllowsBackgroundUpdates = false;
+					//locator.StopListeningAsync();
 
 					currentPosition = new Position(position.Latitude, position.Longitude);
 

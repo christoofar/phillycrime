@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace PhillyBlotter
@@ -64,6 +64,12 @@ namespace PhillyBlotter
 				Title = "Crime Map",
 				IconSource = "Images/map.png",
 				TargetType = typeof(CrimesNearMeView)
+			});
+			masterPageItems.Add(new MasterPageItem
+			{
+				Title = "Map Legend",
+				IconSource = "Images/radar.png",
+				TargetType = typeof(MapLegend)
 			});
 			masterPageItems.Add(new MasterPageItem
 			{

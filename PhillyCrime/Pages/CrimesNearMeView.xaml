@@ -42,6 +42,7 @@
 				Spacing="1"
 				Orientation="Horizontal">
 				<Image
+					WidthRequest="30"
 					x:Name="filterHomicide"
 					ClassId="filterHomicide"
 					Scale="1.0">
@@ -54,6 +55,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterRobbery"
 					ClassId="filterRobbery"
 					Scale="1.0">
@@ -66,6 +68,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterAssault"
 					ClassId="filterAssault"
 					Scale="1.0">
@@ -78,6 +81,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterBurglary"
 					ClassId="filterBurglary"
 					Scale="1.0">
@@ -90,6 +94,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterTheft"
 					ClassId="filterTheft"
 					Scale="1.0">
@@ -102,6 +107,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterRape"
 					ClassId="filterRape"
 					Scale="1.0">
@@ -114,6 +120,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterAuto"
 					ClassId="filterAuto"
 					Scale="1.0">
@@ -126,6 +133,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterGuns"
 					ClassId="filterGuns"
 					Scale="1.0">
@@ -138,6 +146,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterProstitution"
 					ClassId="filterProstitution"
 					Scale="1.0">
@@ -150,6 +159,7 @@
 					</Image.GestureRecognizers>
 				</Image>
 				<Image
+					WidthRequest="30"
 					x:Name="filterOther"
 					ClassId="filterOther"
 					Scale="1.0">

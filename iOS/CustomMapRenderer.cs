@@ -204,6 +204,9 @@ namespace PhillyBlotter.iOS
 
 		void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
 		{
+			if (e.View == null) return;
+			if (!(e.View is CustomMKAnnotationView)) return;
+
 			var customView = e.View as CustomMKAnnotationView;
 			MessagingCenter.Send<CustomPin>(customView.Pin, "ShowCrimeReport");
 			//if (!string.IsNullOrWhiteSpace(customView.Url))
@@ -214,6 +217,9 @@ namespace PhillyBlotter.iOS
 
 		void OnDidSelectAnnotationView(object sender, MKAnnotationViewEventArgs e)
 		{
+			if (e.View == null) return;
+			if (!(e.View is CustomMKAnnotationView)) return;
+
 			var customView = e.View as CustomMKAnnotationView;
 			customPinView = new UIView();
 
@@ -230,6 +236,9 @@ namespace PhillyBlotter.iOS
 
 		void OnDidDeselectAnnotationView(object sender, MKAnnotationViewEventArgs e)
 		{
+			if (e.View == null) return;
+			if (!(e.View is CustomMKAnnotationView)) return;
+
 			if (!e.View.Selected)
 			{
 				customPinView.RemoveFromSuperview();

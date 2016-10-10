@@ -107,7 +107,15 @@ namespace PhillyBlotter.Models
 		public event PropertyChangedEventHandler PropertyChanged;
 		void OnPropertyChanged(string propertyName)
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			try
+			{				
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			}
+			catch { }
+			// TODO Call to PropertyChanged event accesses a disposed object.
+			// An exception-raise can happen sometimes when a premature access happens but this object
+			// has already been disposed or is being disposed.  Not sure yet why the framework is allowing
+			// this.
 		}
 	}
 

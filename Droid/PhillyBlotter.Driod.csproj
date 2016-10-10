@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>__ANDROID__;DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -31,6 +31,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>__ANDROID__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -74,23 +75,8 @@
     <Reference Include="Xamarin.GooglePlayServices.Maps">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Maps.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Maps.dll</HintPath>
     </Reference>
-    <Reference Include="ExifLib">
-      <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.CurrentActivity">
       <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Permissions">
-      <HintPath>..\packages\Plugin.Permissions.1.1.7\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Permissions.Abstractions">
-      <HintPath>..\packages\Plugin.Permissions.1.1.7\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Geolocator">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.3.0.4\lib\MonoAndroid10\Plugin.Geolocator.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Geolocator.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.3.0.4\lib\MonoAndroid10\Plugin.Geolocator.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="PushNotification.Plugin.Abstractions">
       <HintPath>..\packages\Xam.Plugin.PushNotification.1.2.4\lib\MonoAndroid10\PushNotification.Plugin.Abstractions.dll</HintPath>
@@ -104,32 +90,53 @@
     <Reference Include="PCLStorage">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
     </Reference>
-    <Reference Include="FormsViewGroup">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform.Android">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\MonoAndroid10\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.2.3.2.127\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps.Android">
-      <HintPath>..\packages\Xamarin.Forms.Maps.2.3.2.127\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Maps">
-      <HintPath>..\packages\Xamarin.Forms.Maps.2.3.2.127\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Measurement">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Measurement.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Measurement.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Gcm">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Gcm.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Gcm.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.PCL.1.0.2-pre01\lib\netstandard1.0\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.0.13-beta\lib\MonoAndroid10\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\packages\Plugin.Permissions.1.2.0.13-beta\lib\MonoAndroid10\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.4.0.0-beta12\lib\MonoAndroid10\Plugin.Geolocator.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.4.0.0-beta12\lib\MonoAndroid10\Plugin.Geolocator.dll</HintPath>
+    </Reference>
+    <Reference Include="FormsViewGroup">
+      <HintPath>..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.Android">
+      <HintPath>..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\MonoAndroid10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.3.3.152-pre2\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\packages\XLabs.Core.2.3.0-pre02\lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac\XLabs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.IOC">
+      <HintPath>..\packages\XLabs.IoC.2.3.0-pre02\lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac\XLabs.IOC.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps.Android">
+      <HintPath>..\packages\Xamarin.Forms.Maps.2.3.3.152-pre2\lib\MonoAndroid10\Xamarin.Forms.Maps.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\packages\Xamarin.Forms.Maps.2.3.3.152-pre2\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -233,24 +240,8 @@
     <AndroidResource Include="Resources\drawable\config.png" />
     <AndroidResource Include="Resources\drawable-hdpi\config.png" />
     <AndroidResource Include="Resources\drawable-hdpi\cop.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\a_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\b_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\d_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\f_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\g_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\h_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\m_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\n_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\o_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\p_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ra_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ro_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\rv_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\s_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\t_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ta_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\v_pin.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\vt_pin.png" />
     <AndroidResource Include="Resources\drawable\alert.png" />
     <AndroidResource Include="Resources\drawable-hdpi\alert.png" />
     <AndroidResource Include="Resources\drawable\checklist.png" />
@@ -264,6 +255,82 @@
     <AndroidResource Include="Resources\drawable-hdpi\radar.png" />
     <AndroidResource Include="Resources\drawable\splash.jpg" />
     <AndroidResource Include="Resources\drawable-hdpi\splash.jpg" />
+    <AndroidResource Include="Resources\drawable\DistanceBlotterFeature.png" />
+    <AndroidResource Include="Resources\drawable\NotifyFeatureImage.png" />
+    <AndroidResource Include="Resources\drawable\PinFeatureImage.png" />
+    <AndroidResource Include="Resources\drawable\SetFeatureImage.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\t.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\h.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\r.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\b.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\a.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ro.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\a_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\a_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\b_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\b_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\b_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ra_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ra_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ra_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ra.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\a_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\h_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ro_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ro_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ro_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\h_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\o_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\o_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\o.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\o_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\n_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\n_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\n_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\s_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\s_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\s_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\n.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\p_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\p_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\p_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\g_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\g_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\g.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\g_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\d_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\d_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\d_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\d.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ta_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ta_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ta_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\t_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\t_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\t_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rv_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rv_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rv_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rv.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\vt_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\vt_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\vt_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\vt.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\v_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\v_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\v_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\v.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\car_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\car_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\car_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\car.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\p.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\s.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ta.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\m_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\m_pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\m_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\m.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />
@@ -283,5 +350,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
-  <Import Project="..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.152-pre2\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10\Xamarin.Forms.targets')" />
 </Project>

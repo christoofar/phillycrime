@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection;
 using Foundation;
 using PushNotification.Plugin;
 using UIKit;
@@ -17,6 +17,10 @@ namespace PhillyBlotter.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init();
+
+			//Force CarouselView to load
+			var cv = typeof(Xamarin.Forms.CarouselView);
+			var assembly = Assembly.Load(cv.FullName);
 
 			CrossPushNotification.Initialize<CrossPushNotificationListener>();
 			// I want notifications!

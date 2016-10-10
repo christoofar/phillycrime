@@ -143,6 +143,15 @@
     <Reference Include="Xamarin.Forms.Maps.iOS">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Rg.Plugins.Popup">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.2\lib\Xamarin.IOS\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.IOS">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.2\lib\Xamarin.IOS\Rg.Plugins.Popup.IOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Platform">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.2\lib\Xamarin.IOS\Rg.Plugins.Popup.Platform.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
@@ -304,6 +313,68 @@
     <BundleResource Include="Resources\pbsplash1.jpg" />
     <BundleResource Include="Images\radar.png" />
     <BundleResource Include="Images\radar%402x.png" />
+    <BundleResource Include="Images\DistanceBlotterFeature.png" />
+    <BundleResource Include="Images\PinFeatureImage.png" />
+    <BundleResource Include="Images\SetFeatureImage.png" />
+    <BundleResource Include="Images\NotifyFeatureImage.png" />
+    <BundleResource Include="Images\h_on%402x.png" />
+    <BundleResource Include="Images\ro_on%402x.png" />
+    <BundleResource Include="Images\ro_off%402x.png" />
+    <BundleResource Include="Images\a_off%402x.png" />
+    <BundleResource Include="Images\a_on%402x.png" />
+    <BundleResource Include="Images\b_off%402x.png" />
+    <BundleResource Include="Images\b_on%402x.png" />
+    <BundleResource Include="Images\a%402x.png" />
+    <BundleResource Include="Images\b%402x.png" />
+    <BundleResource Include="Images\ro%402x.png" />
+    <BundleResource Include="Images\h%402x.png" />
+    <BundleResource Include="Images\t%402x.png" />
+    <BundleResource Include="Images\ra_off%402x.png" />
+    <BundleResource Include="Images\ra_on%402x.png" />
+    <BundleResource Include="Images\ra%402x.png" />
+    <BundleResource Include="Images\car_off%402x.png" />
+    <BundleResource Include="Images\car_pin.png" />
+    <BundleResource Include="Images\car_pin%402x.png" />
+    <BundleResource Include="Images\car_on%402x.png" />
+    <BundleResource Include="Images\car%402x.png" />
+    <BundleResource Include="Images\v_off%402x.png" />
+    <BundleResource Include="Images\v_on%402x.png" />
+    <BundleResource Include="Images\v%402x.png" />
+    <BundleResource Include="Images\vt_off%402x.png" />
+    <BundleResource Include="Images\vt_off.png" />
+    <BundleResource Include="Images\vt_on%402x.png" />
+    <BundleResource Include="Images\vt%402x.png" />
+    <BundleResource Include="Images\rv_off.png" />
+    <BundleResource Include="Images\rv_off%402x.png" />
+    <BundleResource Include="Images\rv_on%402x.png" />
+    <BundleResource Include="Images\rv%402x.png" />
+    <BundleResource Include="Images\t_off%402x.png" />
+    <BundleResource Include="Images\t_on%402x.png" />
+    <BundleResource Include="Images\ta_off.png" />
+    <BundleResource Include="Images\ta_off%402x.png" />
+    <BundleResource Include="Images\ta_on%402x.png" />
+    <BundleResource Include="Images\ta%402x.png" />
+    <BundleResource Include="Images\d_off%402x.png" />
+    <BundleResource Include="Images\d_on%402x.png" />
+    <BundleResource Include="Images\d%402x.png" />
+    <BundleResource Include="Images\g_on%402x.png" />
+    <BundleResource Include="Images\g%402x.png" />
+    <BundleResource Include="Images\g_off%402x.png" />
+    <BundleResource Include="Images\p_off%402x.png" />
+    <BundleResource Include="Images\p_on%402x.png" />
+    <BundleResource Include="Images\p%402x.png" />
+    <BundleResource Include="Images\n%402x.png" />
+    <BundleResource Include="Images\s_on%402x.png" />
+    <BundleResource Include="Images\s%402x.png" />
+    <BundleResource Include="Images\s_off%402x.png" />
+    <BundleResource Include="Images\n_on%402x.png" />
+    <BundleResource Include="Images\n_off%402x.png" />
+    <BundleResource Include="Images\o_off%402x.png" />
+    <BundleResource Include="Images\o_on%402x.png" />
+    <BundleResource Include="Images\o%402x.png" />
+    <BundleResource Include="Images\m_off%402x.png" />
+    <BundleResource Include="Images\m_on%402x.png" />
+    <BundleResource Include="Images\m%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

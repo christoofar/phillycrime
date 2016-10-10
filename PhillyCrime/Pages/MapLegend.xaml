@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="PhillyBlotter.MapLegend" Title="Map Legend" BackgroundColor="Black">
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout Padding="5,5,5,5">		
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/h.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Homicide</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+						Homicide is the direct or indirect killing of another person.  The severity of how punishment is dispensed in homicide cases depends heavily upon the circumstances at the time the crime occurred.
+
+Justifiable Homicide — a suspect was killed by a victim acting in self-defense.  The Philadelphia Police Department will often record these incidents and they appear as "Homicide - Justified" in crime reports.
+
+1st Degree — a homicide where the killing of another was intentional.  It is intentional if the killing is by means of poison, or by lying in wait, or by any other kind of willful, deliberate and premeditated killing.
+
+2nd Degree — when the defendant was a principal or an accomplice during the commission of another felony at the time of the murder.  For instance, if someone plans to rob a store, if during the course of that robbery a homicide occurred then it is murder in the second degree.
+
+3rd Degree — any other homicides which weren't intentional or planned or occurred during the course of a felony.  For instance, if someone shoots another without having planned to commit the shooting and was not committing another felony at the time.
+
+Voluntary Manslaughter — Voluntary manslaughter is defined as an intentional or knowing killing of an individual without lawful justification, if at the time of the killing the defendant is acting under a sudden and intense passion resulting from serious provocation by the individual killed or another whom the actor tries to kill but negligently or accidently causes the death of the individual killed.  Voluntary manslaughter is a felony of the first degree, punishable by ten to twenty years in prison.  If someone shoots another because the person so enraged the shooter by his actions, and kills him, it is voluntary manslaughter.
+
+Involuntary Manslaughter — Involuntary manslaughter is defined as when a person, as the result of doing of an unlawful act in a reckless or grossly negligent manner, or the doing of a lawful act in a reckless or grossly negligent manner, causes the death of another.  If a motorist is driving recklessly and dangerously at high speed resulting in a crash that kills another person, it is involuntary manslaughter.
+					</Label>
+				</StackLayout>					
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/ro.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Robbery</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+						Robbery has been committed if during the commission of a theft, the defendant injures someone, threatens them with injury, commits any first or second degree felony, uses force (no matter how slight), or takes money from a financial institution by making a demand upon an employee of the institution.
+
+A "home invasion" where a defendant enters an occupied home or business demanding cash or goods is also classified as a robbery.
+					</Label>
+				</StackLayout>					
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/b.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Burglary</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+						Any person who enters any portion of an occupied structure with the intent to commit a crime.  Pennsylvania does not require that a building be "broken into" and then entered.  It can simply include a person entering through an unlocked opening. 
+
+Abandoned properties are not subject to this crime as Pennsylvania requires the structure to be occupied.
+
+Note: Burglars who committ a "home invasion" are actually committing a robbery.
+					</Label>
+				</StackLayout>				
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/a.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Aggravated Assault</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">Note: To increase the usability of the Crime Map, only assaults the police have classified as "Aggravated Assault" will appear when the assault filter is turned on.   To see all other assaults, enable the "Other" filter to see all assaults on the map.
+						
+Assault is any infliction of bodily harm or intention to inflict bodily harm on another.  Pennsylvania defines two types: aggravated assault and simple assault.  Most shooting incidents in Philadelphia which do not immediately result in homicide are classified as Aggravated Assault.
+
+Simple assault is typical when action is taken recklessly or carelessly or no serious bodily injuries were caused.  The punishment is a second-degree misdeameanor.
+
+Aggravated assault is a felony and includes attacks causing (or intending to cause) serious bodily injury.  Assaults on police officers are also treated as aggravated assault.  The punishment is a felony and can be up to the first degree and carry a punishment up to 20 years in prison.
+					</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/t.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Thefts (non-auto)</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+						The taking or withholding of another person's property by deception.  This category does not include thefts of motor vehicles or items stolen from inside motor vehicles.
+
+Theft is the most commonly-reported crime in Philadelphia.  Punishment for theft depends on the value of the object that was stolen and what type of object.
+
+Pennsylvania Law distinguishes between two types of property:
+						
+Movable Property — Any object that is not real estate or an intangible object such as securities.
+
+Immovable Property — Real estate, securities and other intangible objects of value.
+
+The Philadelphia Police classify auto-related thefts such as stolen vehicles (VT) "stolen motor vehicle" and stealing items inside of vehicles (TA) "theft from auto".  Further, the police separately report the recovery of a stolen auto as a crime report to designate where criminals leave behind vehicles that they steal.  These reports are classified as (RV) for "recovered vehicle".
+					</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/ra.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Rape</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+Rape is a crime where a suspect forcibly or under threat of force engages in sexual intercourse with another person.  Rape can also occur if the defendant has substantially impaired the victim's ability to control his/her conduct by intoxicating the victim without his/her knowledge or if the victim has a mental disability.
+
+Rape is considered a first degree felony in Pennsylvania and can carry a sentence up to twenty years in prison.  In addition to this term, if the defendant used any type of intoxicating drug in the commission of this offense, the sentence may be extended for an additional ten years.
+					</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/vt.png"></Image>
+					<Image WidthRequest="89" Source="Images/car.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Vehicle Theft</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+This is an auto-related crime which is tracked separately from other types of theft.
+
+Motor vehicle theft is the unlawful taking of a motor vehicle from the possession of its owner.  It is treated as a theft of more than $2,000 under Pennsylvania statute.  This crime category is often confused with "theft from vehicle" which is a theft of an object inside a motor vehicle.  Those thefts are coded "TV" for "theft from vehicle".
+
+If the stolen vehicle is recovered, a separate crime incident report will be filed by police at the location where the vehicle was recovered.  That is reported as (RV) "Motor Vehicle Recovery".  This allows police to monitor where stolen vehicles are winding up when they are found.					</Label>
+				</StackLayout>	
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/rv.png"></Image>
+					<Image WidthRequest="89" Source="Images/car.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Recovered Stolen Motor Vehicle</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+A recovered stolen motor vehicle report is filed by police when a vehicle that has was reported stolen or suspected to be stolen has been recovered.  The location where a suspect left a vehicle is tracked by police to identify trends and to begin the search for the suspect who took possession.
+
+If an arrest is made, Philadelphia Police may attach the charges either to the originating Vehicle Theft report (if one exists) or to this report, or both.</Label>
+				</StackLayout>		
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/ta.png"></Image>
+					<Image WidthRequest="89" Source="Images/car.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Theft From Auto/Vehicle</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+This is an auto-related crime which is tracked separately from other types of theft.
+
+The from auto is the unlawful taking of an object located inside a motor vehicle from the possession of its owner.  It is prosecuted the same as common theft.
+
+Theft From Auto can often be confused with Motor Vehicle Theft (VT).  Motor vehicle theft is the taking of the automobile itself, whereas Theft From Auto is the taking of possessions inside the car.</Label>
+				</StackLayout>	
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/d.png"></Image>
+					<Image WidthRequest="89" Source="Images/car.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Driving Under the Influence</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+Pennsylvania's DUI statute makes it illegal for an individual to drive, operate, or be in actual physical control of motor vehicle under any of the following circumstances:
+
+● Imbibing a sufficient amount of alcohol such that they are incapable of safe driving
+● When there is any amount of an un-precribed controlled substance (including all illegal drugs) in their blood
+● When, due to the influence of any drug or combination of drugs (including prescription medications) the individual is incapable of safe driving.
+
+A suspect does not have to actually be driving the vehicle in order to be charged with DUI.  Because Pennsylvania specifies that anyone who is drunk or on drugs and in a position where they could have driven the car, they are in "actual physical control" of that vehicle, therefore DUI applies.
+
+Arrest and charge reports of DUI offenders will reflect if the defendant is a Tier I, II, or III offender.  Drivers with charges of "1st Off" are low-level consumers of alcohol, as those under the influence of narcotics are typically charged as Tier III offenders or will be given a narcotics charge if narcotics were recovered on their person or in the vehicle.</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/g.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Gun/Weapons Violations</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+Dontes a person found by Philadelphia Police who is in violation of the Pennsylvania Uniform Firearms Act (PA C.S. 18 Chapter 61).  This crime report usually denotes an individual who was stopped by police and found to be illegally carrying a firearm, an individual who is suspected of purchasing or distributing firearms on behalf of another person (also known as "straw buying"), or an individual suspected of forging firearms transfer documents.
+
+Carrying a firearm is legal in Philadelphia if the following conditions are met:
+● The firearm is the lawful property of the possessor or is not stolen
+● The firearm is of a lawful type under Federal and State law.
+● The inidividual has a Pennsylvania License to Carry a Firearm (LTCF) permit card which permits concealed or open-carrying of a firearm (loaded or unloaded).
+● The Pennsylvania License to Carry a Firearm card is presently active.
+● If the individual does not have a Pennsylvania License to Carry a Firearm (LTCF) card, is in transit between the individual's property and a licensed firearms dealer, shooting range, gun repair shop or gun supply store and the firearm is not on the person (concealed or openly carried) and not loaded.
+● The inidividual is not on Federal property and not on property owned by the City of Philadelphia or the Commonwealth of Pennsylvania (where the City of Philadelphia or the Commonwealth of Pennsylvania has declared which types of its own property are prohibited from firearms possession).
+
+Violating the Uniform Firearms Act is commonly referred to as committing a "VUFA".</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/p.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Prostitution</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+A person commits the crime of prostition by engaging in sexual activity for money, or loitering in a public place (or in view of a public place) for the purpose of being hired for sexual activity.  People who are selling sexual activities are charged with prostution.  People who are buying sexual activities are charged with patronizing.  The penalties for patronizing and prostitution are the same.
+
+Promoting prostituion is punished more severely if the person who is prostituted is under the age of 18.</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/n.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Narcotics</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+Turn on the "Other" crime category in order to see narcotics crime reports and arrests.
+						
+A person is in possession of a controlled substance without a registered permission to possess it.  The primary charge is typically "Int Poss Contr Subst By Per Not Reg" (intentional possession of a controlled substance by a person not registered).  This can also be known as "simple possession."  Drug users typically face this charge.
+
+PWID is "Possession With Intent to Distribute" and can carry higher bail amounts and penalties.  The primary charge is typically "Manufacture, Delivery, or Possession With Intent to Manufacture or Deliver".  Drug dealers, suppliers, couriers and other connected individuals supporting a drug sales operation typically face this charge.</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/m.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Criminal Mischief</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">Turn on the "Other" crime category in order to see criminal mischief reports and arrests.
+						
+Pennsylvania defines criminal mischief as vandalism and other domestic property destriction or damage either intentionally, recklessly, or by negligence in the employment of fire, explosives or other dangerous means.  It also includes tampering with property of another so as to endanger that person or the property.
+
+Criminal Mischief is a 3rd degree felony if it is intentional and the property damage exceeds $5,000 or causes a loss of public utilities.  In other circumstances it is a misdemeanor or a summary offense.</Label>
+				</StackLayout>				
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/s.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Other Sex Crimes and Child Endangerment</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+Turn on the "Other" crime category in order to see these crime reports and arrests.
+						
+These are sex offenses that are not prostitution or patronizing prostitues.  This includes sex offenses involving minor children, unlawful contact with minors, luring and other forms of sexual activity which is not permitted by Pennsylvania law.
+
+Additionally those charged with endangering the welfare of children are placed in this category.
+					</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Image WidthRequest="89" Source="Images/o.png"></Image>
+					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">All Other Crime</Label>
+				</StackLayout>
+				<StackLayout Padding="20,0,10,0">
+					<Label TextColor="White" Font="Avenir-Roman">
+All less-violent and violative offenses.  This can include:
+
+● Fraud
+● Embezzlement
+● Capture of an individual wanted for violation of parole or probation (VOP)
+● Recapture of a prisoner-escapee
+● Extradition of an individual wanted in another jurisdiction
+● Warrant pick-up
+● Public drunkenness
+
+It also includes all other crime reports for which a category or desription was insufficient to assign
+					</Label>
+				</StackLayout>				
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

@@ -9,6 +9,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Gms.Common;
 using PushNotification.Plugin;
+using System.Reflection;
 
 namespace PhillyBlotter.Droid
 {
@@ -22,6 +23,7 @@ namespace PhillyBlotter.Droid
 		protected override void OnCreate(Bundle bundle)
 		{
 			Xamarin.FormsMaps.Init(this, bundle);
+
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 

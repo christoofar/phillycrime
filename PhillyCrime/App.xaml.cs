@@ -9,6 +9,13 @@ using System.Collections.ObjectModel;
 
 namespace PhillyBlotter
 {
+	public static class ViewModelLocator
+	{
+		static WelcomeFeatureViewModel featureVM;
+		public static WelcomeFeatureViewModel WelcomeFeatureViewModel
+		=> featureVM ?? (featureVM = new WelcomeFeatureViewModel());
+	}
+
 	public partial class App : Application
 	{
 		public App()
