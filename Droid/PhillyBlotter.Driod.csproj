@@ -331,6 +331,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\m_pin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\m_on.png" />
     <AndroidResource Include="Resources\drawable-hdpi\m.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\police.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />
