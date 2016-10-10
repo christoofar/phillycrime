@@ -18,11 +18,8 @@ namespace PhillyBlotter.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
 
-			//Force CarouselView to load
-			var cv = typeof(Xamarin.Forms.CarouselView);
-			var assembly = Assembly.Load(cv.FullName);
-
 			CrossPushNotification.Initialize<CrossPushNotificationListener>();
+
 			// I want notifications!
 			PushNotification.Plugin.CrossPushNotification.Current.Register();
 
