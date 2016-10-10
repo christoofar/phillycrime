@@ -15,7 +15,7 @@ namespace PhillyBlotter
 	/// </summary>
 	public class Global
 	{
-
+		//Change this on every cycle
 		public static string VERSION = "APK13";
 		public static ObservableCollection<Neighborhood> Neighborhoods = new ObservableCollection<Neighborhood>();
 
