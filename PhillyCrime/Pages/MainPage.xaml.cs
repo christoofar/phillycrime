@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Rg.Plugins.Popup.Extensions;
-using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace PhillyBlotter

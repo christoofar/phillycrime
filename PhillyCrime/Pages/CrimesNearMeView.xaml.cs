@@ -6,8 +6,6 @@ using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Plugin.Geolocator;
 using PhillyBlotter.Models;
-using Rg.Plugins.Popup.Extensions;
-using Rg.Plugins.Popup.Services;
 
 namespace PhillyBlotter
 {
@@ -54,31 +52,6 @@ namespace PhillyBlotter
 				await locator.StopListeningAsync();
 			}
 
-		}
-
-		void LaunchBeta()
-		{
-			Task.Run(async () =>
-			{
-				await StartBeta();
-			});
-		}
-
-		async Task<bool> StartBeta()
-		{
-			/* Check welcome flag to see if user is aware of beta. */
-			if (Application.Current.Properties.ContainsKey("WELCOME"))
-			{
-				if ((string)Application.Current.Properties["WELCOME"] == Global.VERSION)
-				{
-					return true;
-				}
-			}
-
-			var welcome = new BetaWelcome();
-			PopupNavigation.PushAsync(welcome, true).RunSynchronously();
-
-			return true;
 		}
 
 		public CrimesNearMeView()

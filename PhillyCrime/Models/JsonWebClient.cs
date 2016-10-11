@@ -5,6 +5,9 @@ using System.Net.Http.Extensions.Compression.Client;
 using System.Net.Http.Extensions.Compression.Core.Compressors;
 using System.Net.Http.Headers;
 using System.Diagnostics;
+using Polly;
+using System;
+using System.IO;
 
 namespace PhillyBlotter.Models
 {
@@ -30,20 +33,25 @@ namespace PhillyBlotter.Models
 
 		public async Task<System.IO.TextReader> DoRequestAsync(string url)
 		{
-			var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
-			client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-			client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+			var resp = await Policy
+				.Handle<WebException>()
+				.WaitAndRetryAsync
+				(
+					retryCount: 5,
+					sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
+				)
+				.ExecuteAsync(async () => {
+					var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
+					client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+					client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
 
-			client.DefaultRequestHeaders.Add("Accept", "application/json");
+					client.DefaultRequestHeaders.Add("Accept", "application/json");
 
-			HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, url);
-
-			var resp = await client.SendAsync(message);
-
-			//HttpWebRequest req = await WebRequest.CreateHttp(url);
-			//req.Accept = "application/json";
-			//req.Headers["Accept-Encoding"] = "gzip";
-			//req.AllowReadStreamBuffering = true;
+					HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, url);
+					Debug.WriteLine($"Attempting to contact {url}");
+					return await client.SendAsync(message);
+				});
+			
 			var tr = await DoRequestAsync(resp);
 			return tr;
 		}

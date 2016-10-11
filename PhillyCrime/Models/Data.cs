@@ -1,27 +1,92 @@
 ﻿using System;
+using System.Net;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace PhillyBlotter.Models
 {
 	public class Data
 	{
-		private static string APIBASE = "http://192.168.1.30/phillycrime/api/";
-		//private static string APIBASE = "https://philadelinquency.com/phillycrime/api/";
-		//private static string APIBASE = "http://homeserver.local/phillycrime/api/";
-		private static string GET_30DAY = string.Format("{0}Values", APIBASE);
-		private static string FULLREPORT = string.Format("{0}Crime", APIBASE);
-		private static string PHILLY = string.Format("{0}Philly", APIBASE);
-		private static string PUSH = string.Format("{0}Push", APIBASE);
-		private static string NEIGHBORHOOD = string.Format("{0}Neighborhood", APIBASE);
-		private static string BLOTTER = string.Format("{0}Blotter", APIBASE);
+		private static string HTTP_TYPE = "https://";
+		private static string API_BASE = "/phillycrime/api/";
+		private static string HOST = "www.philadelinquency.com";
+
+		private static bool DNS_VALIDATED = false;
+
+		private static string GET_30DAY = "Values";
+		private static string FULLREPORT = "Crime";
+		private static string PHILLY = "Philly";
+		private static string PUSH = "Push";
+		private static string NEIGHBORHOOD = "Neighborhood";
+		private static string BLOTTER = "Blotter";
 
 		public Data()
 		{
+			
 		}
 
+		private static async Task<string> GetRoot()
+		{
+			string dns = HOST;
+
+			try
+			{
+
+				// Do we already know what the DNS entry is?
+				if (Application.Current.Properties.ContainsKey("DNS"))
+				{
+					// Has it been less than 3 days since the last time we 
+					// queried this value?
+					if (DateTime.Now < (DateTime)Application.Current.Properties["DNSExpires"])
+					{
+						// Yes.  The cache value is still good.
+						dns = (string)Application.Current.Properties["DNS"];
+
+						// Validate the DNS entry.
+						string ip = await DependencyService.Get<PlatformSpecificInterface>().ResolveIPAddress(dns);
+						if (ip == "www.philadelinquency.com")
+						{
+							DNS_VALIDATED = true;
+						}
+					}
+				}
+
+				// If the first character isn't a number (because no good cache value),
+				// then let's resolve it
+				if (!char.IsDigit(dns[0]))
+				{
+					string address = await DependencyService.Get<PlatformSpecificInterface>().ResolveIPAddress(dns);
+					Application.Current.Properties["DNS"] = address;
+					Application.Current.Properties["DNSExpires"] = DateTime.Now.AddDays(3);
+					await Application.Current.SavePropertiesAsync(); //save
+					return address;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine($"DNS resolve failed:{ex.Message}\r\n{ex.StackTrace}");
+			}
+
+			return dns;
+		}
+
+		public static string GetUri(string verb, string parameters)
+		{
+			string host = Task.Run(async () => await GetRoot()).Result;
+
+			return $"{HTTP_TYPE}{host}{API_BASE}{verb}{parameters}";
+		}
+
+		public static string GetUri(string verb)
+		{
+			string host = Task.Run(async () => await GetRoot()).Result;
+
+			return $"{HTTP_TYPE}{host}{API_BASE}{verb}";
+		}
 
 		public async static Task<bool> RegisterPushNotifications(string token,
 					PushNotification.Plugin.Abstractions.DeviceType deviceType,
@@ -29,7 +94,7 @@ namespace PhillyBlotter.Models
 		{
 			JsonWebClient cli = new JsonWebClient();
 
-			string getUri = PUSH;
+			string getUri = GetUri(PUSH);
 
 			var notification = new crime_notification();
 			notification.DeviceToken = token;
@@ -50,7 +115,7 @@ namespace PhillyBlotter.Models
 		{
 			JsonWebClient cli = new JsonWebClient();
 
-			string getUri = PUSH;
+			string getUri = GetUri(PUSH);
 
 			var notification = new crime_notification();
 			notification.DeviceToken = token;
@@ -83,7 +148,7 @@ namespace PhillyBlotter.Models
 				}
 			}
 
-			string getUri = BLOTTER + string.Format("/{0}/", hoods);
+			string getUri = GetUri(BLOTTER, string.Format("/{0}/", hoods));
 
 			var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
 			return resp;
@@ -100,8 +165,7 @@ namespace PhillyBlotter.Models
 		{
 			JsonWebClient cli = new JsonWebClient();
 
-			string getUri = BLOTTER + string.Format($"/{latitutde}/{longitude}/{distance}/");
-
+			string getUri = GetUri(BLOTTER, string.Format($"/{latitutde}/{longitude}/{distance}/"));
 			var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
 			return resp;
 		}
@@ -112,9 +176,7 @@ namespace PhillyBlotter.Models
 		public async static Task<Neighborhood[]> Neighborhoods()
 		{
 			JsonWebClient cli = new JsonWebClient();
-
-			string getUri = NEIGHBORHOOD;
-			var resp = await cli.DoRequestJsonAsync<Neighborhood[]>(getUri);
+			var resp = await cli.DoRequestJsonAsync<Neighborhood[]>(GetUri(NEIGHBORHOOD, ""));
 			return resp;
 		}
 
@@ -128,10 +190,7 @@ namespace PhillyBlotter.Models
 		public async static Task<Area> Area(double longitude, double latitude)
 		{
 			JsonWebClient cli = new JsonWebClient();
-
-			string getUri = PHILLY + string.Format("/{0}/{1}/", longitude, latitude);
-
-			var resp = await cli.DoRequestJsonAsync<Area>(getUri);
+			var resp = await cli.DoRequestJsonAsync<Area>(GetUri(PHILLY, $"/{longitude}/{latitude}/"));
 			return resp;
 		}
 
@@ -144,10 +203,8 @@ namespace PhillyBlotter.Models
 		{
 			JsonWebClient cli = new JsonWebClient();
 
-			string getUri = FULLREPORT + string.Format("/{0}/",
-													   DCN);
-
-			var resp = await cli.DoRequestJsonAsync<FullCrimeReport>(getUri);
+			var resp = await cli.DoRequestJsonAsync<FullCrimeReport>(GetUri(FULLREPORT, 
+				                                                            $"/{DCN}/"));
 			return resp;
 		}
 
@@ -174,13 +231,13 @@ namespace PhillyBlotter.Models
 				JsonWebClient cli = new JsonWebClient();
 				Debug.WriteLine("Span Center: {0},{1}   Longitude Degrees: {2}  Latitude Degrees: {3}",
 								span.Center.Longitude, span.Center.Latitude, span.LongitudeDegrees, span.LatitudeDegrees);
-				string getUri = GET_30DAY + string.Format("/{0}/{1}/{2}/{3}/{4}/",
+				
+					string getUri = GetUri(GET_30DAY, string.Format("/{0}/{1}/{2}/{3}/{4}/",
 														  span.Center.Longitude,
 														  span.Center.Latitude,
 														  span.LongitudeDegrees,
 														  span.LatitudeDegrees,
-														  Convert.ToInt32(currentFilter));
-
+					                                            Convert.ToInt32(currentFilter)));
 
 				var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
 				return resp;

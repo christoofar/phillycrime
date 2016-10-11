@@ -3,6 +3,8 @@ using ObjCRuntime;
 using UIKit;
 using Foundation;
 using PhillyBlotter;
+using System.Net;
+using System.Threading.Tasks;
 
 [assembly: Xamarin.Forms.Dependency(typeof(PhillyBlotter.iOS.PlatformSpecific_iOS))]
 namespace PhillyBlotter.iOS
@@ -32,6 +34,21 @@ namespace PhillyBlotter.iOS
 		public bool IsInForeground()
 		{
 			return UIApplication.SharedApplication.ApplicationState == UIApplicationState.Active;
+		}
+
+		public string ResolveHostEntry(string ipAddress)
+		{
+			var host = Dns.GetHostEntry(IPAddress.Parse(ipAddress));
+
+			return host.HostName;
+		}
+
+		public async Task<string> ResolveIPAddress(string host)
+		{
+			var addresses = await Dns.GetHostAddressesAsync(host);
+			if (addresses != null && addresses.Length > 0)
+				return addresses[0].ToString();
+			return "";
 		}
 	}
 }

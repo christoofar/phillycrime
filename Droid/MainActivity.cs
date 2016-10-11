@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Gms.Common;
 using PushNotification.Plugin;
 using System.Reflection;
+using System.Net;
 
 namespace PhillyBlotter.Droid
 {
@@ -22,6 +23,9 @@ namespace PhillyBlotter.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+
+			ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
 			Xamarin.FormsMaps.Init(this, bundle);
 
 			TabLayoutResource = Resource.Layout.Tabbar;

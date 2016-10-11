@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -36,6 +38,21 @@ namespace PhillyBlotter.Droid
 		public bool IsInForeground()
 		{
 			return true;
+		}
+
+		public string ResolveHostEntry(string ipAddress)
+		{
+			var host = Dns.GetHostEntry(IPAddress.Parse(ipAddress));
+
+			return host.HostName;
+		}
+
+		public async Task<string> ResolveIPAddress(string host)
+		{
+			var addresses = await Dns.GetHostAddressesAsync(host);
+			if (addresses != null && addresses.Length > 0)
+				return addresses[0].ToString();
+			return "";
 		}
 	}
 }

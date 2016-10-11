@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using Foundation;
 using PushNotification.Plugin;
@@ -16,6 +17,8 @@ namespace PhillyBlotter.iOS
 
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
+			ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
 			global::Xamarin.Forms.Forms.Init();
 
 			CrossPushNotification.Initialize<CrossPushNotificationListener>();
