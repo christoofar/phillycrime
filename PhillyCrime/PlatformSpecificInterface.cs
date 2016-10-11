@@ -12,10 +12,6 @@ namespace PhillyBlotter
 
 		void BringToForeground();
 
-		bool IsInForeground();
-
-		string ResolveHostEntry(string ipAddress);
-
 		Task<string> ResolveIPAddress(string host);
 	}
 }

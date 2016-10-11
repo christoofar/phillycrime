@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Polly;
 using System;
 using System.IO;
+using Xamarin.Forms;
 
 namespace PhillyBlotter.Models
 {
@@ -22,23 +23,52 @@ namespace PhillyBlotter.Models
 		
 		public async Task<System.IO.TextReader> DoRequestAsync(WebRequest req)
 		{
-			var task = Task.Factory.FromAsync((cb, o) => ((HttpWebRequest)o).BeginGetResponse(cb, o), res => 
-			                                  ((HttpWebRequest)res.AsyncState).EndGetResponse(res), req);
-			var result = await task;
-			var resp = result;
-			var stream = resp.GetResponseStream();
-			var sr = new System.IO.StreamReader(stream);
-			return sr;
+			var reader = await Policy
+			.Handle<Exception>()
+			.WaitAndRetryAsync
+			(
+				retryCount: 5,
+				sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+				onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
+				{
+					// If this explodes it could be due to a DNS change.  We shall clear the DNS
+					// cache entry and set it back to the default and clear the DNS cache.
+					Data.ClearDNS();
+					// Write why we're getting an exception
+					Debug.WriteLine($"Error transmitting to server {arg1.Message}\r\n{arg1.StackTrace}");
+				}
+			)
+			.ExecuteAsync(async () =>
+			{
+				var task = Task.Factory.FromAsync((cb, o) => ((HttpWebRequest)o).BeginGetResponse(cb, o), res =>
+				((HttpWebRequest)res.AsyncState).EndGetResponse(res), req);
+				var result = await task;
+				var resp = result;
+				var stream = resp.GetResponseStream();
+				var sr = new System.IO.StreamReader(stream);
+				return sr;
+			});
+
+			return reader;
+
 		}
 
 		public async Task<System.IO.TextReader> DoRequestAsync(string url)
 		{
 			var resp = await Policy
-				.Handle<WebException>()
+				.Handle<Exception>()
 				.WaitAndRetryAsync
 				(
 					retryCount: 5,
-					sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
+					sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+					onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
+					{
+						// If this explodes it could be due to a DNS change.  We shall clear the DNS
+						// cache entry and set it back to the default and clear the DNS cache.
+						Data.ClearDNS();
+						// Write why we're getting an exception
+						Debug.WriteLine($"Error transmitting to server {arg1.Message}\r\n{arg1.StackTrace}");
+					}
 				)
 				.ExecuteAsync(async () => {
 					var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
@@ -59,13 +89,31 @@ namespace PhillyBlotter.Models
 		// Transmits data but we don't care what happens next
 		public async Task<bool> DoSilentPost(string url, string data)
 		{
-			var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
-			client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-			client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+			await Policy
+			.Handle<Exception>()
+			.WaitAndRetryAsync
+			(
+				retryCount: 5,
+				sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+				onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
+				{
+					// If this explodes it could be due to a DNS change.  We shall clear the DNS
+					// cache entry and set it back to the default and clear the DNS cache.
+					Data.ClearDNS();
+					// Write why we're getting an exception
+					Debug.WriteLine($"Error posting to server {arg1.Message}\r\n{arg1.StackTrace}");
+				}
+			)
+			.ExecuteAsync(async () =>
+			{
+				var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
+				client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+				client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
 
-			Debug.WriteLine("Posting to server...");
-			await client.PostAsync(url, new StringContent(data, System.Text.Encoding.UTF8, "application/json"));
-			Debug.WriteLine("Post complete.");
+				Debug.WriteLine("Posting to server...");
+				await client.PostAsync(url, new StringContent(data, System.Text.Encoding.UTF8, "application/json"));
+				Debug.WriteLine("Post complete.");
+			});
 
 			return true;
 		}

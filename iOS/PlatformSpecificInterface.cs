@@ -31,18 +31,6 @@ namespace PhillyBlotter.iOS
 		{
 		}
 
-		public bool IsInForeground()
-		{
-			return UIApplication.SharedApplication.ApplicationState == UIApplicationState.Active;
-		}
-
-		public string ResolveHostEntry(string ipAddress)
-		{
-			var host = Dns.GetHostEntry(IPAddress.Parse(ipAddress));
-
-			return host.HostName;
-		}
-
 		public async Task<string> ResolveIPAddress(string host)
 		{
 			var addresses = await Dns.GetHostAddressesAsync(host);

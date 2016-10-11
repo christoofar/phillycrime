@@ -14,8 +14,6 @@ namespace PhillyBlotter.Models
 		private static string API_BASE = "/phillycrime/api/";
 		private static string HOST = "www.philadelinquency.com";
 
-		private static bool DNS_VALIDATED = false;
-
 		private static string GET_30DAY = "Values";
 		private static string FULLREPORT = "Crime";
 		private static string PHILLY = "Philly";
@@ -28,6 +26,13 @@ namespace PhillyBlotter.Models
 			
 		}
 
+		public static void ClearDNS()
+		{
+			HOST = "www.philadelinquency.com";
+			Application.Current.Properties["DNSExpires"] = DateTime.Parse("1970-01-01");
+			Application.Current.SavePropertiesAsync();
+		}
+
 		private static async Task<string> GetRoot()
 		{
 			string dns = HOST;
@@ -38,29 +43,22 @@ namespace PhillyBlotter.Models
 				// Do we already know what the DNS entry is?
 				if (Application.Current.Properties.ContainsKey("DNS"))
 				{
-					// Has it been less than 3 days since the last time we 
+					// Has it been less than 2 days since the last time we 
 					// queried this value?
 					if (DateTime.Now < (DateTime)Application.Current.Properties["DNSExpires"])
 					{
 						// Yes.  The cache value is still good.
 						dns = (string)Application.Current.Properties["DNS"];
-
-						// Validate the DNS entry.
-						string ip = await DependencyService.Get<PlatformSpecificInterface>().ResolveIPAddress(dns);
-						if (ip == "www.philadelinquency.com")
-						{
-							DNS_VALIDATED = true;
-						}
 					}
 				}
 
-				// If the first character isn't a number (because no good cache value),
-				// then let's resolve it
-				if (!char.IsDigit(dns[0]))
+				// If we got an IP address instead of the host domain, we'll cache this.
+				// This can be an IPv6 or IPv4 address (both work).
+				if (!dns.Contains("philadelinquency"))
 				{
 					string address = await DependencyService.Get<PlatformSpecificInterface>().ResolveIPAddress(dns);
 					Application.Current.Properties["DNS"] = address;
-					Application.Current.Properties["DNSExpires"] = DateTime.Now.AddDays(3);
+					Application.Current.Properties["DNSExpires"] = DateTime.Now.AddDays(2);
 					await Application.Current.SavePropertiesAsync(); //save
 					return address;
 				}

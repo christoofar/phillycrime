@@ -35,18 +35,6 @@ namespace PhillyBlotter.Droid
 			MainApplication.AppContext.StartActivity(intent);
 		}
 
-		public bool IsInForeground()
-		{
-			return true;
-		}
-
-		public string ResolveHostEntry(string ipAddress)
-		{
-			var host = Dns.GetHostEntry(IPAddress.Parse(ipAddress));
-
-			return host.HostName;
-		}
-
 		public async Task<string> ResolveIPAddress(string host)
 		{
 			var addresses = await Dns.GetHostAddressesAsync(host);
