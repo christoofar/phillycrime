@@ -54,7 +54,7 @@ namespace PhillyBlotter.Models
 
 				// If we got an IP address instead of the host domain, we'll cache this.
 				// This can be an IPv6 or IPv4 address (both work).
-				if (!dns.Contains("philadelinquency"))
+				if (dns.Contains("philadelinquency"))
 				{
 					string address = await DependencyService.Get<PlatformSpecificInterface>().ResolveIPAddress(dns);
 					Application.Current.Properties["DNS"] = address;
