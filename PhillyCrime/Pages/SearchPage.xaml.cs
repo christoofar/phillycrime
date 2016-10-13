@@ -51,9 +51,12 @@ namespace PhillyBlotter
 			CrimeSearchCriteria criteria = new CrimeSearchCriteria();
 			criteria.StartDate = DateTime.Now.AddDays(-365);
 			criteria.EndDate = DateTime.Now;
-			criteria.NeighborhoodID = "34";
-			criteria.Filter = Filter.Burglary;
+			//criteria.NeighborhoodID = "34";
+			criteria.PoliceDistrict = "26";
+			criteria.Filter = Filter.Burglary | Filter.Robbery;
 			var results = await Data.SearchCrimes(criteria);
+
+			Debug.WriteLine($"{results.Count()} results(s) returned");
 		}
 
 		public void LoadFilters()
