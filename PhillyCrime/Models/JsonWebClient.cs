@@ -118,6 +118,37 @@ namespace PhillyBlotter.Models
 			return true;
 		}
 
+		public async Task<T> DoPostJson<T>(string url, string data)
+		{
+			var ret = await Policy
+			.Handle<Exception>()
+			.WaitAndRetryAsync
+			(
+				retryCount: 5,
+				sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+				onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
+				{
+					Data.ClearDNS();
+					Debug.WriteLine($"Error posting to server {arg1.Message}\r\n{arg1.StackTrace}");
+				}
+			)
+			.ExecuteAsync(async () =>
+			{
+				var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
+				client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+				client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+
+				Debug.WriteLine("Posting to server...");
+				var rep = await client.PostAsync(url, new StringContent(data, System.Text.Encoding.UTF8, "application/json"));
+				Debug.WriteLine("Post complete.");
+
+				return rep;
+			});
+
+			var response = await ret.Content.ReadAsStringAsync();
+			return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(response);
+		}
+
 		public async Task<T> DoRequestJsonAsync<T>(WebRequest req)
 		{
 			var ret = await DoRequestAsync(req);

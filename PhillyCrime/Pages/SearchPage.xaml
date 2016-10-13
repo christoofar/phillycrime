@@ -223,7 +223,7 @@
 					VerticalTextAlignment="Center">District Control Number (DCN):</Label>
 					<Entry Keyboard="Numeric"></Entry>
 				</StackLayout>
-				<Button HorizontalOptions="FillAndExpand" BackgroundColor="#4B0082" TextColor="White" FontAttributes="Bold" Text="Search"></Button>
+				<Button Clicked="Search_Clicked" HorizontalOptions="FillAndExpand" BackgroundColor="#4B0082" TextColor="White" FontAttributes="Bold" Text="Search"></Button>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

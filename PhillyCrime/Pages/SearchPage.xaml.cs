@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using PhillyBlotter.Models;
+using System.Diagnostics;
+using System.Linq;
 
 namespace PhillyBlotter
 {
@@ -42,6 +44,16 @@ namespace PhillyBlotter
 			}
 
 			UpdateFilters();
+		}
+
+		async void Search_Clicked(object sender, System.EventArgs e)
+		{
+			CrimeSearchCriteria criteria = new CrimeSearchCriteria();
+			criteria.StartDate = DateTime.Now.AddDays(-365);
+			criteria.EndDate = DateTime.Now;
+			criteria.NeighborhoodID = "34";
+			criteria.Filter = Filter.Burglary;
+			var results = await Data.SearchCrimes(criteria);
 		}
 
 		public void LoadFilters()

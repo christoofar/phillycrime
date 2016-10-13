@@ -66,6 +66,18 @@ namespace PhillyBlotter.Models
 		public Neighborhood Neighborhood { get; set; }
 	}
 
+	public class CrimeSearchCriteria
+	{
+
+		public string NeighborhoodID { get; set; }
+		public string PoliceDistrict { get; set; }
+		public string PSA { get; set; }
+		public DateTime StartDate { get; set; }
+		public DateTime EndDate { get; set; }
+		public string DCN { get; set; }
+		public Filter Filter { get; set; }
+	}
+
 	public class Neighborhood : INotifyPropertyChanged
 	{
 		string _name;
