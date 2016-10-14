@@ -10,7 +10,7 @@
 		<StackLayout
 			Orientation="Vertical"
 			Padding="0,0,0,0">
-			<StackLayout x:Name="warningPanel">
+			<StackLayout x:Name="warningPanel" IsVisible="false">
 				<Label
 					x:Name="labelNoRecords"
 					TextColor="Gray"
@@ -66,7 +66,7 @@
 						x:Name="activity"
 					IsVisible="true"
 					IsRunning="true"
-					VerticalOptions="FillAndExpand"
+					VerticalOptions="Center"
 					HorizontalOptions="FillAndExpand" />
 			</Grid>
 		</StackLayout>

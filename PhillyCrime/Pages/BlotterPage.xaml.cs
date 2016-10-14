@@ -13,12 +13,15 @@ namespace PhillyBlotter
 	public partial class BlotterPage : ContentPage
 	{
 		bool _distanceFormat = false;  // Signifies that we're going to show a distance blotter
+		bool _searchResults = false;
+		CrimeSearchCriteria _crimeSearchCriteria = null;
+
+		bool _querycomplete = false;
 
 		public BlotterPage()
 		{
 			InitializeComponent();
 		}
-
 
 		public BlotterPage(bool distanceFormat = false)
 		{
@@ -27,8 +30,29 @@ namespace PhillyBlotter
 			_distanceFormat = distanceFormat;
 		}
 
+		// For now we're overloading the blotter view to show
+		// crime results.  That means (again, FOR NOW) we have to change the configuration of the
+		// list view.   If we deviate too far then we'll have to build a new viewer for this.
+		public BlotterPage(CrimeSearchCriteria criteria)
+		{
+			InitializeComponent();
+
+			// No panels needed
+			warningPanel.IsVisible = false;
+			activity.IsVisible = true;
+
+			// Disable grouping and pull-to-refresh
+			blotterListView.IsPullToRefreshEnabled = false;
+			blotterListView.IsGroupingEnabled = false;
+
+			// Data used to execute search in the model.
+			_searchResults = true;
+			_crimeSearchCriteria = criteria;
+		}
+
 		public async void Handle_Refreshing(object sender, System.EventArgs e)
 		{
+			_querycomplete = false;
 			await Refresh();
 		}
 
@@ -58,6 +82,7 @@ namespace PhillyBlotter
 
 		async Task<bool> Refresh()
 		{
+			if (_querycomplete) return true;
 
 			if (_distanceFormat)
 			{
@@ -66,6 +91,7 @@ namespace PhillyBlotter
 				{
 					Device.BeginInvokeOnMainThread(() =>
 					{
+						warningPanel.IsVisible = true;
 						labelNoRecords.Text = "You need to set a primary location in order to use this feature.";
 						buttonSettings.Text = "Set Primary Location...";
 						activity.IsRunning = false;
@@ -88,37 +114,49 @@ namespace PhillyBlotter
 			}
 			else
 			{
-				if (!_distanceFormat)
+				if (_distanceFormat)
+				{
+					Title = "1 Mile Blotter";
+				}
+				else if (_searchResults)
+				{
+					Title = "Search Results";
+				}
+				else 
 				{
 					var nameList = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.Name);
 					string hoodNames = string.Join("/", nameList);
-					Title = hoodNames;
+					Title = hoodNames;					
+				}
+
+
+				if (_distanceFormat)
+				{
+					var crimes = await Data.GetLocalBlotter((double)Application.Current.Properties["PrimaryLat"], (double)Application.Current.Properties["PrimaryLong"], 5280.00);
+					var proximitygroup = crimes.GroupBy(item => item.Proximity, (key, group) => new Group(key, group.ToArray()));
+					blotterListView.ItemsSource = proximitygroup;
+				}
+				else if (_searchResults)
+				{
+					var crimes = await Data.SearchCrimes(_crimeSearchCriteria);
+					blotterListView.ItemsSource = crimes;
 				}
 				else
 				{
-					Title = "1 Mile Blotter";
+					var hoods = await Data.GetBlotter(ids.ToArray());
+					var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
+					blotterListView.ItemsSource = dategroup;
 				}
 
 				warningPanel.IsVisible = false;
 				blotterListView.IsVisible = true;
 				activity.IsRunning = false;
 				activity.IsVisible = false;
-
-				if (!_distanceFormat)
-				{
-					var hoods = await Data.GetBlotter(ids.ToArray());
-					var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
-					blotterListView.ItemsSource = dategroup;
-				}
-				else
-				{
-					var crimes = await Data.GetLocalBlotter((double)Application.Current.Properties["PrimaryLat"], (double)Application.Current.Properties["PrimaryLong"], 5280.00);
-					var proximitygroup = crimes.GroupBy(item => item.Proximity, (key, group) => new Group(key, group.ToArray()));
-					blotterListView.ItemsSource = proximitygroup;
-				}
 			}
 
 			blotterListView.EndRefresh();
+
+			_querycomplete = true;
 
 			return true;
 		}

@@ -46,17 +46,49 @@ namespace PhillyBlotter
 			UpdateFilters();
 		}
 
-		async void Search_Clicked(object sender, System.EventArgs e)
+		void Search_Clicked(object sender, System.EventArgs e)
 		{
 			CrimeSearchCriteria criteria = new CrimeSearchCriteria();
-			criteria.StartDate = DateTime.Now.AddDays(-365);
-			criteria.EndDate = DateTime.Now;
-			//criteria.NeighborhoodID = "34";
-			criteria.PoliceDistrict = "26";
-			criteria.Filter = Filter.Burglary | Filter.Robbery;
-			var results = await Data.SearchCrimes(criteria);
 
-			Debug.WriteLine($"{results.Count()} results(s) returned");
+			// If there's a DCN we don't need to bother with rest
+			if (DCN.Text != null && DCN.Text.Length > 3)
+			{
+				criteria.DCN = DCN.Text;
+			}
+			else
+			{
+				// Was a neighborhood selected?
+				if (Neighborhood.SelectedIndex > 0)
+				{
+					string selectedhood = Neighborhood.Items[Neighborhood.SelectedIndex];
+					var hood = Global.Neighborhoods.Where(p => p.Name == selectedhood).FirstOrDefault();
+					if (hood != null)
+					{
+						criteria.NeighborhoodID = hood.ID.ToString();
+					}
+				}
+
+				// What about a police district?
+				if (PoliceDistrictID.SelectedIndex > 0)
+				{
+					criteria.PoliceDistrict = PoliceDistrictID.Items[PoliceDistrictID.SelectedIndex];
+
+					// And what about a PSA?
+					if (PSA.SelectedIndex > 0)
+					{
+						criteria.PSA = PSA.Items[PSA.SelectedIndex];
+					}
+				}
+			}
+
+			criteria.StartDate = DateStart.Date + TimeStart.Time;
+			criteria.EndDate = DateEnd.Date + TimeEnd.Time;
+			criteria.Filter = currentFilter;
+			//var results = await Data.SearchCrimes(criteria);
+
+			Navigation.PushAsync(new BlotterPage(criteria));
+
+			//Debug.WriteLine($"{results.Count()} results(s) returned");
 		}
 
 		public void LoadFilters()
