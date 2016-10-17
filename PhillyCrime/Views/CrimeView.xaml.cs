@@ -13,6 +13,7 @@ namespace PhillyBlotter
 	{
 
 		FullCrimeReport _report;
+		CrimeType _type;
 
 		public CrimeView()
 		{
@@ -32,8 +33,18 @@ namespace PhillyBlotter
 			};
 		}
 
-		public void UpdateData(FullCrimeReport report)
+		void CrimeShieldTouched(object sender, System.EventArgs e)
 		{
+			if (_type != CrimeType.Nothing)
+			{
+				var mapLegend = new MapLegend(_type);
+				Navigation.PushAsync(mapLegend);
+			}
+		}
+
+		public void UpdateData(FullCrimeReport report, CrimeType type)
+		{
+			_type = type;
 
 			Device.BeginInvokeOnMainThread(() =>
 			{
@@ -43,6 +54,8 @@ namespace PhillyBlotter
 				Address.Text = string.Format("Location: {0}", report.FullCrimeDetail.LOCATION_BLOCK);
 				Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.ToString("dddd MMMM d h:mm tt"));
 				District.Text = string.Format("Police District: {0}", report.FullCrimeDetail.DC_DIST);
+				CrimeImage.Source = Global.ImageSource(type);
+
 
 				PSA.Text = string.Format("PSA: {0}", report.FullCrimeDetail.SECTOR);
 				DCN.Text = String.Format("DCN: {0}-{1}-{2}",

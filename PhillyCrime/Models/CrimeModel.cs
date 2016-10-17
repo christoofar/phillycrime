@@ -76,6 +76,7 @@ namespace PhillyBlotter.Models
 		public DateTime EndDate { get; set; }
 		public string DCN { get; set; }
 		public Filter Filter { get; set; }
+		public bool OnlyArrests { get; set; }
 	}
 
 	public class Neighborhood : INotifyPropertyChanged
@@ -197,6 +198,7 @@ namespace PhillyBlotter.Models
 		public string SuspendCode { get; set; }
 	}
 
+
 	public class Group : ObservableCollection<CrimeReport>
 	{
 		public Group(string groupName, CrimeReport[] crimes)
@@ -285,26 +287,40 @@ namespace PhillyBlotter.Models
 			}
 		}
 
-		double _longitude;
-		public double Longitude
+		double? _longitude = 0;
+		public double? Longitude
 		{
-			get { return _longitude; }
+			get { return _longitude.Value; }
 			set
 			{
-				if (Math.Abs(_longitude - value) > Double.Epsilon)
-					_longitude = value;
+				try
+				{
+					if (Math.Abs(_longitude.Value - value.Value) > Double.Epsilon)
+						_longitude = value;
+				}
+				catch
+				{
+					_longitude = 0;
+				}
 				OnPropertyChanged("Longitude");
 			}
 		}
 
-		double _latitude;
-		public double Latitutde
+		double? _latitude = 0;
+		public double? Latitutde
 		{
-			get { return _latitude; }
+			get { return _latitude.Value; }
 			set
 			{
-				if (Math.Abs(_latitude - value) > Double.Epsilon)
-					_latitude = value;
+				try
+				{
+					if (Math.Abs(_latitude.Value - value.Value) > Double.Epsilon)
+						_latitude = value;
+				}
+				catch
+				{
+					_latitude = 0;
+				}
 				OnPropertyChanged("Latitutde");
 			}
 		}
@@ -432,43 +448,7 @@ namespace PhillyBlotter.Models
 		{
 			get
 			{
-				switch (_type)
-				{
-					case Models.CrimeType.Homicide:
-						return "Images/h_on.png";
-					case Models.CrimeType.Robbery:
-						return "Images/ro_on.png";
-					case Models.CrimeType.Assault:
-						return "Images/a_on.png";
-					case Models.CrimeType.Burglary:
-						return "Images/b_on.png";
-					case Models.CrimeType.Rape:
-						return "Images/ra_on.png";
-					case Models.CrimeType.Theft:
-						return "Images/t_on.png";
-					case Models.CrimeType.Prostition:
-						return "Images/p_on.png";
-					case Models.CrimeType.TheftFromAuto:
-						return "Images/ta_on.png";
-					case Models.CrimeType.StolenVehicle:
-						return "Images/vt_on.png";
-					case Models.CrimeType.VehicleRecovery:
-						return "Images/rv_on.png";
-					case Models.CrimeType.Gun:
-						return "Images/g_on.png";
-					case Models.CrimeType.CriminalMischief:
-						return "Images/m_on.png";
-					case Models.CrimeType.DUI:
-						return "Images/d_on.png";
-					case Models.CrimeType.Narcotics:
-						return "Images/n_on.png";
-					case Models.CrimeType.Other:
-						return "Images/o_on.png";
-					case Models.CrimeType.OtherSexAssault:
-						return "Images/s_on.png";
-					default:
-						return "Images/o_on.png";
-				}
+				return Global.ImageSource(_type);
 			}
 		}
 

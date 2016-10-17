@@ -46,7 +46,7 @@
 											Text="{Binding Title}" />
 										<Label
 											FontAttributes="Italic"
-											Text="{Binding Occurred, StringFormat='{0:dddd, MMM d h:mm tt}'}" />
+											Text="{Binding Occurred, StringFormat='{0:dddd, MMM d yyyy h:mm tt}'}" />
 											<Label FormattedText="{Binding FormattedAddress}" />
 									</StackLayout>
 									<Image

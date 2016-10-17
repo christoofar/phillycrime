@@ -66,12 +66,6 @@ namespace PhillyBlotter
 			});
 			masterPageItems.Add(new MasterPageItem
 			{
-				Title = "Map Legend",
-				IconSource = "Images/radar.png",
-				TargetType = typeof(MapLegend)
-			});
-			masterPageItems.Add(new MasterPageItem
-			{
 				Title = "Neighborhood Blotter",
 				IconSource = "Images/checklist.png",
 				TargetType = typeof(BlotterPage)
@@ -85,8 +79,20 @@ namespace PhillyBlotter
 			masterPageItems.Add(new MasterPageItem
 			{
 				Title = "Search Crimes",
-				IconSource = "Images/radar.png",
+				IconSource = "Images/search.png",
 				TargetType = typeof(SearchPage)
+			});
+			masterPageItems.Add(new MasterPageItem
+			{
+				Title = "Search Arrest Records",
+				IconSource = "Images/justice.png",
+				TargetType = typeof(ArrestSearchPage)
+			});
+			masterPageItems.Add(new MasterPageItem
+			{
+				Title = "Map Legend",
+				IconSource = "Images/legend.png",
+				TargetType = typeof(MapLegend)
 			});
 			masterPageItems.Add(new MasterPageItem
 			{

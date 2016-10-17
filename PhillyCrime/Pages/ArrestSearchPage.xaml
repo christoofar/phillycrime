@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhillyBlotter.ArrestSearchPage"
+	xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter" Title="Search Arrests" Padding="5,5,5,5">
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout x:Name="TopStackLayout" Padding="0,0,0,0">
+				<StackLayout.Spacing>
+					<OnPlatform x:TypeArguments="x:Double">
+						<OnPlatform.iOS>10</OnPlatform.iOS>
+						<OnPlatform.Android>1</OnPlatform.Android>
+					</OnPlatform>
+				</StackLayout.Spacing>
+				<Label FontAttributes="Bold" FontSize="Large" VerticalTextAlignment="Center">Arrest Date Between</Label>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<DatePicker x:Name="DateStart" Format="MM/d/yyyy" Grid.Row="0"
+						Grid.Column="0" HorizontalOptions="Fill" DateSelected="StartDateChanged">
+					</DatePicker>
+					<DatePicker x:Name="DateEnd" Format="MM/d/yyyy" Grid.Row="0"
+						Grid.Column="1">
+					</DatePicker>
+				</Grid>
+				<!-- Defendant Name -->
+				<Label FontAttributes="Bold" FontSize="Large" VerticalTextAlignment="Center">Defendant</Label>
+				<Grid Padding="0,0,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="2*" />
+					</Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
+						VerticalOptions="Center">First Name</Label>
+					<Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+					</Entry>
+					<Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"
+						VerticalOptions="Center">Last Name</Label>
+					<Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+					</Entry>
+				</Grid>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold"
+						FontSize="Large" VerticalTextAlignment="Center">Age</Label>
+					<Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold"
+						FontSize="Large" VerticalTextAlignment="Center">Birthdate</Label>
+					<!-- Age -->
+					<Picker x:Name="AgeRange" SelectedIndexChanged="AgeRangeChanged" Grid.Row="1"
+						Grid.Column="0" SelectedIndex="0">
+						<Picker.Items>
+							<x:String>Unknown</x:String>
+							<x:String>Teen - 21 y/o</x:String>
+							<x:String>20s</x:String>
+							<x:String>30s</x:String>
+							<x:String>40 - 55</x:String>
+							<x:String>55+</x:String>
+						</Picker.Items>
+					</Picker>
+					<local:NullableDatePicker DateSelected="Handle_DateSelected" x:Name="Birthday" Grid.Row="1"
+						Grid.Column="1">
+					</local:NullableDatePicker>
+					<Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold"
+						FontSize="Large" VerticalTextAlignment="Center">Bail</Label>
+					<!-- Bail -->
+					<Picker x:Name="Bail" SelectedIndexChanged="BailChanged" Grid.Row="2"
+						Grid.Column="1" Grid.ColumnSpan="2">
+						<Picker.Items>
+							<x:String>Any Amount</x:String>
+							<x:String>No Bail to $10K</x:String>
+							<x:String>$10K to $100K</x:String>
+							<x:String>$100K to $250K</x:String>
+							<x:String>$250K to $500K</x:String>
+							<x:String>$500K to $800K</x:String>
+							<x:String>More than $800K</x:String>
+						</Picker.Items>
+					</Picker>
+				</Grid>
+				<!-- DCN -->
+				<StackLayout>
+					<Label FontAttributes="Bold" VerticalTextAlignment="Center">District Control Number (DCN):</Label>
+					<Entry TextChanged="DCNChanged" x:Name="DCN" Keyboard="Numeric">
+					</Entry>
+				</StackLayout>				
+				<Button Clicked="Search_Clicked" HorizontalOptions="FillAndExpand" BackgroundColor="#4B0082"
+					TextColor="White" FontAttributes="Bold" Text="Search">
+				</Button>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

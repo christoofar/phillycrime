@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using PhillyBlotter.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using System.Linq;
 
 namespace PhillyBlotter
 {
@@ -99,11 +100,16 @@ namespace PhillyBlotter
 				Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
 				Application.Current.Properties["NeighborhoodID"] = area.Neighborhood.ID;
 
-				// Clear all the selected neighborhoods
-				await App.ClearNeighborhoods();
+				var matchingHood = Global.Neighborhoods.Where((arg) => arg.ID == area.Neighborhood.ID).FirstOrDefault();
+				// Do we have this neighborhood already selected?
+				if (matchingHood != null && !matchingHood.Selected)
+				{
+					// Clear all the selected neighborhoods
+					await App.ClearNeighborhoods();
 
-				// This new primary location is what we'll use as the primary neighborhood.
-				await App.UpdateNeighborhood(area.Neighborhood.ID, true);
+					// This new primary location is what we'll use as the primary neighborhood.
+					await App.UpdateNeighborhood(area.Neighborhood.ID, true);
+				}
 
 				await Application.Current.SavePropertiesAsync();
 				PostLocation(currentPosition.Longitude, currentPosition.Latitude, radius);

@@ -32,7 +32,14 @@ namespace PhillyBlotter
 			MyMap.IsShowingUser = true;
 			var locator = CrossGeolocator.Current;
 			locator.DesiredAccuracy = 50;
-			locator.AllowsBackgroundUpdates = true;
+			Device.OnPlatform(null, async () =>
+			{
+				if (!locator.IsListening)
+				{
+					await locator.StartListeningAsync(10000, 50, false,
+												new Plugin.Geolocator.Abstractions.ListenerSettings { ListenForSignificantChanges = false });
+				}
+			}, null);
 
 			try
 			{
@@ -48,8 +55,8 @@ namespace PhillyBlotter
 			finally
 			{
 				//Shut off GPS, we're done with it
-				locator.AllowsBackgroundUpdates = false;
-				await locator.StopListeningAsync();
+				//locator.AllowsBackgroundUpdates = false;
+				Device.OnPlatform(null, async () => { await locator.StopListeningAsync(); }, null);
 			}
 
 		}
@@ -350,7 +357,7 @@ namespace PhillyBlotter
 						Pin = new Pin
 						{
 							Type = PinType.Place,
-							Position = new Position(report.Latitutde, report.Longitude),
+							Position = new Position(report.Latitutde.Value, report.Longitude.Value),
 							Label = report.Title,
 							Address = report.Address
 						},
@@ -411,13 +418,23 @@ namespace PhillyBlotter
 
 					var locator = CrossGeolocator.Current;
 					locator.DesiredAccuracy = 50;
+					Device.OnPlatform(null, async () => 
+					{
+						if (!locator.IsListening)
+						{
+							await locator.StartListeningAsync(10000, 50, false,
+														new Plugin.Geolocator.Abstractions.ListenerSettings { ListenForSignificantChanges = true });
+						}
+					}, null);
 					//locator.AllowsBackgroundUpdates = true;
 
 					var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
 
 					//Shut off GPS, we're done with it
-					//locator.AllowsBackgroundUpdates = false;
-					//locator.StopListeningAsync();
+					Device.OnPlatform(null, async () =>
+					{
+						await locator.StopListeningAsync();
+					}, null);
 
 					currentPosition = new Position(position.Latitude, position.Longitude);
 

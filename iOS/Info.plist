@@ -5,11 +5,11 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.philadelinquency.phillycrime</string>
 	<key>CFBundleVersion</key>
-	<string>1.10</string>
+	<string>1.11</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.4</string>
+	<string>9.3</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

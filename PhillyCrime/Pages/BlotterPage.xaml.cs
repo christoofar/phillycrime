@@ -15,6 +15,7 @@ namespace PhillyBlotter
 		bool _distanceFormat = false;  // Signifies that we're going to show a distance blotter
 		bool _searchResults = false;
 		CrimeSearchCriteria _crimeSearchCriteria = null;
+		CrimeReport[] _data = new CrimeReport[0];
 
 		bool _querycomplete = false;
 
@@ -30,12 +31,22 @@ namespace PhillyBlotter
 			_distanceFormat = distanceFormat;
 		}
 
+		void JumpToMap()
+		{
+			// Don't let user to go the map until we have some data.
+			if (_data.Count() == 0) return;
+
+			var map = new SearchResultsMap(_data);
+			Navigation.PushAsync(map);
+		}
+
 		// For now we're overloading the blotter view to show
 		// crime results.  That means (again, FOR NOW) we have to change the configuration of the
 		// list view.   If we deviate too far then we'll have to build a new viewer for this.
 		public BlotterPage(CrimeSearchCriteria criteria)
 		{
 			InitializeComponent();
+			this.ToolbarItems.Add(new ToolbarItem("buttonJump", "Images/map.png", JumpToMap, ToolbarItemOrder.Primary));
 
 			// No panels needed
 			warningPanel.IsVisible = false;
@@ -104,55 +115,79 @@ namespace PhillyBlotter
 			//Look for neighborhoods user subscribes to.
 			var ids = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.ID);
 
-			if (ids.Count() == 0)
+
+			// Set the title based on blotter/search result type
+			if (_distanceFormat)
 			{
-				// You need to select a primary neighborhood.
-				warningPanel.IsVisible = true;
-				blotterListView.IsVisible = false;
-				activity.IsRunning = false;
-				activity.IsVisible = false;
+				Title = "1 Mile Blotter";
 			}
-			else
+			else if (_searchResults)
 			{
-				if (_distanceFormat)
+				Title = "Search Results";
+			}
+			else 
+			{
+				if (ids.Count() == 0)
 				{
-					Title = "1 Mile Blotter";
-				}
-				else if (_searchResults)
-				{
-					Title = "Search Results";
-				}
-				else 
-				{
-					var nameList = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.Name);
-					string hoodNames = string.Join("/", nameList);
-					Title = hoodNames;					
-				}
-
-
-				if (_distanceFormat)
-				{
-					var crimes = await Data.GetLocalBlotter((double)Application.Current.Properties["PrimaryLat"], (double)Application.Current.Properties["PrimaryLong"], 5280.00);
-					var proximitygroup = crimes.GroupBy(item => item.Proximity, (key, group) => new Group(key, group.ToArray()));
-					blotterListView.ItemsSource = proximitygroup;
-				}
-				else if (_searchResults)
-				{
-					var crimes = await Data.SearchCrimes(_crimeSearchCriteria);
-					blotterListView.ItemsSource = crimes;
+					// You need to select a primary neighborhood.
+					warningPanel.IsVisible = true;
+					blotterListView.IsVisible = false;
+					activity.IsRunning = false;
+					activity.IsVisible = false;
+					return true;
 				}
 				else
 				{
-					var hoods = await Data.GetBlotter(ids.ToArray());
-					var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
-					blotterListView.ItemsSource = dategroup;
+					var nameList = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.Name);
+					string hoodNames = string.Join("/", nameList);
+					Title = hoodNames;
+				}
+			}
+
+			// Populate the blotter data
+			if (_distanceFormat)
+			{
+				var crimes = await Data.GetLocalBlotter((double)Application.Current.Properties["PrimaryLat"], (double)Application.Current.Properties["PrimaryLong"], 5280.00);
+				var proximitygroup = crimes.GroupBy(item => item.Proximity, (key, group) => new Group(key, group.ToArray()));
+				blotterListView.ItemsSource = proximitygroup;
+			}
+			else if (_searchResults)
+			{
+				var crimes = await Data.SearchCrimes(_crimeSearchCriteria);
+				// if there's only 1 crime result, jump straight to it!
+				if (crimes.Length == 1)
+				{
+					var crimeDetailPage = new CrimeDetailPage((CrimeReport)crimes[0]);
+					await Navigation.PushAsync(crimeDetailPage, true);
 				}
 
-				warningPanel.IsVisible = false;
-				blotterListView.IsVisible = true;
-				activity.IsRunning = false;
-				activity.IsVisible = false;
+				// Nothing came back in the search
+				if (crimes.Length == 0)
+				{
+					labelNoRecords.Text = "Nothing came back for your search.";
+					warningPanel.IsVisible = true;
+					buttonSettings.IsVisible = false;
+					activity.IsRunning = false;
+					activity.IsVisible = false;
+					return true;
+				}
+				else
+				{
+					_data = crimes;
+					blotterListView.ItemsSource = crimes;
+				}
 			}
+			else
+			{
+				var hoods = await Data.GetBlotter(ids.ToArray());
+				var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
+				blotterListView.ItemsSource = dategroup;
+			}
+
+			warningPanel.IsVisible = false;
+			blotterListView.IsVisible = true;
+			activity.IsRunning = false;
+			activity.IsVisible = false;
 
 			blotterListView.EndRefresh();
 

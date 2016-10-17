@@ -11,10 +11,12 @@ namespace PhillyBlotter
 	public partial class CrimeDetailPage : ContentPage
 	{
 		CustomPin _pin;
+		CrimeType _type;
 
 		public CrimeDetailPage(CustomPin pin)
 		{
 			_pin = pin;
+			_type = pin.CrimeType;
 			InitializeComponent();
 
 			GetCrimeDetails();
@@ -24,6 +26,7 @@ namespace PhillyBlotter
 		{
 			_pin = new CustomPin();
 			_pin.Id = report.DCN;
+			_type = report.Type;
 			InitializeComponent();
 
 			GetCrimeDetails();
@@ -34,22 +37,21 @@ namespace PhillyBlotter
 		{
 			return Task.Run(async () =>
 			  {
-
 				  string dcn = _pin.Id;
 				  var crime = await Data.GetFullCrimeReport(dcn);
-				  DataFill(crime);
+				  DataFill(crime, _type);
 				  return true;
 			  });
 		}
 
-		public void DataFill(FullCrimeReport report)
+		public void DataFill(FullCrimeReport report, CrimeType type)
 		{
 			Device.BeginInvokeOnMainThread(() =>
 			{
 				Indicator.IsRunning = false;
 				MainLayout.Children.Remove(Indicator);
 			});
-			CrimeView.UpdateData(report);
+			CrimeView.UpdateData(report, type);
 
 			// Was a single person arrested for this?
 			if (report.FullArrestDetails.Length == 1)

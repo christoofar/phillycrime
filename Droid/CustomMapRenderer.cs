@@ -41,6 +41,9 @@ namespace PhillyBlotter.Droid
 			if (e.NewElement != null)
 			{
 				var formsMap = (CustomMap)e.NewElement;
+				customPins = formsMap.CustomPins;
+
+
 				// Register a command to clear the pins.
 				MessagingCenter.Subscribe<CrimesNearMeView>(this, "Clear", (sender) =>
 				{
@@ -57,73 +60,84 @@ namespace PhillyBlotter.Droid
 					// do something whenever the "DroidPin" message is sent
 					Device.BeginInvokeOnMainThread(() =>
 					{
-						var marker = new MarkerOptions();
-						marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
-						marker.SetTitle(pin.Pin.Label);
-						marker.SetSnippet(pin.Pin.Address);
-
-						switch (pin.CrimeType)
-						{
-							case Models.CrimeType.Homicide:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.h_pin));
-								break;
-							case Models.CrimeType.Robbery:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.ro_pin));
-								break;
-							case Models.CrimeType.Assault:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.a_pin));
-								break;
-							case Models.CrimeType.Burglary:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.b_pin));
-								break;
-							case Models.CrimeType.Rape:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.ra_pin));
-								break;
-							case Models.CrimeType.Theft:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.t_pin));
-								break;
-							case Models.CrimeType.Prostition:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.p_pin));
-								break;
-							case Models.CrimeType.TheftFromAuto:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.ta_pin));
-								break;
-							case Models.CrimeType.StolenVehicle:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.vt_pin));
-								break;
-							case Models.CrimeType.VehicleRecovery:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.rv_pin));
-								break;
-							case Models.CrimeType.Gun:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.g_pin));
-								break;
-							case Models.CrimeType.Other:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.o_pin));
-								break;
-							case Models.CrimeType.CriminalMischief:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.m_pin));
-								break;
-							case Models.CrimeType.DUI:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.d_pin));
-								break;
-							case Models.CrimeType.OtherSexAssault:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.s_pin));
-								break;
-							case Models.CrimeType.Narcotics:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.n_pin));
-								break;
-							default:
-								marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.o_pin));
-								break;
-						}
-
-						map.AddMarker(marker);
+						AddDroidPin(pin);
+					});
+				});
+				MessagingCenter.Subscribe<SearchResultsMap, CustomPin>(this, "DroidPin", (sender, pin) =>
+				{
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						AddDroidPin(pin);
 					});
 				});
 
-				customPins = formsMap.CustomPins;
 				((MapView)Control).GetMapAsync(this);
 			}
+		}
+
+		private void AddDroidPin(CustomPin pin)
+		{
+			var marker = new MarkerOptions();
+			marker.SetPosition(new LatLng(pin.Pin.Position.Latitude, pin.Pin.Position.Longitude));
+			marker.SetTitle(pin.Pin.Label);
+			marker.SetSnippet(pin.Pin.Address);
+
+			switch (pin.CrimeType)
+			{
+				case Models.CrimeType.Homicide:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.h_pin));
+					break;
+				case Models.CrimeType.Robbery:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.ro_pin));
+					break;
+				case Models.CrimeType.Assault:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.a_pin));
+					break;
+				case Models.CrimeType.Burglary:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.b_pin));
+					break;
+				case Models.CrimeType.Rape:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.ra_pin));
+					break;
+				case Models.CrimeType.Theft:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.t_pin));
+					break;
+				case Models.CrimeType.Prostition:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.p_pin));
+					break;
+				case Models.CrimeType.TheftFromAuto:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.ta_pin));
+					break;
+				case Models.CrimeType.StolenVehicle:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.vt_pin));
+					break;
+				case Models.CrimeType.VehicleRecovery:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.rv_pin));
+					break;
+				case Models.CrimeType.Gun:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.g_pin));
+					break;
+				case Models.CrimeType.Other:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.o_pin));
+					break;
+				case Models.CrimeType.CriminalMischief:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.m_pin));
+					break;
+				case Models.CrimeType.DUI:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.d_pin));
+					break;
+				case Models.CrimeType.OtherSexAssault:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.s_pin));
+					break;
+				case Models.CrimeType.Narcotics:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.n_pin));
+					break;
+				default:
+					marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.o_pin));
+					break;
+			}
+
+			map.AddMarker(marker);
 		}
 
 		public void OnMapReady(GoogleMap googleMap)

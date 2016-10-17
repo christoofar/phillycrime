@@ -4,10 +4,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="PhillyBlotter.MapLegend" Title="Map Legend" BackgroundColor="Black">
 	<ContentPage.Content>
-		<ScrollView>
+		<ScrollView x:Name="Scroll">
 			<StackLayout Padding="5,5,5,5">		
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/h.png"></Image>
+				<StackLayout x:Name="Homicide" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/h.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Homicide</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -27,7 +27,7 @@ Voluntary Manslaughter — Voluntary manslaughter is defined as an intentional o
 Involuntary Manslaughter — Involuntary manslaughter is defined as when a person, as the result of doing of an unlawful act in a reckless or grossly negligent manner, or the doing of a lawful act in a reckless or grossly negligent manner, causes the death of another.  If a motorist is driving recklessly and dangerously at high speed resulting in a crash that kills another person, it is involuntary manslaughter.
 					</Label>
 				</StackLayout>					
-				<StackLayout Orientation="Horizontal">
+				<StackLayout x:Name="Robbery" Orientation="Horizontal">
 					<Image WidthRequest="89" Source="Images/ro.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Robbery</Label>
 				</StackLayout>
@@ -38,8 +38,8 @@ Involuntary Manslaughter — Involuntary manslaughter is defined as when a perso
 A "home invasion" where a defendant enters an occupied home or business demanding cash or goods is also classified as a robbery.
 					</Label>
 				</StackLayout>					
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/b.png"></Image>
+				<StackLayout x:Name="Burglary" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/b.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Burglary</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -51,8 +51,8 @@ Abandoned properties are not subject to this crime as Pennsylvania requires the 
 Note: Burglars who committ a "home invasion" are actually committing a robbery.
 					</Label>
 				</StackLayout>				
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/a.png"></Image>
+				<StackLayout x:Name="Assault" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/a.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Aggravated Assault</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -65,8 +65,8 @@ Simple assault is typical when action is taken recklessly or carelessly or no se
 Aggravated assault is a felony and includes attacks causing (or intending to cause) serious bodily injury.  Assaults on police officers are also treated as aggravated assault.  The punishment is a felony and can be up to the first degree and carry a punishment up to 20 years in prison.
 					</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/t.png"></Image>
+				<StackLayout x:Name="Theft" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/t.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Thefts (non-auto)</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -84,8 +84,8 @@ Immovable Property — Real estate, securities and other intangible objects of v
 The Philadelphia Police classify auto-related thefts such as stolen vehicles (VT) "stolen motor vehicle" and stealing items inside of vehicles (TA) "theft from auto".  Further, the police separately report the recovery of a stolen auto as a crime report to designate where criminals leave behind vehicles that they steal.  These reports are classified as (RV) for "recovered vehicle".
 					</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/ra.png"></Image>
+				<StackLayout x:Name="Rape" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/ra.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Rape</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -95,8 +95,8 @@ Rape is a crime where a suspect forcibly or under threat of force engages in sex
 Rape is considered a first degree felony in Pennsylvania and can carry a sentence up to twenty years in prison.  In addition to this term, if the defendant used any type of intoxicating drug in the commission of this offense, the sentence may be extended for an additional ten years.
 					</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/vt.png"></Image>
+				<StackLayout x:Name="VehicleTheft" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/vt.png"></Image>
 					<Image WidthRequest="89" Source="Images/car.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Vehicle Theft</Label>
 				</StackLayout>
@@ -108,8 +108,8 @@ Motor vehicle theft is the unlawful taking of a motor vehicle from the possessio
 
 If the stolen vehicle is recovered, a separate crime incident report will be filed by police at the location where the vehicle was recovered.  That is reported as (RV) "Motor Vehicle Recovery".  This allows police to monitor where stolen vehicles are winding up when they are found.					</Label>
 				</StackLayout>	
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/rv.png"></Image>
+				<StackLayout x:Name="VehicleRecovery" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/rv.png"></Image>
 					<Image WidthRequest="89" Source="Images/car.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Recovered Stolen Motor Vehicle</Label>
 				</StackLayout>
@@ -119,8 +119,8 @@ A recovered stolen motor vehicle report is filed by police when a vehicle that h
 
 If an arrest is made, Philadelphia Police may attach the charges either to the originating Vehicle Theft report (if one exists) or to this report, or both.</Label>
 				</StackLayout>		
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/ta.png"></Image>
+				<StackLayout x:Name="TheftFromAuto" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/ta.png"></Image>
 					<Image WidthRequest="89" Source="Images/car.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Theft From Auto/Vehicle</Label>
 				</StackLayout>
@@ -132,8 +132,8 @@ The from auto is the unlawful taking of an object located inside a motor vehicle
 
 Theft From Auto can often be confused with Motor Vehicle Theft (VT).  Motor vehicle theft is the taking of the automobile itself, whereas Theft From Auto is the taking of possessions inside the car.</Label>
 				</StackLayout>	
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/d.png"></Image>
+				<StackLayout x:Name="DUI" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/d.png"></Image>
 					<Image WidthRequest="89" Source="Images/car.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Driving Under the Influence</Label>
 				</StackLayout>
@@ -149,8 +149,8 @@ A suspect does not have to actually be driving the vehicle in order to be charge
 
 Arrest and charge reports of DUI offenders will reflect if the defendant is a Tier I, II, or III offender.  Drivers with charges of "1st Off" are low-level consumers of alcohol, as those under the influence of narcotics are typically charged as Tier III offenders or will be given a narcotics charge if narcotics were recovered on their person or in the vehicle.</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/g.png"></Image>
+				<StackLayout x:Name="Gun" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/g.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Gun/Weapons Violations</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -167,8 +167,8 @@ Carrying a firearm is legal in Philadelphia if the following conditions are met:
 
 Violating the Uniform Firearms Act is commonly referred to as committing a "VUFA".</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/p.png"></Image>
+				<StackLayout x:Name="Prostitution" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/p.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Prostitution</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -177,7 +177,7 @@ A person commits the crime of prostition by engaging in sexual activity for mone
 
 Promoting prostituion is punished more severely if the person who is prostituted is under the age of 18.</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
+				<StackLayout x:Name="Narcotics" Orientation="Horizontal">
 					<Image WidthRequest="89" Source="Images/n.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Narcotics</Label>
 				</StackLayout>
@@ -189,8 +189,8 @@ A person is in possession of a controlled substance without a registered permiss
 
 PWID is "Possession With Intent to Distribute" and can carry higher bail amounts and penalties.  The primary charge is typically "Manufacture, Delivery, or Possession With Intent to Manufacture or Deliver".  Drug dealers, suppliers, couriers and other connected individuals supporting a drug sales operation typically face this charge.</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/m.png"></Image>
+				<StackLayout x:Name="CriminalMischief" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/m.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">Criminal Mischief</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -200,8 +200,8 @@ Pennsylvania defines criminal mischief as vandalism and other domestic property 
 
 Criminal Mischief is a 3rd degree felony if it is intentional and the property damage exceeds $5,000 or causes a loss of public utilities.  In other circumstances it is a misdemeanor or a summary offense.</Label>
 				</StackLayout>				
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/s.png"></Image>
+				<StackLayout x:Name="OtherSexAssault" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/s.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="20">Other Sex Crimes and Child Endangerment</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">
@@ -213,8 +213,8 @@ These are sex offenses that are not prostitution or patronizing prostitues.  Thi
 Additionally those charged with endangering the welfare of children are placed in this category.
 					</Label>
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Image WidthRequest="89" Source="Images/o.png"></Image>
+				<StackLayout x:Name="Other" Orientation="Horizontal">
+					<Image  WidthRequest="89" Source="Images/o.png"></Image>
 					<Label VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" FontSize="30">All Other Crime</Label>
 				</StackLayout>
 				<StackLayout Padding="20,0,10,0">

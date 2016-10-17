@@ -14,7 +14,15 @@
 					<Label
 						FontAttributes="Bold"
 						FontSize="Large">Original Crime Report</Label>
-					<Label x:Name="Description">Indicent: DRIVING UNDER THE INFLUENCE</Label>
+					<StackLayout Orientation="Horizontal">
+						<Image x:Name="CrimeImage" Source="Images/o_on.png" WidthRequest="40">
+							<Image.GestureRecognizers>
+							<TapGestureRecognizer
+								Tapped="CrimeShieldTouched" />
+							</Image.GestureRecognizers>
+						</Image>
+						<Label x:Name="Description" VerticalTextAlignment="Center">Indicent: DRIVING UNDER THE INFLUENCE</Label>
+					</StackLayout>
 					<Label x:Name="Address">Location: 5700 BLOCK W GIRARD AV</Label>
 					<Label x:Name="Time">Time: Monday, August 29, 2016 2:24 AM</Label>
 					<Label x:Name="District">Reporting Police District: 19</Label>

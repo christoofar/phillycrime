@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedWhite" white="0" alpha="1"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6" translatesAutoresizingMaskIntoConstraints="NO" image="pbsplash1.jpg" misplaced="YES">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6" translatesAutoresizingMaskIntoConstraints="NO" image="Images/splashbox.jpg" misplaced="YES">
                                 <rect key="frame" x="135" y="55" width="330" height="490"/>
                                 <constraints>
                                     <constraint id="25" firstAttribute="width" constant="307"/>
@@ -115,5 +115,35 @@
         <image name="Images/map.png" width="30" height="30"/>
         <image name="pbsplash1.jpg" width="1532" height="1200"/>
         <image name="Images/radar.png" width="30" height="30"/>
+        <image name="Images/DistanceBlotterFeature.png" width="640" height="729"/>
+        <image name="Images/PinFeatureImage.png" width="500" height="363"/>
+        <image name="Images/SetFeatureImage.png" width="378" height="349"/>
+        <image name="Images/NotifyFeatureImage.png" width="618" height="741"/>
+        <image name="Images/a.png" width="87.5" height="87.5"/>
+        <image name="Images/b.png" width="87.5" height="87.5"/>
+        <image name="Images/ro.png" width="87.5" height="87.5"/>
+        <image name="Images/h.png" width="87.5" height="87.5"/>
+        <image name="Images/t.png" width="87.5" height="87.5"/>
+        <image name="Images/ra.png" width="87.5" height="87.5"/>
+        <image name="Images/car_pin.png" width="16" height="16"/>
+        <image name="Images/car.png" width="87.5" height="87.5"/>
+        <image name="Images/v.png" width="87.5" height="87.5"/>
+        <image name="Images/vt_off.png" width="30" height="30"/>
+        <image name="Images/vt.png" width="87.5" height="87.5"/>
+        <image name="Images/rv_off.png" width="30" height="30"/>
+        <image name="Images/rv.png" width="87.5" height="87.5"/>
+        <image name="Images/ta_off.png" width="30" height="30"/>
+        <image name="Images/ta.png" width="87.5" height="87.5"/>
+        <image name="Images/d.png" width="87.5" height="87.5"/>
+        <image name="Images/g.png" width="87.5" height="87.5"/>
+        <image name="Images/p.png" width="87.5" height="87.5"/>
+        <image name="Images/n.png" width="87.5" height="87.5"/>
+        <image name="Images/s.png" width="87.5" height="87.5"/>
+        <image name="Images/o.png" width="87.5" height="87.5"/>
+        <image name="Images/m.png" width="87.5" height="87.5"/>
+        <image name="Images/legend.png" width="60" height="60"/>
+        <image name="Images/search.png" width="60" height="60"/>
+        <image name="Images/splash.jpg" width="776" height="1200"/>
+        <image name="Images/splashbox.jpg" width="1532" height="1200"/>
     </resources>
 </document>
