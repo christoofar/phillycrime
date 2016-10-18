@@ -263,6 +263,7 @@ namespace PhillyBlotter.Models
 			Debug.WriteLine($"Sending search request...");
 			return await cli.DoPostJson<CrimeReport[]>(getUri, JsonConvert.SerializeObject(criteria));
 		}
+
 	}
 }
 

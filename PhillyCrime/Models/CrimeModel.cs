@@ -60,6 +60,38 @@ namespace PhillyBlotter.Models
 		Other = 19
 	}
 
+	public enum AgeBracket
+	{
+		Any = 0,
+		TeenToTwentyOne = 1,
+		Twenties = 2,
+		Thirties = 3,
+		FourtiesToFiftyFive = 4,
+		OverFiftyFive = 5
+	}
+
+	public enum BailBracket
+	{
+		Any = 0,
+		Tier1 = 1,
+		Tier2 = 2,
+		Tier3 = 3,
+		Tier4 = 4,
+		Tier5 = 5
+	}
+
+	class ArrestSearchCriteria
+	{
+		public DateTime ArrestStart { get; set; }
+		public DateTime ArrestEnd { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public string DCN { get; set; }
+		public AgeBracket AgeBracket { get; set; }
+		public DateTime Birthday { get; set; }
+		public BailBracket Bail { get; set; }
+	}
+
 	public class Area
 	{
 		public PoliceDistrict PoliceDistrict { get; set; }
@@ -77,6 +109,17 @@ namespace PhillyBlotter.Models
 		public string DCN { get; set; }
 		public Filter Filter { get; set; }
 		public bool OnlyArrests { get; set; }
+	}
+
+	class ArrestReport
+	{
+		public string Defendant { get; set; }
+		public string CaseNumber { get; set; }
+		public string DCN { get; set; }
+		public string PrimaryCharge { get; set; }
+		public DateTime? ArrestDate { get; set; }
+		public string Bail { get; set; }
+		public string PoliceDistrict { get; set; }
 	}
 
 	public class Neighborhood : INotifyPropertyChanged
@@ -280,7 +323,7 @@ namespace PhillyBlotter.Models
 
 				if (WeekNumber(date) == WeekNumber(now) - 1)
 				{
-					return date.DayOfWeek.ToString() + " (Last week)";
+					return date.DayOfWeek + " (Last week)";
 				}
 
 				return "Earlier";
