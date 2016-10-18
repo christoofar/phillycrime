@@ -80,7 +80,7 @@ namespace PhillyBlotter.Models
 		Tier5 = 5
 	}
 
-	class ArrestSearchCriteria
+	public class ArrestSearchCriteria
 	{
 		public DateTime ArrestStart { get; set; }
 		public DateTime ArrestEnd { get; set; }
@@ -88,7 +88,7 @@ namespace PhillyBlotter.Models
 		public string LastName { get; set; }
 		public string DCN { get; set; }
 		public AgeBracket AgeBracket { get; set; }
-		public DateTime Birthday { get; set; }
+		public DateTime? Birthday { get; set; }
 		public BailBracket Bail { get; set; }
 	}
 
@@ -111,12 +111,13 @@ namespace PhillyBlotter.Models
 		public bool OnlyArrests { get; set; }
 	}
 
-	class ArrestReport
+	public class ArrestReport
 	{
 		public string Defendant { get; set; }
 		public string CaseNumber { get; set; }
 		public string DCN { get; set; }
 		public string PrimaryCharge { get; set; }
+		public string Birthdate { get; set; }
 		public DateTime? ArrestDate { get; set; }
 		public string Bail { get; set; }
 		public string PoliceDistrict { get; set; }

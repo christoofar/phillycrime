@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter"		
+	x:Class="PhillyBlotter.ArrestSearchResults">
+	<ContentPage.Content>
+	</ContentPage.Content>
+	<StackLayout>
+		<Grid
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand">
+			<ListView
+				IsVisible="true"
+				x:Name="blotterListView"
+				>
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout
+								Orientation="Horizontal"
+								Padding="1,0,1,0">
+								<Image
+									Source="Images/h_on.png" />
+								<StackLayout
+									HorizontalOptions="Fill"
+									Padding="0,0,0,0"
+									Spacing="0"
+									Orientation="Vertical">
+									<Label
+										FontAttributes="Bold"
+										Text="Defendant Name" />
+									<Label
+										FontAttributes="Italic"
+										Text="Label 2" />
+									<Label
+										FormattedText="Address" />
+								</StackLayout>
+								<Image
+									Source="Images/police.png"
+									IsVisible="true" />
+								<Image
+									HorizontalOptions="EndAndExpand"
+									Source="Images/right.png" />
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			<ActivityIndicator
+				x:Name="activity"
+				IsVisible="true"
+				IsRunning="true"
+				VerticalOptions="Center"
+				HorizontalOptions="FillAndExpand" />
+		</Grid>
+	</StackLayout>
+</ContentPage>

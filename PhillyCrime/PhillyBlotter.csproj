@@ -75,6 +75,9 @@
     <EmbeddedResource Include="Pages\ArrestSearchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ArrestSearchResults.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -145,6 +148,9 @@
       <DependentUpon>ArrestSearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="NullableDatePicker.cs" />
+    <Compile Include="Pages\ArrestSearchResults.xaml.cs">
+      <DependentUpon>ArrestSearchResults.xaml</DependentUpon>
+    </Compile>
 </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

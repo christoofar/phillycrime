@@ -40,11 +40,11 @@
 					</Grid.ColumnDefinitions>
 					<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
 						VerticalOptions="Center">First Name</Label>
-					<Entry Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+					<Entry x:Name="FirstNameEntry" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
 					</Entry>
 					<Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"
 						VerticalOptions="Center">Last Name</Label>
-					<Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+					<Entry x:Name="LastNameEntry" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
 					</Entry>
 				</Grid>
 				<Grid>

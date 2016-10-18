@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using PhillyBlotter.Models;
 using Xamarin.Forms;
 
 namespace PhillyBlotter
@@ -42,7 +42,45 @@ namespace PhillyBlotter
 
 		void Search_Clicked(object sender, System.EventArgs e)
 		{
+			// Gather the stuff in the fields and send it off to the results page.
+			ArrestSearchCriteria criteria = new ArrestSearchCriteria();
+			criteria.ArrestStart = DateStart.Date;
+			criteria.ArrestEnd = DateEnd.Date;
+			criteria.FirstName = FirstNameEntry.Text;
+			criteria.LastName = LastNameEntry.Text;
 
+			if (Birthday.NullableDate.HasValue)
+			{
+				criteria.Birthday = Birthday.Date;
+			}
+
+			if (AgeRange.SelectedIndex > 0)
+			{
+				switch (AgeRange.SelectedIndex)
+				{
+					case 1: criteria.AgeBracket = AgeBracket.TeenToTwentyOne; break;
+					case 2: criteria.AgeBracket = AgeBracket.Twenties; break;
+					case 3: criteria.AgeBracket = AgeBracket.Thirties; break;
+					case 4: criteria.AgeBracket = AgeBracket.FourtiesToFiftyFive; break;
+					case 5: criteria.AgeBracket = AgeBracket.OverFiftyFive; break;
+				}
+			}
+
+			if (Bail.SelectedIndex > -1)
+			{
+				switch (Bail.SelectedIndex)
+				{
+					case 0: criteria.Bail = BailBracket.Any; break;
+					case 1: criteria.Bail = BailBracket.Tier1; break;
+					case 2: criteria.Bail = BailBracket.Tier2; break;
+					case 3: criteria.Bail = BailBracket.Tier3; break;
+					case 4: criteria.Bail = BailBracket.Tier4; break;
+					case 5: criteria.Bail = BailBracket.Tier5; break;
+					default: criteria.Bail = BailBracket.Any; break;
+				}
+			}
+			criteria.DCN = DCN.Text;
+			Navigation.PushAsync(new ArrestSearchResults(criteria));
 		}
 
 		void Handle_DateSelected(object sender, Xamarin.Forms.DateChangedEventArgs e)

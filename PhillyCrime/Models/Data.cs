@@ -21,6 +21,7 @@ namespace PhillyBlotter.Models
 		private static string NEIGHBORHOOD = "Neighborhood";
 		private static string BLOTTER = "Blotter";
 		private static string CRIMESEARCH = "CrimeSearch";
+		private static string ARRESTSEARCH = "ArrestSearch";
 
 		public Data()
 		{
@@ -262,6 +263,16 @@ namespace PhillyBlotter.Models
 
 			Debug.WriteLine($"Sending search request...");
 			return await cli.DoPostJson<CrimeReport[]>(getUri, JsonConvert.SerializeObject(criteria));
+		}
+
+		public async static Task<ArrestReport[]> SearchArrests(ArrestSearchCriteria criteria)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string getUri = GetUri(ARRESTSEARCH);
+
+			Debug.WriteLine($"Sending search request...");
+			return await cli.DoPostJson<ArrestReport[]>(getUri, JsonConvert.SerializeObject(criteria));
 		}
 
 	}
