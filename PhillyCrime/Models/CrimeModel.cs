@@ -77,7 +77,8 @@ namespace PhillyBlotter.Models
 		Tier2 = 2,
 		Tier3 = 3,
 		Tier4 = 4,
-		Tier5 = 5
+		Tier5 = 5,
+		Tier6 = 6
 	}
 
 	public class ArrestSearchCriteria
@@ -90,6 +91,7 @@ namespace PhillyBlotter.Models
 		public AgeBracket AgeBracket { get; set; }
 		public DateTime? Birthday { get; set; }
 		public BailBracket Bail { get; set; }
+		public string PoliceDistrict { get; set; }
 	}
 
 	public class Area
@@ -111,16 +113,177 @@ namespace PhillyBlotter.Models
 		public bool OnlyArrests { get; set; }
 	}
 
-	public class ArrestReport
+	public class ArrestReport : INotifyPropertyChanged
 	{
-		public string Defendant { get; set; }
-		public string CaseNumber { get; set; }
-		public string DCN { get; set; }
-		public string PrimaryCharge { get; set; }
-		public string Birthdate { get; set; }
-		public DateTime? ArrestDate { get; set; }
-		public string Bail { get; set; }
-		public string PoliceDistrict { get; set; }
+		string _defendant;
+		public string Defendant
+		{
+			get
+			{
+				return _defendant;
+			}
+			set
+			{
+				if (_defendant != value)
+					_defendant = value;
+				OnPropertyChanged("Defendant");
+			}
+		}
+
+		string _caseNumber;
+		public string CaseNumber
+		{
+			get { return _caseNumber; }
+			set
+			{
+				if (_caseNumber != value)
+					_caseNumber = value;
+				OnPropertyChanged("CaseNumber");
+			}
+		}
+
+		string _dcn;
+		public string DCN
+		{
+			get { return _dcn; }
+			set
+			{
+				if (_dcn != value)
+					_dcn = value;
+				OnPropertyChanged("DCN");
+			}
+		}
+
+		string _primaryCharge;
+		public string PrimaryCharge
+		{
+			get { return _primaryCharge; }
+			set
+			{
+				if (_primaryCharge != value)
+					_primaryCharge = value;
+				OnPropertyChanged("PrimaryCharge");
+			}
+		}
+
+		string _birthDate;
+		public string BirthDate
+		{
+			get { return _birthDate; }
+			set
+			{
+				if (_birthDate != value)
+					_birthDate = value;
+				OnPropertyChanged("BirthDate");
+			}
+		}
+
+		public string Age
+		{
+			get
+			{
+				var today = DateTime.Today;
+				DateTime birthDate;
+				if (DateTime.TryParse(_birthDate, out birthDate))
+				{
+					var age = today.Year - birthDate.Year;
+					if (birthDate > today.AddYears(-age)) age--;
+					return age.ToString();
+				}
+				else
+				{
+					return "";
+				}
+			}
+		}
+
+		public string Title
+		{
+			get
+			{
+				string age = Age;
+
+				if (age != "")
+				{
+					return _defendant + ", " + age;
+				}
+				else
+				{
+					return _defendant;
+				}
+			}
+		}
+
+		DateTime? _arrestDate;
+		public DateTime? ArrestDate
+		{
+			get { return _arrestDate; }
+			set
+			{
+				if (_arrestDate != value)
+					_arrestDate = value;
+				OnPropertyChanged("ArrestDate");
+			}
+		}
+
+		string _bail;
+		public string Bail
+		{
+			get { return _bail; }
+			set
+			{
+				if (_bail != value)
+					_bail = value;
+				OnPropertyChanged("Bail");
+			}
+		}
+
+		string _policeDistrict;
+		public string PoliceDistrict
+		{
+			get { return _policeDistrict; }
+			set
+			{
+				if (_policeDistrict != value)
+					_policeDistrict = value;
+				OnPropertyChanged("PoliceDistrict");
+			}
+		}
+
+		CrimeType _crimeType;
+		public CrimeType CrimeType
+		{
+			get { return _crimeType; }
+			set
+			{
+				if (_crimeType != value)
+					_crimeType = value;
+				OnPropertyChanged("CrimeType");
+				OnPropertyChanged("ImageSource");
+			}
+		}
+
+		public string ImageSource
+		{
+			get
+			{
+				return Global.ImageSource(_crimeType);
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		void OnPropertyChanged(string propertyName)
+		{
+			try
+			{
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			}
+			catch { }
+			// TODO Call to PropertyChanged event accesses a disposed object.
+			// An exception-raise can happen sometimes when a premature access happens but this object
+			// has already been disposed or is being disposed.  Not sure yet why the framework is allowing
+			// this.
+		}
 	}
 
 	public class Neighborhood : INotifyPropertyChanged

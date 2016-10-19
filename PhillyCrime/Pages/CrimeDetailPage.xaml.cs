@@ -32,6 +32,16 @@ namespace PhillyBlotter
 			GetCrimeDetails();
 		}
 
+		public CrimeDetailPage(string dcn, CrimeType crimeType)
+		{
+			_pin = new CustomPin();
+			_pin.Id = dcn;
+			_type = crimeType;
+			InitializeComponent();
+
+			GetCrimeDetails();
+		}
+
 		// Initialize view with data
 		public Task<bool> GetCrimeDetails()
 		{

@@ -1,77 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentView
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="PhillyBlotter.MultipleArrestsView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhillyBlotter.MultipleArrestsView">
 	<ContentView.Content>
 		<!-- Defendant fanfare -->
-		<Frame
-			OutlineColor="#CCCCCC"
-			BackgroundColor="#BBBBBB"				
-			HasShadow="false"
-			WidthRequest="500"
-			HorizontalOptions="CenterAndExpand">
+		<Frame OutlineColor="#CCCCCC" BackgroundColor="#BBBBBB" HasShadow="false"
+			WidthRequest="500" HorizontalOptions="CenterAndExpand">
 			<StackLayout Spacing="0">
-				<Label
-					FontAttributes="Bold"
-					FontSize="25"
-					HorizontalOptions="StartAndExpand"
-					TextColor="Black"
-					x:Name="textDefendantName">DEFENDANT NAME, 45</Label>
-				<Label
-					FontAttributes="Bold"
-					FontSize="18"
-					TextColor="Black"
+				<Label FontAttributes="Bold" FontSize="25" HorizontalOptions="StartAndExpand"
+					TextColor="Black" x:Name="textDefendantName">DEFENDANT NAME, 45</Label>
+				<Label FontAttributes="Bold" FontSize="18" TextColor="Black"
 					x:Name="textOffenseTitle">AGGRAVATED ASSAULT NO WEAPON</Label>
-				<StackLayout
-					Orientation="Horizontal">
-					<Label
-						FontAttributes="Bold"
-						FontSize="15"
-						TextColor="Black">Arrested:</Label>
-					<Label
-						FontSize="15"
-						x:Name="textArrestDate">08/03/2016</Label>
+				<StackLayout Orientation="Horizontal">
+					<Label FontAttributes="Bold" FontSize="15" TextColor="Black">Arrested:</Label>
+					<Label FontSize="15" x:Name="textArrestDate">08/03/2016</Label>
 				</StackLayout>
-				<StackLayout
-					Orientation="Horizontal">
-					<Label
-						FontAttributes="Bold"
-						FontSize="15"
-						TextColor="Black">Suspect lives in:</Label>
-					<Label
-						FontSize="15" TextColor="Blue"
-						x:Name="textSuspectLivesIn">
+				<StackLayout Orientation="Horizontal">
+					<Label FontAttributes="Bold" FontSize="15" TextColor="Black">Suspect lives in:</Label>
+					<Label FontSize="15" TextColor="Blue" x:Name="textSuspectLivesIn">
 						<Label.GestureRecognizers>
-							<TapGestureRecognizer Tapped="OnLivesInTapped" NumberOfTapsRequired="1"/>
+							<TapGestureRecognizer Tapped="OnLivesInTapped" NumberOfTapsRequired="1" />
 						</Label.GestureRecognizers>
 					</Label>
 				</StackLayout>
-				<StackLayout
-					Orientation="Horizontal">
-					<Label
-						FontAttributes="Bold"
-						FontSize="15"
-						TextColor="Black" x:Name="textBail"></Label>
+				<StackLayout Orientation="Horizontal">
+					<Label FontAttributes="Bold" FontSize="15" TextColor="Black"
+						x:Name="textBail">
+					</Label>
 				</StackLayout>
-				<StackLayout
-					Orientation="Horizontal">
-					<Label
-						FontAttributes="Bold"
-						FontSize="15"
-						TextColor="Black">Arresting Officer: </Label>
-					<Label
-						FontSize="Default"
-						x:Name="textArrestingOfficer"></Label>
-				</StackLayout>				
-				<StackLayout						
-					Orientation="Horizontal" HorizontalOptions="End">
-					<Button
-						Text="View Docket"
-						x:Name="buttonDocket">
+				<StackLayout Orientation="Horizontal">
+					<Label FontAttributes="Bold" FontSize="15" TextColor="Black">Arresting Officer: </Label>
+					<Label FontSize="Default" x:Name="textArrestingOfficer">
+					</Label>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="End">
+					<Button Text="View Docket" x:Name="buttonDocket">
+					</Button>
+					<Button Text="Find Matching Arrests" x:Name="buttonMatches" Clicked="ButtonFindMatches_Clicked">
 					</Button>
 				</StackLayout>
 			</StackLayout>
-		</Frame>		
+		</Frame>
 	</ContentView.Content>
 </ContentView>

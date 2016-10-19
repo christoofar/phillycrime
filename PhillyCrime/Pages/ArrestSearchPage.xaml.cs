@@ -76,10 +76,15 @@ namespace PhillyBlotter
 					case 3: criteria.Bail = BailBracket.Tier3; break;
 					case 4: criteria.Bail = BailBracket.Tier4; break;
 					case 5: criteria.Bail = BailBracket.Tier5; break;
+					case 6: criteria.Bail = BailBracket.Tier6; break;
 					default: criteria.Bail = BailBracket.Any; break;
 				}
 			}
 			criteria.DCN = DCN.Text;
+			if (PoliceDistrictID.SelectedIndex > -1)
+			{
+				criteria.PoliceDistrict = PoliceDistrictID.Items[PoliceDistrictID.SelectedIndex];
+			}
 			Navigation.PushAsync(new ArrestSearchResults(criteria));
 		}
 

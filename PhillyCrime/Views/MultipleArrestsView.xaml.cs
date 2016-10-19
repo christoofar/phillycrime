@@ -24,6 +24,11 @@ namespace PhillyBlotter
 			});
 		}
 
+		void ButtonFindMatches_Clicked(object sender, System.EventArgs e)
+		{
+			Navigation.PushAsync(new ArrestSearchResults(_report.Defendant, DateTime.Parse(_report.DateOfBirth)));
+		}
+
 		public void UpdateData(Arrest arrest)
 		{
 

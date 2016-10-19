@@ -10,7 +10,7 @@
 						<OnPlatform.Android>1</OnPlatform.Android>
 					</OnPlatform>
 				</StackLayout.Spacing>
-				<Label FontAttributes="Bold" FontSize="Large" VerticalTextAlignment="Center">Arrest Date Between</Label>
+				<Label FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center">Arrest Date Between</Label>
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="*" />
@@ -27,7 +27,7 @@
 					</DatePicker>
 				</Grid>
 				<!-- Defendant Name -->
-				<Label FontAttributes="Bold" FontSize="Large" VerticalTextAlignment="Center">Defendant</Label>
+				<Label FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center">Defendant</Label>
 				<Grid Padding="0,0,0,0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="*" />
@@ -38,13 +38,15 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="2*" />
 					</Grid.ColumnDefinitions>
-					<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
+					<Label FontSize="Small" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
 						VerticalOptions="Center">First Name</Label>
-					<Entry x:Name="FirstNameEntry" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+					<Entry x:Name="FirstNameEntry" Grid.Row="0" Grid.Column="1"
+						Grid.ColumnSpan="2">
 					</Entry>
-					<Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"
+					<Label FontSize="Small" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"
 						VerticalOptions="Center">Last Name</Label>
-					<Entry x:Name="LastNameEntry" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+					<Entry x:Name="LastNameEntry" Grid.Row="1" Grid.Column="1"
+						Grid.ColumnSpan="2">
 					</Entry>
 				</Grid>
 				<Grid>
@@ -58,9 +60,9 @@
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 					<Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold"
-						FontSize="Large" VerticalTextAlignment="Center">Age</Label>
+						FontSize="Medium" VerticalTextAlignment="Center">Age        (or)</Label>
 					<Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold"
-						FontSize="Large" VerticalTextAlignment="Center">Birthdate</Label>
+						FontSize="Medium" VerticalTextAlignment="Center">Birthdate</Label>
 					<!-- Age -->
 					<Picker x:Name="AgeRange" SelectedIndexChanged="AgeRangeChanged" Grid.Row="1"
 						Grid.Column="0" SelectedIndex="0">
@@ -77,7 +79,7 @@
 						Grid.Column="1">
 					</local:NullableDatePicker>
 					<Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold"
-						FontSize="Large" VerticalTextAlignment="Center">Bail</Label>
+						FontSize="Medium" VerticalTextAlignment="Center">Bail</Label>
 					<!-- Bail -->
 					<Picker x:Name="Bail" SelectedIndexChanged="BailChanged" Grid.Row="2"
 						Grid.Column="1" Grid.ColumnSpan="2">
@@ -92,12 +94,43 @@
 						</Picker.Items>
 					</Picker>
 				</Grid>
+				<!--Police District-->
+				<StackLayout Orientation="Horizontal">
+					<Label FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center">Police District</Label>
+					<Picker x:Name="PoliceDistrictID" WidthRequest="50">
+						<Picker.Items>
+							<x:String>01</x:String>
+							<x:String>02</x:String>
+							<x:String>03</x:String>
+							<x:String>05</x:String>
+							<x:String>06</x:String>
+							<x:String>07</x:String>
+							<x:String>08</x:String>
+							<x:String>09</x:String>
+							<x:String>12</x:String>
+							<x:String>14</x:String>
+							<x:String>15</x:String>
+							<x:String>16</x:String>
+							<x:String>17</x:String>
+							<x:String>18</x:String>
+							<x:String>19</x:String>
+							<x:String>22</x:String>
+							<x:String>24</x:String>
+							<x:String>25</x:String>
+							<x:String>26</x:String>
+							<x:String>35</x:String>
+							<x:String>39</x:String>
+							<x:String>71</x:String>
+							<x:String>77</x:String>
+						</Picker.Items>
+					</Picker>
+				</StackLayout>
 				<!-- DCN -->
 				<StackLayout>
 					<Label FontAttributes="Bold" VerticalTextAlignment="Center">District Control Number (DCN):</Label>
 					<Entry TextChanged="DCNChanged" x:Name="DCN" Keyboard="Numeric">
 					</Entry>
-				</StackLayout>				
+				</StackLayout>
 				<Button Clicked="Search_Clicked" HorizontalOptions="FillAndExpand" BackgroundColor="#4B0082"
 					TextColor="White" FontAttributes="Bold" Text="Search">
 				</Button>

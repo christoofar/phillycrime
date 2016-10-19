@@ -70,6 +70,10 @@
 						Text="View Docket"
 						x:Name="buttonDocket">
 					</Button>
+					<Button
+						Text="Find Matching Arrests"
+						x:Name="buttonMatches" Clicked="ButtonFindMatches_Clicked">
+					</Button>
 				</StackLayout>
 			</StackLayout>
 		</Frame>

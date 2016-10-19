@@ -50,18 +50,39 @@ namespace PhillyBlotter
 			{
 				_report = report;
 
-				Description.Text = string.Format("{0}", report.FullCrimeDetail.TEXT_GENERAL_CODE);
-				Address.Text = string.Format("Location: {0}", report.FullCrimeDetail.LOCATION_BLOCK);
-				Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.ToString("dddd MMMM d h:mm tt"));
-				District.Text = string.Format("Police District: {0}", report.FullCrimeDetail.DC_DIST);
-				CrimeImage.Source = Global.ImageSource(type);
+				if (report.FullCrimeDetail != null)
+				{
+					Description.Text = string.Format("{0}", report.FullCrimeDetail.TEXT_GENERAL_CODE);
+					Address.Text = string.Format("Location: {0}", report.FullCrimeDetail.LOCATION_BLOCK);
+					Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.ToString("dddd MMMM d h:mm tt"));
+					District.Text = string.Format("Police District: {0}", report.FullCrimeDetail.DC_DIST);
+					CrimeImage.Source = Global.ImageSource(type);
 
+					if (_report.FullCrimeDetail.POINT_X == null || _report.FullCrimeDetail.POINT_Y == null)
+					{
+						buttonMap.IsVisible = false;
+					}
 
-				PSA.Text = string.Format("PSA: {0}", report.FullCrimeDetail.SECTOR);
-				DCN.Text = String.Format("DCN: {0}-{1}-{2}",
-										 report.DCN.Substring(2, 2),
-										 report.DCN.Substring(4, 2),
-										 report.DCN.Substring(6, report.DCN.Length - 6));
+					PSA.Text = string.Format("PSA: {0}", report.FullCrimeDetail.SECTOR);
+					DCN.Text = String.Format("DCN: {0}-{1}-{2}",
+											 report.DCN.Substring(2, 2),
+											 report.DCN.Substring(4, 2),
+											 report.DCN.Substring(6, report.DCN.Length - 6));
+				}
+				else
+				{
+					CrimeImage.Source = Global.ImageSource(type);
+					Description.Text = "Crime report not yet available";
+					Address.Text = "The Philadelphia Police Department has not yet published information about this crime.";
+					Time.IsVisible = false;
+					District.Text = $"Police District: {report.FullArrestDetails[0].PoliceDistrict}";
+					buttonMap.IsVisible = false;
+					PSA.IsVisible = false;
+					DCN.Text = String.Format("DCN: {0}-{1}-{2}",
+											 report.DCN.Substring(2, 2),
+											 report.DCN.Substring(4, 2),
+											 report.DCN.Substring(6, report.DCN.Length - 6));
+				}
 
 				this.IsVisible = true;
 			});

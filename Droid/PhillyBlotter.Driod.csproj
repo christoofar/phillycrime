@@ -343,6 +343,8 @@
     <AndroidResource Include="Resources\drawable\search.png" />
     <AndroidResource Include="Resources\drawable-hdpi\justice.png" />
     <AndroidResource Include="Resources\drawable\justice.png" />
+    <AndroidResource Include="Resources\drawable\unknown_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\unknown_on.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />

@@ -56,6 +56,8 @@ namespace PhillyBlotter
 					return "Images/o_on.png";
 				case Models.CrimeType.OtherSexAssault:
 					return "Images/s_on.png";
+				case Models.CrimeType.Nothing:
+					return "Images/unknown_on.png";					
 				default:
 					return "Images/o_on.png";
 			}

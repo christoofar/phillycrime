@@ -75,6 +75,9 @@ namespace PhillyBlotter
 				textSuspectLivesIn.Text = string.Format("{0}", _report.DefendantZip);
 				_url = string.Format("https://docs.google.com/viewer?url={0}", _report.Url);
 
+				DateTime birthday;
+				buttonMatches.IsVisible = DateTime.TryParse(_report.DateOfBirth, out birthday);
+
 				this.IsVisible = true;
 			});
 		}
@@ -85,6 +88,11 @@ namespace PhillyBlotter
 			{
 				Device.OpenUri(new Uri(_url));
 			});
+		}
+
+		void ButtonFindMatches_Clicked(object sender, System.EventArgs e)
+		{			
+			Navigation.PushAsync(new ArrestSearchResults(_report.Defendant, DateTime.Parse(_report.DateOfBirth)));
 		}
 	}
 }

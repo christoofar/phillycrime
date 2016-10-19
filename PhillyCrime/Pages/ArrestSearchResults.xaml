@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter"		
-	x:Class="PhillyBlotter.ArrestSearchResults">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:PhillyBlotter;assembly=PhillyBlotter"
+	x:Class="PhillyBlotter.ArrestSearchResults" Padding="5,0,5,0" Title="Arrest Search Results">
 	<ContentPage.Content>
 	</ContentPage.Content>
 	<StackLayout>
-		<Grid
-			VerticalOptions="FillAndExpand"
-			HorizontalOptions="FillAndExpand">
-			<ListView
-				IsVisible="true"
-				x:Name="blotterListView"
-				>
+		<Frame
+					Padding="5,5,5,5"
+					HasShadow="false"
+					IsVisible="true"
+					x:Name="MultipleNotice" BackgroundColor="#4B0082">
+					<StackLayout Padding="0,0,0,0" Spacing="10" Orientation="Horizontal">
+						<Image Source="Images/alert.png"></Image>
+						<Label
+							FontAttributes="Bold" FontSize="Small" TextColor="White">These are matches on the exact name and date of birth.  That's no guarantee that these records are tied to the same person.</Label>
+					</StackLayout>
+		</Frame>		
+		<StackLayout x:Name="warningPanel" IsVisible="false">
+			<Label x:Name="labelNoRecords" TextColor="Gray" HorizontalOptions="Center"
+				FontAttributes="Italic">No records came back from your search.</Label>
+		</StackLayout>		
+		<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+			<ListView IsVisible="true" HasUnevenRows="true" x:Name="blotterListView"
+				ItemSelected="Handle_ItemSelected">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<StackLayout
-								Orientation="Horizontal"
-								Padding="1,0,1,0">
-								<Image
-									Source="Images/h_on.png" />
-								<StackLayout
-									HorizontalOptions="Fill"
-									Padding="0,0,0,0"
-									Spacing="0"
+							<StackLayout Orientation="Horizontal" Padding="1,0,1,0">
+								<Image Source="{Binding ImageSource}" />
+								<StackLayout HorizontalOptions="Fill" Padding="0,0,0,0" Spacing="0"
 									Orientation="Vertical">
-									<Label
-										FontAttributes="Bold"
-										Text="Defendant Name" />
-									<Label
-										FontAttributes="Italic"
-										Text="Label 2" />
-									<Label
-										FormattedText="Address" />
+									<StackLayout Orientation="Horizontal" Padding="0,0,0,0">
+										<Label FontAttributes="Bold" Text="{Binding Title}" />
+									</StackLayout>
+									<Label Text="{Binding PrimaryCharge}" />
+									<StackLayout Orientation="Horizontal" Padding="0,0,0,0">
+										<Label Font="Small" FontAttributes="Italic">Arrested</Label>
+										<Label Font="Small" FontAttributes="Italic" Text="{Binding ArrestDate, StringFormat='{0:dddd, MMM d yyyy}'}" />
+									</StackLayout>
+									<StackLayout Orientation="Horizontal">
+										<Label Font="Small">DOB</Label>
+										<Label Font="Small" Text="{Binding BirthDate, StringFormat='{0:MM/dd/yyyy}'}">
+										</Label>
+										<Label Font="Small">District</Label>
+										<Label Font="Small" Text="{Binding PoliceDistrict}">
+										</Label>
+									</StackLayout>
 								</StackLayout>
-								<Image
-									Source="Images/police.png"
-									IsVisible="true" />
-								<Image
-									HorizontalOptions="EndAndExpand"
-									Source="Images/right.png" />
+								<Image HorizontalOptions="EndAndExpand" Source="Images/right.png" />
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
-			<ActivityIndicator
-				x:Name="activity"
-				IsVisible="true"
-				IsRunning="true"
-				VerticalOptions="Center"
-				HorizontalOptions="FillAndExpand" />
+			<ActivityIndicator x:Name="activity" IsVisible="true" IsRunning="true"
+				VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
 		</Grid>
 	</StackLayout>
 </ContentPage>
