@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhillyBlotter.SubmitNews">
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout Padding="10,5,10,5">
+				<StackLayout Orientation="Horizontal">
+					<Image Source="Images/newsbig.png" />
+					<Label FontSize="30" FontAttributes="Bold" VerticalOptions="Center">Submit A Crime Story</Label>
+				</StackLayout>
+				<StackLayout BackgroundColor="#CCCCFF" Padding="10,10,10,10">
+					<Label FontAttributes="Bold">Enter the URL of the crime story</Label>
+					<Entry x:Name="URL" />
+					<Button Clicked="PostNews" HorizontalOptions="FillAndExpand" BackgroundColor="#4B0082"
+						TextColor="White" FontAttributes="Bold" Text="Submit">
+					</Button>
+					<Label FontSize="Micro" FontAttributes="Italic">Copying the URL from your device's web browser then coming back to this screen makes this process easier.</Label>
+				</StackLayout>
+				<Label />
+				<StackLayout BackgroundColor="#EEEEEE" Padding="10,0,5,0">
+					<Label FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center">Guidelines</Label>
+					<Label>Posting a news article to a crime report allows others to gain more insight and detail than just the time, date and location that the police provide.</Label>
+					<Label>For this feature to be useful the crime story must be:</Label>
+					<Label>-   From a relevant source (see below)</Label>
+					<Label>-   Witten about this crime</Label>
+					<Label>-   Not an editorial/blog post</Label>
+					<Label>-   Is not an entertainment site</Label>
+					<Label FontAttributes="Bold">We accept news stories from these sources</Label>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<Label Grid.Column="0">PhillyVOICE
+Philly.com
+Philadelphia Police
+PHL Metro
+NBC10
+Northeast Times
+YouTube (Police video only)</Label>
+						<Label Grid.Column="1">Philadelphia Magazine
+WHYY Newsworks
+6ABC
+CBS3/KYW
+FOX29
+STAR Newspaper</Label>
+					</Grid>
+					<Label>Unfortunately we cannot accept social media posts such as Facebook, Tumblr, Reddit or Instagram as these are not relevant crime-reporting sources.</Label>
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

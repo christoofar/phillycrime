@@ -9,7 +9,7 @@
 	<ContentPage.Content>
 		<ScrollView>
 			<StackLayout
-				x:Name="MainLayout">
+				x:Name="MainLayout" Spacing="1">
 				<ActivityIndicator
 					x:Name="Indicator"
 					VerticalOptions="CenterAndExpand"
@@ -39,6 +39,8 @@
 					IsVisible="false"
 					x:Name="CrimeView">
 				</local:CrimeView>
+				<StackLayout Padding="0,5,0,5" x:Name="NewsView">
+				</StackLayout>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

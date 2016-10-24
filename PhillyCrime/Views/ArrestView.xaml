@@ -28,7 +28,7 @@
 					<Label
 						FontAttributes="Bold"
 						FontSize="Medium"
-						TextColor="Black">Arrested:</Label>
+						TextColor="Black">Arrested/Charged:</Label>
 					<Label
 						FontSize="Medium"
 						x:Name="textArrestDate">08/03/2016</Label>

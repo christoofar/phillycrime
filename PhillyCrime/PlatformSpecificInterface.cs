@@ -13,5 +13,7 @@ namespace PhillyBlotter
 		void BringToForeground();
 
 		Task<string> ResolveIPAddress(string host);
+
+		string GetClipboardData();
 	}
 }

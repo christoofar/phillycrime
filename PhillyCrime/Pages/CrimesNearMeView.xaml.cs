@@ -338,8 +338,26 @@ namespace PhillyBlotter
 		{
 			return Task.Run(async () =>
 		   {
-			   var crime = await Data.Get30DayCrimeData(MyMap.VisibleRegion, currentFilter);
-			   DataFill(crime);
+			   try
+			   {
+				   if (MyMap.VisibleRegion != null)
+				   {
+					   var crime = await Data.Get30DayCrimeData(MyMap.VisibleRegion, currentFilter);
+					   DataFill(crime);
+				   }
+			   }
+			   catch (Exception ex)
+			   {
+				   if (MyMap.VisibleRegion != null)
+				   {
+					   HockeyApp.MetricsManager.TrackEvent(
+						   "Map Request Failure",
+							new Dictionary<string, string> { { "exception", ex.Message } },
+							new Dictionary<string, double> { { "Latitude", MyMap.VisibleRegion.LatitudeDegrees }, { "Longitude", MyMap.VisibleRegion.LongitudeDegrees },
+							{"DeltaLatitude", MyMap.VisibleRegion.LatitudeDegrees}, {"DeltaLongitude", MyMap.VisibleRegion.LongitudeDegrees}}
+						);
+				   }
+				}
 			   return true;
 		   });
 		}
@@ -406,6 +424,7 @@ namespace PhillyBlotter
 			// If there is no primary location already configured in the phone, use GPS
 			if (!Application.Current.Properties.ContainsKey("PrimaryLat"))
 			{
+				MyMap.IsShowingUser = true;
 
 				if (DependencyService.Get<PlatformSpecificInterface>().CheckIfSimulator() && Device.OS == TargetPlatform.iOS)
 				{
@@ -415,7 +434,6 @@ namespace PhillyBlotter
 
 				try
 				{
-
 					var locator = CrossGeolocator.Current;
 					locator.DesiredAccuracy = 50;
 					Device.OnPlatform(null, async () => 

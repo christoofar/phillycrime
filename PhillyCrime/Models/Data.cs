@@ -22,6 +22,7 @@ namespace PhillyBlotter.Models
 		private static string BLOTTER = "Blotter";
 		private static string CRIMESEARCH = "CrimeSearch";
 		private static string ARRESTSEARCH = "ArrestSearch";
+		private static string NEWS = "News";
 
 		public Data()
 		{
@@ -167,6 +168,39 @@ namespace PhillyBlotter.Models
 
 			string getUri = GetUri(BLOTTER, string.Format($"/{latitutde}/{longitude}/{distance}/"));
 			var resp = await cli.DoRequestJsonAsync<CrimeReport[]>(getUri);
+			return resp;
+		}
+
+		/// <summary>
+		/// Submits a news story contribution to a crime report.
+		/// </summary>
+		/// <returns>A NewsContributionResponse which informs the client whether the 
+		/// submission was accepted or turned down</returns>
+		/// <param name="contribution">Contribution.</param>
+		public async static Task<NewsContributionResponse> SubmitNewsStory(NewsContribution contribution)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			string getUri = GetUri(NEWS);
+			var resp = await cli.DoPostJson<NewsContributionResponse>(getUri, JsonConvert.SerializeObject(contribution));
+			return resp;
+		}
+
+		public async static Task<NewsContributionResponse> FlagNewsStory(NewsFlagConcern reason)
+		{
+			JsonWebClient cli = new JsonWebClient();
+
+			// This is fucked up but this API stack will not allow a message body to go through in this case.
+			// And % sign is verboten in URL string, so we have to replace that with $ signs.  The server will
+			// reverse this process on the other end.
+
+			string url = reason.URL;
+			url = System.Net.WebUtility.UrlEncode(url);
+			url = url.Replace('%', '$');
+
+			string getUri = GetUri(NEWS, $"/{url}/{reason.Reason}/{reason.DCN}/");
+
+			var resp = await cli.DoDeleteJson<NewsContributionResponse>(getUri);
 			return resp;
 		}
 

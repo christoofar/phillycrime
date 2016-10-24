@@ -137,9 +137,16 @@ namespace PhillyBlotter
 				if (!Application.Current.Properties.ContainsKey("LastPositionAsk") ||
 					((DateTime)(Application.Current.Properties["LastPositionAsk"])).AddDays(10) < DateTime.Now)
 				{
-					// OK, now we need to see if we're located in Philly.  We do this by asking the server
-					// what PPD district the device is in right now.
-					var area = await Data.Area(currentPosition.Longitude, currentPosition.Latitude);
+
+					Area area = null;
+
+					try
+					{
+						// OK, now we need to see if we're located in Philly.  We do this by asking the server
+						// what PPD district the device is in right now.
+						area = await Data.Area(currentPosition.Longitude, currentPosition.Latitude);
+					}
+					catch {}  // If this bombs out we don't know where the user is.
 
 					if (area != null)  // We're in Philly!
 					{

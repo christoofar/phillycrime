@@ -9,7 +9,7 @@
 					HasShadow="false"
 					IsVisible="true"
 					x:Name="MultipleNotice" BackgroundColor="#4B0082">
-					<StackLayout Padding="0,0,0,0" Spacing="10" Orientation="Horizontal">
+					<StackLayout Padding="0,0,0,0" Spacing="10" Orientation="Horizontal" MinimumHeightRequest="100">
 						<Image Source="Images/alert.png"></Image>
 						<Label
 							FontAttributes="Bold" FontSize="Small" TextColor="White">These are matches on the exact name and date of birth.  That's no guarantee that these records are tied to the same person.</Label>

@@ -28,7 +28,12 @@
 					<Label x:Name="District">Reporting Police District: 19</Label>
 					<Label x:Name="PSA">Police Service Area: 2</Label>
 					<Label x:Name="DCN">DCN# 16-24-0001252</Label>
-					<Button HorizontalOptions="End" Text="View on Map >" x:Name="buttonMap" />
+					<StackLayout Orientation="Horizontal">
+						<!--<Button HorizontalOptions="Start" Clicked="ShareCrimeClicked" BackgroundColor="White" Image="Images/share.png" x:Name="buttonShare" />-->
+						<Button HorizontalOptions="Start" BorderWidth="0" BorderColor="#00000000" BackgroundColor="#00000000" Clicked="PostNewsClicked" Image="Images/news.png" x:Name="buttonNews" />
+						<Label HorizontalOptions="FillAndExpand"></Label>
+						<Button HorizontalOptions="End" Text="View on Map >" x:Name="buttonMap" />
+					</StackLayout>
 				</StackLayout>
 			</Frame>
 		</StackLayout>

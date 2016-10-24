@@ -42,5 +42,20 @@ namespace PhillyBlotter.Droid
 				return addresses[0].ToString();
 			return "";
 		}
+
+		public string GetClipboardData()
+		{
+			var app = Application.Context;
+
+			var clipboard = (ClipboardManager)app.GetSystemService(Context.ClipboardService);
+
+			       
+			if (clipboard != null && clipboard.HasPrimaryClip)
+			{
+				return clipboard.Text;
+			}
+
+			return "";
+		}
 	}
 }

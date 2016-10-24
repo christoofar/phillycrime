@@ -143,6 +143,21 @@
     <Reference Include="Plugin.Geolocator">
       <HintPath>..\packages\Xam.Plugin.Geolocator.4.0.0-beta12\lib\MonoAndroid10\Plugin.Geolocator.dll</HintPath>
     </Reference>
+    <Reference Include="HockeySDK.AndroidBindings">
+      <HintPath>..\Components\hockeyappandroid-4.1.0.3\lib\android\HockeySDK.AndroidBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK">
+      <HintPath>..\Components\hockeyappandroid-4.1.0.3\lib\android\HockeySDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.CustomTabs">
+      <HintPath>..\packages\Xamarin.Android.Support.CustomTabs.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.CustomTabs.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share.Abstractions">
+      <HintPath>..\packages\Plugin.Share.4.1.0-beta4\lib\MonoAndroid10\Plugin.Share.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share">
+      <HintPath>..\packages\Plugin.Share.4.1.0-beta4\lib\MonoAndroid10\Plugin.Share.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -260,10 +275,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\radar.png" />
     <AndroidResource Include="Resources\drawable\splash.jpg" />
     <AndroidResource Include="Resources\drawable-hdpi\splash.jpg" />
-    <AndroidResource Include="Resources\drawable\DistanceBlotterFeature.png" />
-    <AndroidResource Include="Resources\drawable\NotifyFeatureImage.png" />
-    <AndroidResource Include="Resources\drawable\PinFeatureImage.png" />
-    <AndroidResource Include="Resources\drawable\SetFeatureImage.png" />
     <AndroidResource Include="Resources\drawable-hdpi\t.png" />
     <AndroidResource Include="Resources\drawable-hdpi\h.png" />
     <AndroidResource Include="Resources\drawable-hdpi\r.png" />
@@ -345,6 +356,13 @@
     <AndroidResource Include="Resources\drawable\justice.png" />
     <AndroidResource Include="Resources\drawable\unknown_on.png" />
     <AndroidResource Include="Resources\drawable-hdpi\unknown_on.png" />
+    <AndroidResource Include="Resources\drawable\share.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\share.png" />
+    <AndroidResource Include="Resources\drawable\news.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\news.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\newsbig.png" />
+    <AndroidResource Include="Resources\drawable\flag.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\flag.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xhdpi\" />
@@ -353,6 +371,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="pclstorage">
       <Version>1.0.2.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="hockeyappandroid">
+      <Version>4.1.0.3</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

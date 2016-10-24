@@ -5,6 +5,7 @@ using Android.App;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
+[assembly: MetaData("net.hockeyapp.android.appIdentifier", Value = "5be47e4c35ab407eb52019f5bf5d7789")]
 [assembly: AssemblyTitle("PhillyBlotter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

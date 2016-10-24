@@ -42,6 +42,19 @@ namespace PhillyBlotter
 			}
 		}
 
+		void PostNewsClicked(object sender, System.EventArgs e)
+		{
+			var news = new SubmitNews(_report.DCN);
+			Navigation.PushAsync(news);
+		}
+
+		void ShareCrimeClicked(object sender, System.EventArgs e)
+		{
+			Plugin.Share.CrossShare.Current.ShareLink("http://www.google.com", 
+			                                          $"{_report.FullCrimeDetail.TEXT_GENERAL_CODE}", 
+			                                          $"{_report.FullCrimeDetail.TEXT_GENERAL_CODE} at {_report.FullCrimeDetail.LOCATION_BLOCK}");
+		}
+
 		public void UpdateData(FullCrimeReport report, CrimeType type)
 		{
 			_type = type;
@@ -54,7 +67,14 @@ namespace PhillyBlotter
 				{
 					Description.Text = string.Format("{0}", report.FullCrimeDetail.TEXT_GENERAL_CODE);
 					Address.Text = string.Format("Location: {0}", report.FullCrimeDetail.LOCATION_BLOCK);
-					Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.ToString("dddd MMMM d h:mm tt"));
+					if (DateTime.Today.Year == report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.Year)
+					{
+						Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.ToString("dddd MMMM d h:mm tt"));
+					}
+					else 
+					{
+						Time.Text = string.Format("Time: {0}", report.FullCrimeDetail.DISPATCH_DATE_TIME.Value.ToString("dddd MMMM d yyyy h:mm tt"));
+					}
 					District.Text = string.Format("Police District: {0}", report.FullCrimeDetail.DC_DIST);
 					CrimeImage.Source = Global.ImageSource(type);
 

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedWhite" white="0" alpha="1"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6" translatesAutoresizingMaskIntoConstraints="NO" image="Images/splashbox.jpg" misplaced="YES">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6" translatesAutoresizingMaskIntoConstraints="NO" image="Images/splashbox2.jpg" misplaced="YES">
                                 <rect key="frame" x="135" y="55" width="330" height="490"/>
                                 <constraints>
                                     <constraint id="25" firstAttribute="width" constant="307"/>
@@ -144,6 +144,14 @@
         <image name="Images/legend.png" width="60" height="60"/>
         <image name="Images/search.png" width="60" height="60"/>
         <image name="Images/splash.jpg" width="776" height="1200"/>
-        <image name="Images/splashbox.jpg" width="1532" height="1200"/>
+        <image name="Images/justice.png" width="30" height="30"/>
+        <image name="Images/unknown_on.png" width="30" height="30"/>
+        <image name="Images/sample.jpg" width="1200" height="630"/>
+        <image name="Images/background.png" width="537" height="102"/>
+        <image name="Images/share.png" width="30" height="30"/>
+        <image name="Images/news.png" width="30" height="30"/>
+        <image name="Images/newsbig.png" width="100" height="100"/>
+        <image name="Images/flag.png" width="16" height="16"/>
+        <image name="Images/splashbox2.jpg" width="1532" height="1200"/>
     </resources>
 </document>

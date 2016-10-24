@@ -11,16 +11,18 @@ using Android.Gms.Common;
 using PushNotification.Plugin;
 using System.Reflection;
 using System.Net;
+using HockeyApp.Android;
+using HockeyApp.Android.Metrics;
 
 namespace PhillyBlotter.Droid
 {
-
-
-
 	[Activity(Label = "PhillyBlotter", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = false, 
 	          ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
+
+		private const string appId = "5be47e4c35ab407eb52019f5bf5d7789";
+
 		protected override void OnCreate(Bundle bundle)
 		{
 
@@ -32,6 +34,10 @@ namespace PhillyBlotter.Droid
 			ToolbarResource = Resource.Layout.Toolbar;
 
 			base.OnCreate(bundle);
+
+			/* HockeyApp Init */
+			CrashManager.Register(this);
+			MetricsManager.Register(Application);
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 

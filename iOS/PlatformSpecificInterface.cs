@@ -38,6 +38,18 @@ namespace PhillyBlotter.iOS
 				return addresses[0].ToString();
 			return "";
 		}
+
+		public string GetClipboardData()
+		{
+			UIPasteboard clipboard = UIPasteboard.General;
+
+			if (clipboard.HasStrings)
+			{
+				return clipboard.String;
+			}
+
+			return "";
+		}
 	}
 }
 

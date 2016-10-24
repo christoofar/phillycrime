@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhillyBlotter.NewsCard">
+	<ContentView.Content>
+		<StackLayout>
+			<StackLayout Padding="5,5,5,5" Spacing="0" Orientation="Vertical"
+				>
+				<Image x:Name="imageStory" Grid.Row="0" Source="Images/sample.jpg" Aspect="AspectFill">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="Handle_Tapped" />
+						</Image.GestureRecognizers>
+				</Image>
+				<Grid Padding="0,5,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<StackLayout Grid.Row="0" Padding="5,0,5,0" Orientation="Vertical" BackgroundColor="#C7C7CC">
+						<StackLayout Orientation="Horizontal">
+							<Label x:Name="labelNewsOutlet" BackgroundColor="Transparent" FontSize="Micro" HorizontalOptions="Start">PhillyVOICE</Label>
+							<Label HorizontalOptions="CenterAndExpand"/>
+							<Image Source="Images/flag.png">
+								<Image.GestureRecognizers>
+									<TapGestureRecognizer
+										Tapped="ArticleFlagged" />
+								</Image.GestureRecognizers>
+							</Image>
+						</StackLayout>
+						<Label x:Name="labelTitle" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Black">Shoo Fry, that French Fry bar in Rittenhouse, finally opens</Label>
+						<Label x:Name="labelLede" BackgroundColor="Transparent" FontSize="Micro">Poutine, sliders, shakes are ready</Label>
+					</StackLayout>
+				</Grid>
+			</StackLayout>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

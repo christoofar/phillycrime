@@ -6,6 +6,7 @@ using System.Reflection;
 using Foundation;
 using PushNotification.Plugin;
 using UIKit;
+using HockeyApp.iOS;
 
 namespace PhillyBlotter.iOS
 {
@@ -20,6 +21,10 @@ namespace PhillyBlotter.iOS
 			ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
 			global::Xamarin.Forms.Forms.Init();
+
+			var manager = BITHockeyManager.SharedHockeyManager;
+			manager.Configure("328e8b4d575f4672900c176440eda125");
+			manager.StartManager();
 
 			CrossPushNotification.Initialize<CrossPushNotificationListener>();
 

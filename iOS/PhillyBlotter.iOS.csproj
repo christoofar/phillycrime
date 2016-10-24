@@ -156,6 +156,18 @@
     <Reference Include="Plugin.Geolocator">
       <HintPath>..\packages\Xam.Plugin.Geolocator.4.0.0-beta12\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
     </Reference>
+    <Reference Include="HockeySDK">
+      <HintPath>..\Components\hockeyappios-4.1.0.3\lib\ios-unified\HockeySDK.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK.iOSBindings">
+      <HintPath>..\Components\hockeyappios-4.1.0.3\lib\ios-unified\HockeySDK.iOSBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share.Abstractions">
+      <HintPath>..\packages\Plugin.Share.4.1.0-beta4\lib\Xamarin.iOS10\Plugin.Share.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share">
+      <HintPath>..\packages\Plugin.Share.4.1.0-beta4\lib\Xamarin.iOS10\Plugin.Share.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
@@ -382,10 +394,20 @@
     <BundleResource Include="Images\legend.png" />
     <BundleResource Include="Images\search.png" />
     <BundleResource Include="Images\splash.jpg" />
-    <BundleResource Include="Images\splashbox.jpg" />
+    <BundleResource Include="Images\splashbox2.jpg" />
     <BundleResource Include="Images\justice%402x.png" />
     <BundleResource Include="Images\unknown_on.png" />
     <BundleResource Include="Images\unknown_on%402x.png" />
+    <BundleResource Include="Images\sample.jpg" />
+    <BundleResource Include="Images\background.png" />
+    <BundleResource Include="Images\share%402x.png" />
+    <BundleResource Include="Images\share.png" />
+    <BundleResource Include="Images\news.png" />
+    <BundleResource Include="Images\news%402x.png" />
+    <BundleResource Include="Images\newsbig.png" />
+    <BundleResource Include="Images\newsbig%402x.png" />
+    <BundleResource Include="Images\flag.png" />
+    <BundleResource Include="Images\flag%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
@@ -394,6 +416,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="pclstorage">
       <Version>1.0.2.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="hockeyappios">
+      <Version>4.1.0.3</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

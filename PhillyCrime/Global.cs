@@ -15,7 +15,7 @@ namespace PhillyBlotter
 	/// </summary>
 	public class Global
 	{
-		public static string VERSION = "APK14";
+		public static string VERSION = "APK16";
 		public static ObservableCollection<Neighborhood> Neighborhoods = new ObservableCollection<Neighborhood>();
 
 		public static object MessagingInstance { get; set; }

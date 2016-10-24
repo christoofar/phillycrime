@@ -113,6 +113,30 @@ namespace PhillyBlotter.Models
 		public bool OnlyArrests { get; set; }
 	}
 
+	public partial class crime_news
+	{
+		public int ID { get; set; }
+		public int Outlet { get; set; }
+		public string DC_KEY { get; set; }
+		public string NewsURL { get; set; }
+		public string Headline { get; set; }
+		public string Lede { get; set; }
+		public string SlugImageURL { get; set; }
+		public bool FlaggedStory { get; set; }
+		public bool Active { get; set; }
+
+		public virtual crime_newsorganization crime_newsorganization { get; set; }
+	}
+
+	public partial class crime_newsorganization
+	{
+		public int ID { get; set; }
+		public string NewsOrganization { get; set; }
+		public string Domain { get; set; }
+		public int Priority { get; set; }
+		public bool Active { get; set; }
+	}
+
 	public class ArrestReport : INotifyPropertyChanged
 	{
 		string _defendant;
@@ -350,6 +374,27 @@ namespace PhillyBlotter.Models
 		public string DCN { get; set; }
 		public PhillyBlotter.Models.Crime FullCrimeDetail { get; set; }
 		public PhillyBlotter.Models.Arrest[] FullArrestDetails { get; set; }
+		public PhillyBlotter.Models.crime_news[] News { get; set; }
+	}
+
+	public class NewsContribution
+	{
+		public string DCN { get; set; }
+		public string URL { get; set; }
+	}
+
+	public class NewsContributionResponse
+	{
+		public string DCN { get; set; }
+		public bool Accepted { get; set; }
+		public string ResponseMessage { get; set; }
+	}
+
+	public class NewsFlagConcern
+	{
+		public string DCN { get; set; }
+		public string URL { get; set; }
+		public string Reason { get; set; }
 	}
 
 	public class crime_notification
