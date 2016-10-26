@@ -394,7 +394,6 @@
     <BundleResource Include="Images\legend.png" />
     <BundleResource Include="Images\search.png" />
     <BundleResource Include="Images\splash.jpg" />
-    <BundleResource Include="Images\splashbox2.jpg" />
     <BundleResource Include="Images\justice%402x.png" />
     <BundleResource Include="Images\unknown_on.png" />
     <BundleResource Include="Images\unknown_on%402x.png" />
@@ -408,6 +407,7 @@
     <BundleResource Include="Images\newsbig%402x.png" />
     <BundleResource Include="Images\flag.png" />
     <BundleResource Include="Images\flag%402x.png" />
+    <BundleResource Include="Images\splashbox3.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

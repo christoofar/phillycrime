@@ -40,38 +40,6 @@ namespace PhillyBlotter.Models
 		{
 			string dns = HOST;
 
-			try
-			{
-
-				// Do we already know what the DNS entry is?
-				if (Application.Current.Properties.ContainsKey("DNS"))
-				{
-					// Has it been less than 2 days since the last time we 
-					// queried this value?
-					if (DateTime.Now < (DateTime)Application.Current.Properties["DNSExpires"])
-					{
-						// Yes.  The cache value is still good.
-						dns = (string)Application.Current.Properties["DNS"];
-					}
-				}
-
-				// If we got an IP address instead of the host domain, we'll cache this.
-				// This can be an IPv6 or IPv4 address (both work).
-				if (dns.Contains("philadelinquency"))
-				{
-					string address = await DependencyService.Get<PlatformSpecificInterface>().ResolveIPAddress(dns);
-					Application.Current.Properties["DNS"] = address;
-					Application.Current.Properties["DNSExpires"] = DateTime.Now.AddDays(2);
-					await Application.Current.SavePropertiesAsync(); //save
-					return address;
-				}
-
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine($"DNS resolve failed:{ex.Message}\r\n{ex.StackTrace}");
-			}
-
 			return dns;
 		}
 

@@ -23,6 +23,7 @@ namespace PhillyBlotter
 		public ArrestSearchResults(string name, DateTime DateOfBirth)
 		{
 			InitializeComponent();
+			MultipleNotice.IsVisible = true;
 			Title = "Arrests Matching '" + name + "'";
 			ArrestSearchCriteria criteria = new ArrestSearchCriteria();
 			criteria.FirstName = name;

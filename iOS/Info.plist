@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.philadelinquency.phillycrime</string>
 	<key>CFBundleVersion</key>
-	<string>1.16</string>
+	<string>1.18</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
