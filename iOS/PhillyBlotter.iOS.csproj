@@ -407,7 +407,7 @@
     <BundleResource Include="Images\newsbig%402x.png" />
     <BundleResource Include="Images\flag.png" />
     <BundleResource Include="Images\flag%402x.png" />
-    <BundleResource Include="Images\splashbox3.jpg" />
+    <BundleResource Include="Images\splashbox.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

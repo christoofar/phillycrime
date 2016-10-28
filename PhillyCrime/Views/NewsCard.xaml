@@ -4,7 +4,7 @@
 		<StackLayout>
 			<StackLayout Padding="5,5,5,5" Spacing="0" Orientation="Vertical"
 				>
-				<Image x:Name="imageStory" Grid.Row="0" Source="Images/sample.jpg" Aspect="AspectFill">
+				<Image x:Name="imageStory" Grid.Row="0" Aspect="AspectFill">
 					<Image.GestureRecognizers>
 						<TapGestureRecognizer
 							Tapped="Handle_Tapped" />
@@ -25,8 +25,15 @@
 								</Image.GestureRecognizers>
 							</Image>
 						</StackLayout>
-						<Label x:Name="labelTitle" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Black">Shoo Fry, that French Fry bar in Rittenhouse, finally opens</Label>
-						<Label x:Name="labelLede" BackgroundColor="Transparent" FontSize="Micro">Poutine, sliders, shakes are ready</Label>
+						<Label x:Name="labelTitle" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Black">
+						<Label.GestureRecognizers>
+								<TapGestureRecognizer Tapped="Handle_Tapped" />
+						</Label.GestureRecognizers></Label>
+						<Label x:Name="labelLede" BackgroundColor="Transparent" FontSize="Micro">
+							<Label.GestureRecognizers>
+								<TapGestureRecognizer Tapped="Handle_Tapped" />
+						</Label.GestureRecognizers>
+						</Label>
 					</StackLayout>
 				</Grid>
 			</StackLayout>

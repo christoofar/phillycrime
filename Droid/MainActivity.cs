@@ -21,7 +21,7 @@ namespace PhillyBlotter.Droid
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 
-		private const string appId = "5be47e4c35ab407eb52019f5bf5d7789";
+		private const string appId = "c1787e2f3e554b9aa7f7969dc60f3f80";
 
 		protected override void OnCreate(Bundle bundle)
 		{

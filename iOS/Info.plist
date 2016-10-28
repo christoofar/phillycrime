@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.philadelinquency.phillycrime</string>
-	<key>CFBundleVersion</key>
-	<string>1.18</string>
+	<string>com.philadelinquency.phillyblotter</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -40,8 +38,6 @@
 	<string>This lets us find crimes near you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This lets us find crimes near you</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.5.2</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>CFBundleName</key>
@@ -603,5 +599,9 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1</string>
+	<key>CFBundleVersion</key>
+	<string>1.01</string>
 </dict>
 </plist>
