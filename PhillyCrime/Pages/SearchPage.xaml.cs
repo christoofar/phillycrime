@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using PhillyBlotter.Models;
 using System.Diagnostics;
 using System.Linq;
+using PhillyBlotter.Helpers;
 
 namespace PhillyBlotter
 {
@@ -39,14 +40,10 @@ namespace PhillyBlotter
 			// Pre-set the date search for the user
 			DateStart.Date = presetDate;
 
-			// Do we have filters set?
-			if (Application.Current.Properties.ContainsKey("Filter"))
-			{
-				/* Yes! We need to reflect what we know */
-				Models.Filter setFilter = (Models.Filter)((int)Application.Current.Properties["Filter"]);
-				currentFilter = setFilter;
-				LoadFilters();
-			}
+			// Do we have filters set?		
+			Models.Filter setFilter = Settings.Filter;
+			currentFilter = setFilter;
+			LoadFilters();
 
 			/* Prime neighborhoods */
 			foreach (Neighborhood hood in Global.Neighborhoods)

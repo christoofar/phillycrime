@@ -32,10 +32,6 @@ namespace PhillyBlotter.Models
 				sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
 				onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
 				{
-					// If this explodes it could be due to a DNS change.  We shall clear the DNS
-					// cache entry and set it back to the default and clear the DNS cache.
-					Data.ClearDNS();
-					// Write why we're getting an exception
 					Debug.WriteLine($"Error transmitting to server {arg1.Message}\r\n{arg1.StackTrace}");
 				}
 			)
@@ -64,9 +60,6 @@ namespace PhillyBlotter.Models
 					sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
 					onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
 					{
-						// If this explodes it could be due to a DNS change.  We shall clear the DNS
-						// cache entry and set it back to the default and clear the DNS cache.
-						Data.ClearDNS();
 						// Write why we're getting an exception
 						Debug.WriteLine($"Error transmitting to server {arg1.Message}\r\n{arg1.StackTrace}");
 					}
@@ -98,9 +91,6 @@ namespace PhillyBlotter.Models
 				sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
 				onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
 				{
-					// If this explodes it could be due to a DNS change.  We shall clear the DNS
-					// cache entry and set it back to the default and clear the DNS cache.
-					Data.ClearDNS();
 					// Write why we're getting an exception
 					Debug.WriteLine($"Error posting to server {arg1.Message}\r\n{arg1.StackTrace}");
 				}
@@ -129,7 +119,6 @@ namespace PhillyBlotter.Models
 					sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
 					onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
 					{
-						Data.ClearDNS();
 						Debug.WriteLine($"Error submitting delete request to server {arg1.Message}\r\n{arg1.StackTrace}");
 					}
 				)
@@ -161,7 +150,6 @@ namespace PhillyBlotter.Models
 				sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
 				onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
 				{
-					Data.ClearDNS();
 					Debug.WriteLine($"Error posting to server {arg1.Message}\r\n{arg1.StackTrace}");
 				}
 			)

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using PhillyBlotter.Helpers;
 using PhillyBlotter.Models;
 
 using Xamarin.Forms;
@@ -98,7 +99,7 @@ namespace PhillyBlotter
 			if (_distanceFormat)
 			{
 				// If there's no lat/long, don't load this screen but change the warning.
-				if (!Application.Current.Properties.ContainsKey("PrimaryLat"))
+				if (Math.Abs(Settings.PrimaryLat) < Double.Epsilon)
 				{
 					Device.BeginInvokeOnMainThread(() =>
 					{
@@ -147,7 +148,7 @@ namespace PhillyBlotter
 			// Populate the blotter data
 			if (_distanceFormat)
 			{
-				var crimes = await Data.GetLocalBlotter((double)Application.Current.Properties["PrimaryLat"], (double)Application.Current.Properties["PrimaryLong"], 5280.00);
+				var crimes = await Data.GetLocalBlotter(Settings.PrimaryLat, Settings.PrimaryLong, 5280.00);
 				var proximitygroup = crimes.GroupBy(item => item.Proximity, (key, group) => new Group(key, group.ToArray()));
 				blotterListView.ItemsSource = proximitygroup;
 			}

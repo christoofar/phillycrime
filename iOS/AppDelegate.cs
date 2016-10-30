@@ -23,7 +23,7 @@ namespace PhillyBlotter.iOS
 			global::Xamarin.Forms.Forms.Init();
 
 			var manager = BITHockeyManager.SharedHockeyManager;
-			manager.Configure("328e8b4d575f4672900c176440eda125");
+			manager.Configure("1bc1155d4570492ca45008d451abaafb");
 			manager.StartManager();
 
 			CrossPushNotification.Initialize<CrossPushNotificationListener>();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PhillyBlotter.Helpers;
 using Plugin.Geolocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -22,16 +23,10 @@ namespace PhillyBlotter
 			MapMarker.HorizontalOptions = LayoutOptions.Center;
 			MyMap.MapType = MapType.Hybrid;
 
-			if (Application.Current.Properties.ContainsKey("PrimaryLat"))
+			if (Math.Abs(Settings.PrimaryLat) > Double.Epsilon)
 			{
-				MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position((double)Application.Current.Properties["PrimaryLat"],
-																			(double)Application.Current.Properties["PrimaryLong"]), Distance.FromMiles(0.5)));
-
-				if (Application.Current.Properties.ContainsKey("CrimeRadius"))
-				{
-					MyMap.Circle.Radius = (double)Application.Current.Properties["CrimeRadius"] * 0.3048;
-					CrimeSlider.Value = (double)Application.Current.Properties["CrimeRadius"];
-				}
+				MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(Settings.PrimaryLat,
+				                                                            Settings.PrimaryLong), Distance.FromMiles(0.5)));
 			}
 			else
 			{
@@ -39,6 +34,9 @@ namespace PhillyBlotter
 						MapSpan.FromCenterAndRadius(
 						new Position(39.952062, -75.163543), Distance.FromMiles(0.5)));
 			}
+
+			MyMap.Circle.Radius = Settings.CrimeRadius * 0.3048;
+			CrimeSlider.Value = Settings.CrimeRadius;
 
 		}
 
@@ -50,15 +48,15 @@ namespace PhillyBlotter
 			MapControl.Children.Add(MyMap);
 			MapControl.Children.Add(MapMarker);
 
-			if (Application.Current.Properties.ContainsKey("CrimeRadius"))
+
+			if (Math.Abs(Settings.PrimaryLat) < Double.Epsilon)
 			{
-				MyMap.Circle.Radius = (double)Application.Current.Properties["CrimeRadius"] * 0.3048;
-				CrimeSlider.Value = (double)Application.Current.Properties["CrimeRadius"];
+				JumpToWhereIAm(null, null);
+
 			}
-			else
-			{
-				JumpToWhereIAm(null, null);	
-			}
+			MyMap.Circle.Radius = Settings.CrimeRadius * 0.3048;
+			CrimeSlider.Value = Settings.CrimeRadius;
+
 
 			MyMap.PropertyChanged += (sender, e) =>
 			{

@@ -47,6 +47,7 @@ namespace PhillyBlotter.Droid
 			{
 				PushNotification.Plugin.CrossPushNotification.Current.Register();
 			}
+
 		}
 
 		public bool IsPlayServicesAvailable()

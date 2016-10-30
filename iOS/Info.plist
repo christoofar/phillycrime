@@ -44,11 +44,6 @@
 	<string>PhillyBlotter</string>
 	<key>aps-environment</key>
 	<string>Development</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-		<string>remote-notification</string>
-	</array>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImage.launchimage</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -602,6 +597,6 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1.01</string>
+	<string>1.1.2</string>
 </dict>
 </plist>

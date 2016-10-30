@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using PhillyBlotter.Models;
+using Polly;
 using Xamarin.Forms;
 
 namespace PhillyBlotter
@@ -15,7 +17,7 @@ namespace PhillyBlotter
 	/// </summary>
 	public class Global
 	{
-		public static string VERSION = "APK16";
+		public static string VERSION = "PROD01";
 		public static ObservableCollection<Neighborhood> Neighborhoods = new ObservableCollection<Neighborhood>();
 
 		public static object MessagingInstance { get; set; }

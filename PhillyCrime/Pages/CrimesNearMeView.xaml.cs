@@ -6,6 +6,7 @@ using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Plugin.Geolocator;
 using PhillyBlotter.Models;
+using PhillyBlotter.Helpers;
 
 namespace PhillyBlotter
 {
@@ -130,13 +131,10 @@ namespace PhillyBlotter
 				});
 
 				// Do we have filters set?
-				if (Application.Current.Properties.ContainsKey("Filter"))
-				{
-					/* Yes! We need to reflect what we know */
-					Models.Filter setFilter = (Models.Filter)((int)Application.Current.Properties["Filter"]);
-					currentFilter = setFilter;
-					LoadFilters();
-				}
+
+				Models.Filter setFilter = Settings.Filter;
+				currentFilter = setFilter;
+				LoadFilters();
 
 				if (!_initialized)
 				{
@@ -422,7 +420,7 @@ namespace PhillyBlotter
 		public async void CenterTheMap()
 		{
 			// If there is no primary location already configured in the phone, use GPS
-			if (!Application.Current.Properties.ContainsKey("PrimaryLat"))
+			if (Math.Abs(Settings.PrimaryLat) < Double.Epsilon)
 			{
 				MyMap.IsShowingUser = true;
 
@@ -471,8 +469,8 @@ namespace PhillyBlotter
 			else
 			{
 				// We'll use the primary location then
-				currentPosition = new Position((double)Application.Current.Properties["PrimaryLat"],
-				                               (double)Application.Current.Properties["PrimaryLong"]);
+				currentPosition = new Position(Settings.PrimaryLat,
+				                               Settings.PrimaryLong);
 			}
 
 			// Attempt to check/set the primary position in the config

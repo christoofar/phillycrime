@@ -44,6 +44,16 @@ namespace PhillyBlotter
 		{
 			var data = await Data.SearchArrests(criteria);
 
+			// Nothing came back in the search
+			if (data.Length == 0)
+			{
+				labelNoRecords.Text = "Nothing came back for your search.";
+				warningPanel.IsVisible = true;
+				activity.IsRunning = false;
+				activity.IsVisible = false;
+				return;
+			}
+
 			blotterListView.ItemsSource = data;
 
 			blotterListView.IsVisible = true;

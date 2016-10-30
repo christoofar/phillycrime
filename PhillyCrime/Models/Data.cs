@@ -29,13 +29,6 @@ namespace PhillyBlotter.Models
 			
 		}
 
-		public static void ClearDNS()
-		{
-			HOST = "www.philadelinquency.com";
-			Application.Current.Properties["DNSExpires"] = DateTime.Parse("1970-01-01");
-			Application.Current.SavePropertiesAsync();
-		}
-
 		private static async Task<string> GetRoot()
 		{
 			string dns = HOST;

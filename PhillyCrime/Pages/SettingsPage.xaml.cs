@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
 using PhillyBlotter.Models;
+using PhillyBlotter.Helpers;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -44,7 +45,7 @@ namespace PhillyBlotter
 			}
 
 			UpdateFilters();
-			Application.Current.Properties["Filter"] = Convert.ToInt32(currentFilter);
+			Settings.Filter = currentFilter;
 		}
 
 		async Task<bool> GetNeighborhoodSettings()
@@ -64,21 +65,19 @@ namespace PhillyBlotter
 			base.OnAppearing();
 
 			// Is a primary location already set?
-			if (Application.Current.Properties.ContainsKey("PrimaryLat"))
+			if (Math.Abs(Settings.PrimaryLat) > Double.Epsilon)
 			{
 				labelLocationHint.IsVisible = false;
 				checkImage.IsVisible = true;
 				labelLocation.Text = "Location is set";
 			}
 
-			// Do we have filters set?
-			if (Application.Current.Properties.ContainsKey("Filter"))
-			{
-				/* Yes! We need to reflect what we know */
-				Models.Filter setFilter = (Models.Filter)((int)Application.Current.Properties["Filter"]);
-				currentFilter = setFilter;
-				LoadFilters();
-			}
+
+			// Get Filters from Settings
+			Models.Filter setFilter = Settings.Filter;
+			currentFilter = setFilter;
+			LoadFilters();
+
 
 			if (!_runOnce)
 			{
@@ -250,17 +249,15 @@ namespace PhillyBlotter
 			if (sender is SwitchCell)			
 			{
 				Neighborhood hood = (Neighborhood)((SwitchCell)sender).BindingContext;
-
-				// We shouldn't allow more than 3 hoods to be activated
-				if (e.Value)
+				if (e.Value && Global.Neighborhoods.Where(p => p.Selected).Count() == 4)
 				{
-					if (Global.Neighborhoods.Where(p => p.Selected).Count() == 4)
+					Device.BeginInvokeOnMainThread(async () =>
 					{
 						hood.Selected = false;
 						await DisplayAlert("Maximum Neighborhods Reached", "You can only have 3 neighborhood blotters active " +
 									 "at once.", "OK");
-						return;
-					}
+					});
+					return;
 				}
 
 				await App.UpdateNeighborhood(hood.ID, e.Value);

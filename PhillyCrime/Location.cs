@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PhillyBlotter.Models;
+using PhillyBlotter.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using System.Linq;
+using Polly;
+using System.Diagnostics;
 
 namespace PhillyBlotter
 {
@@ -16,6 +19,7 @@ namespace PhillyBlotter
 		static double _primarylong = 0.00;
 		static double _radius = 0.00;
 		static bool _locationRegistered = false;
+		public static object lck = new object();
 
 		public Location()
 		{
@@ -33,15 +37,8 @@ namespace PhillyBlotter
 		{
 			_primarylat = latitude;
 			_primarylong = longitude;
-			// We have a radius?
-			if (Application.Current.Properties.ContainsKey("CrimeRadius"))
-			{
-				_radius = (double)Application.Current.Properties["CrimeRadius"];
-			}
-			else
-			{
-				_radius = 750;
-			}
+			_radius = Settings.CrimeRadius;
+
 			await RegisterPushNotifications();
 		}
 
@@ -91,14 +88,14 @@ namespace PhillyBlotter
 					return true;
 				}
 
-				Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
-				Application.Current.Properties["PrimaryLat"] = currentPosition.Latitude;
-				Application.Current.Properties["PrimaryLong"] = currentPosition.Longitude;
-				Application.Current.Properties["CrimeRadius"] = radius; //Default starting value.  User can change it.
-				Application.Current.Properties["PrimaryDistrict"] = area.PoliceDistrict.District;
-				Application.Current.Properties["PrimaryPSA"] = area.PoliceDistrict.PSA;
-				Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
-				Application.Current.Properties["NeighborhoodID"] = area.Neighborhood.ID;
+				Settings.LastPositionAsk = DateTime.Now;
+				Settings.PrimaryLat = currentPosition.Latitude;
+				Settings.PrimaryLong = currentPosition.Longitude;
+				Settings.CrimeRadius = radius;
+				Settings.PrimaryDistrict = area.PoliceDistrict.District;
+				Settings.PrimaryPSA = area.PoliceDistrict.PSA;
+				Settings.Neighborhood = area.Neighborhood.Name;
+				Settings.NeighborhoodID = area.Neighborhood.ID;
 
 				var matchingHood = Global.Neighborhoods.Where((arg) => arg.ID == area.Neighborhood.ID).FirstOrDefault();
 				// Do we have this neighborhood already selected?
@@ -111,12 +108,12 @@ namespace PhillyBlotter
 					await App.UpdateNeighborhood(area.Neighborhood.ID, true);
 				}
 
-				await Application.Current.SavePropertiesAsync();
 				PostLocation(currentPosition.Longitude, currentPosition.Latitude, radius);
 			}
 
 			return true;
 		}
+
 
 #pragma warning disable CS1998 
 		// Async method lacks 'await' operators and will run synchronously
@@ -131,11 +128,10 @@ namespace PhillyBlotter
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{			
 			// Check to see if the user has a primary location set and if not, offer to set it for her
-			if (!Application.Current.Properties.ContainsKey("PrimaryLat"))
+			if ((Math.Abs(Settings.PrimaryLat) < Double.Epsilon && Math.Abs(Settings.PrimaryLong) < Double.Epsilon))
 			{
 				// Have we asked the user before?  (If we have, let's not bug them but every 10days)
-				if (!Application.Current.Properties.ContainsKey("LastPositionAsk") ||
-					((DateTime)(Application.Current.Properties["LastPositionAsk"])).AddDays(10) < DateTime.Now)
+				if (Settings.LastPositionAsk.AddDays(10) < DateTime.Now)
 				{
 
 					Area area = null;
@@ -163,20 +159,29 @@ namespace PhillyBlotter
 								return new Position(39.952062, -75.163543);
 							}
 
-							Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
-							Application.Current.Properties["PrimaryLat"] = currentPosition.Latitude;
-							Application.Current.Properties["PrimaryLong"] = currentPosition.Longitude;
-							Application.Current.Properties["CrimeRadius"] = 750.0; //Default starting value.  User can change it.
-							Application.Current.Properties["PrimaryDistrict"] = area.PoliceDistrict.District;
-							Application.Current.Properties["PrimaryPSA"] = area.PoliceDistrict.PSA;
-							Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
-							Application.Current.Properties["NeighborhoodID"] = area.Neighborhood.ID;
+							Settings.LastPositionAsk = DateTime.Now;
+							Settings.PrimaryLat = currentPosition.Latitude;
+							Settings.PrimaryLong = currentPosition.Longitude;
+							Settings.CrimeRadius = 750.0;
+							Settings.PrimaryDistrict = area.PoliceDistrict.District;
+							Settings.PrimaryPSA = area.PoliceDistrict.PSA;
+							Settings.Neighborhood = area.Neighborhood.Name;
+							Settings.NeighborhoodID = area.Neighborhood.ID;
+
+							//Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
+							//Application.Current.Properties["PrimaryLat"] = currentPosition.Latitude;
+							//Application.Current.Properties["PrimaryLong"] = currentPosition.Longitude;
+							//Application.Current.Properties["CrimeRadius"] = 750.0; //Default starting value.  User can change it.
+							//Application.Current.Properties["PrimaryDistrict"] = area.PoliceDistrict.District;
+							//Application.Current.Properties["PrimaryPSA"] = area.PoliceDistrict.PSA;
+							//Application.Current.Properties["Neighborhood"] = area.Neighborhood.Name;
+							//Application.Current.Properties["NeighborhoodID"] = area.Neighborhood.ID;
 
 							// We have to store the selected neighborhoods in a file.  This will sync or create that file.
 							await App.UpdateNeighborhood(area.Neighborhood.ID, true);
 
 							positionToUse = currentPosition;
-							await Application.Current.SavePropertiesAsync();
+							//Global.SaveAllProperties();
 							PostLocation();
 						}
 						else
@@ -187,8 +192,8 @@ namespace PhillyBlotter
 
 							// This is to mark down when we asked.  Every 10 days we are going
 							// to bug the user about this when they're in Philadelphia.
-							Application.Current.Properties["LastPositionAsk"] = DateTime.Now;
-							await Application.Current.SavePropertiesAsync();
+							Settings.LastPositionAsk = DateTime.Now;
+							//Global.SaveAllProperties();
 						}
 
 						return positionToUse;
@@ -212,15 +217,15 @@ namespace PhillyBlotter
 
 			PostLocation();			
 			// Return config (the data was actually retrieved!)
-			return new Position((double)Application.Current.Properties["PrimaryLat"],
-			                    (double)Application.Current.Properties["PrimaryLong"]);			
+			return new Position(Settings.PrimaryLat,
+			                    Settings.PrimaryLong);			
 		}
 
 		static void PostLocation()
 		{
 			// This is required to get hyper-local crime push notifications to work
-			Location.PostLocation((double)Application.Current.Properties["PrimaryLong"],
-								  (double)Application.Current.Properties["PrimaryLat"]);
+			Location.PostLocation(Settings.PrimaryLong,
+								  Settings.PrimaryLat);
 		}
 }
 }
