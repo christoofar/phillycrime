@@ -8,13 +8,16 @@ using PhillyBlotter.Helpers;
 using PhillyBlotter.Models;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BlotterPage : ContentPage
 	{
 		bool _distanceFormat = false;  // Signifies that we're going to show a distance blotter
 		bool _searchResults = false;
+		bool _specialized = false; // This is for specific blotters that aren't going to go back to server.
 		CrimeSearchCriteria _crimeSearchCriteria = null;
 		CrimeReport[] _data = new CrimeReport[0];
 
@@ -30,6 +33,53 @@ namespace PhillyBlotter
 			InitializeComponent();
 
 			_distanceFormat = distanceFormat;
+		}
+
+		// Specialized blotter types
+		public BlotterPage(string type)
+		{
+			_specialized = true;
+			InitializeComponent();
+
+			switch (type)
+			{
+				case "NewCrimePush":
+					Title = "New Violent/Violative Crimes";
+					// No panels needed
+					this.ToolbarItems.Add(new ToolbarItem("buttonJump", "Images/map.png", JumpToMap, ToolbarItemOrder.Primary));
+					warningPanel.IsVisible = false;
+					activity.IsVisible = true;
+					// Disable grouping and pull-to-refresh
+					blotterListView.IsPullToRefreshEnabled = false;
+					blotterListView.IsGroupingEnabled = false;
+
+					NewCrimePush();
+
+					break;
+			}
+		}
+
+		async void NewCrimePush()
+		{
+			CrimeSearchCriteria criteria = new CrimeSearchCriteria();
+			criteria.StartDate = DateTime.Today.AddDays(-5);
+			criteria.EndDate = DateTime.Today;
+			criteria.Longitude = Settings.PrimaryLong;
+			criteria.Latitutde = Settings.PrimaryLat;
+			criteria.Radius = Settings.CrimeRadius;
+			criteria.Filter = Filter.Homicide | Filter.Robbery | Filter.Burglary | Filter.Assault | Filter.Rape;
+			criteria.NeighborhoodID = "-1"; //Search whole city
+
+			_data = await Data.SearchCrimes(criteria);
+
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				blotterListView.ItemsSource = _data;
+				warningPanel.IsVisible = false;
+				blotterListView.IsVisible = true;
+				activity.IsRunning = false;
+				activity.IsVisible = false;
+			});
 		}
 
 		void JumpToMap()
@@ -71,7 +121,10 @@ namespace PhillyBlotter
 		async protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			await Refresh();
+			if (!_specialized)
+			{
+				await Refresh();
+			}
 		}
 
 		public async void OnSettingsButtonClicked(object sender, System.EventArgs e)
@@ -89,6 +142,12 @@ namespace PhillyBlotter
 		public void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
 		{
 			var crimeDetailPage = new CrimeDetailPage((CrimeReport)e.SelectedItem);
+			Navigation.PushAsync(crimeDetailPage);
+		}
+
+		public void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+		{
+			var crimeDetailPage = new CrimeDetailPage((CrimeReport)e.Item);
 			Navigation.PushAsync(crimeDetailPage);
 		}
 

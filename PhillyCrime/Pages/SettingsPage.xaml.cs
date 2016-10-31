@@ -7,9 +7,11 @@ using PhillyBlotter.Models;
 using PhillyBlotter.Helpers;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingsPage : ContentPage
 	{
 		bool _runOnce = false;

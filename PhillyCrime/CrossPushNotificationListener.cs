@@ -35,6 +35,7 @@ namespace PhillyBlotter
 				var p = JObject.Parse(values.ToString());
 				if (p != null && p["info"] != null && p["info"].ToString() == "blotter")
 				{
+					Global.ReceivedCrimeAlert = true;
 					MessagingCenter.Send<object, string>(Global.MessagingInstance, "Notification", p["text"].ToString());
 				}
 			}
@@ -44,6 +45,7 @@ namespace PhillyBlotter
 				var p = JObject.Parse(values.ToString());
 				if (p != null && p["alert"] != null)
 				{
+					Global.ReceivedCrimeAlert = true;
 					MessagingCenter.Send<object, string>(Global.MessagingInstance, "Notification", p["alert"].ToString());
 				}
 			}

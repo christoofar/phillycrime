@@ -6,9 +6,11 @@ using PhillyBlotter.Models;
 
 using Xamarin.Forms;
 using System.Diagnostics;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CrimeDetailPage : ContentPage
 	{
 		CustomPin _pin;

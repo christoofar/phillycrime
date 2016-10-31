@@ -5,9 +5,11 @@ using PhillyBlotter.Models;
 using System.Diagnostics;
 using System.Linq;
 using PhillyBlotter.Helpers;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchPage : ContentPage
 	{
 

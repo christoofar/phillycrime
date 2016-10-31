@@ -4,9 +4,11 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using PhillyBlotter.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArrestSearchResults : ContentPage
 	{
 		public ArrestSearchResults()

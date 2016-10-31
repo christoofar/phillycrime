@@ -17,7 +17,14 @@ namespace PhillyBlotter
 	/// </summary>
 	public class Global
 	{
+		#if DEBUG
+		public static string VERSION = "DEBUG1";
+#else
 		public static string VERSION = "PROD01";
+#endif
+
+		public static bool ReceivedCrimeAlert = false;
+
 		public static ObservableCollection<Neighborhood> Neighborhoods = new ObservableCollection<Neighborhood>();
 
 		public static object MessagingInstance { get; set; }

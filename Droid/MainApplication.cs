@@ -75,6 +75,14 @@ namespace PhillyCrime.Droid
 
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
+			if (!Foreground)
+			{
+				if (activity.Intent != null && activity.Intent.Action != null)
+				{
+					activity.Finish();
+				}
+			}
+
             CrossCurrentActivity.Current.Activity = activity;
 			PendingIntent pintent = PendingIntent.GetService(AppContext, 0, new Intent(AppContext, typeof(PushNotificationService)), 0);
 			Foreground = true;

@@ -18,9 +18,13 @@ namespace PhillyBlotter
 
 	public partial class App : Application
 	{
+
+		public static App Current = null;
+
 		public App()
 		{
 			InitializeComponent();
+			Current = this;
 
 			// Load neighborhood listing.
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
@@ -31,7 +35,7 @@ namespace PhillyBlotter
 			MainPage = new MainPage();
 		}
 
-		protected override void OnStart()
+		protected async override void OnStart()
 		{
 			DependencyService.Get<PlatformSpecificInterface>().ClearBadges();
 		}
@@ -43,10 +47,20 @@ namespace PhillyBlotter
 
 		}
 
-		protected override void OnResume()
+		protected async override void OnResume()
 		{
+			base.OnResume();
+
 			// Handle when your app resumes
 			MessagingCenter.Send(this, "WakingUp");
+
+			await Task.Delay(100);
+		
+			if (Global.ReceivedCrimeAlert)
+			{
+				Global.ReceivedCrimeAlert = false;
+				((PhillyBlotter.MainPage)(Current.MainPage)).Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(BlotterPage), "NewCrimePush"));
+			}
 		}
 
 		public static async Task<bool> ClearNeighborhoods()

@@ -4,9 +4,11 @@ using PhillyBlotter.Helpers;
 using Plugin.Geolocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LocationPickerPage : ContentPage
 	{
 		LocationMap MyMap = new LocationMap();

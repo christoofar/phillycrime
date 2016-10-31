@@ -22,6 +22,11 @@ namespace PhillyBlotter
 			base.Handle_Refreshing(sender, e);
 		}
 
+		new public void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+		{
+			base.Handle_ItemTapped(sender, e);	
+		}
+
 		new public void OnSettingsButtonClicked(object sender, System.EventArgs e)
 		{
 			base.OnSettingsButtonClicked(sender, e);

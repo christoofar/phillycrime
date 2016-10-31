@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Plugin.Geolocator;
 using PhillyBlotter.Models;
 using PhillyBlotter.Helpers;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {

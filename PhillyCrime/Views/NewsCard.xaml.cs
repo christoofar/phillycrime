@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using PhillyBlotter.Models;
 using System.Diagnostics;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewsCard : ContentView
 	{
 		string _url = "";

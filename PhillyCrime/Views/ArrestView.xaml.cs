@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using PhillyBlotter.Models;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArrestView : ContentView
 	{
 		Arrest _report;

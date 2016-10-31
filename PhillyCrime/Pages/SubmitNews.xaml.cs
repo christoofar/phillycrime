@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using Plugin.Share;
 using Xamarin.Forms;
 using PhillyBlotter.Models;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SubmitNews : ContentPage
 	{
 		string _dcn = "";

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Polly;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainPage : MasterDetailPage
 	{
 
@@ -15,8 +19,13 @@ namespace PhillyBlotter
 			// Start listener for pushpin events
 			MessagingCenter.Subscribe<string>(this, "JumpToBlotter", (obj) =>
 			{
-				MainPage.JumpToBlotter();
+				_instance.JumpToBlotter();
 				MessagingCenter.Unsubscribe<string>(this, "JumpToBlotter");
+			});
+
+			MessagingCenter.Subscribe<object>(this, "NewCrimePush", (obj) =>
+			{
+				Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(BlotterPage), "NewCrimePush"));
 			});
 
 			InitializeComponent();
@@ -24,16 +33,23 @@ namespace PhillyBlotter
 			_instance = this;
 
 			masterPage.ListView.ItemSelected += OnItemSelected;
+
+			if (Global.ReceivedCrimeAlert)
+			{
+				Global.ReceivedCrimeAlert = false;
+				Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(BlotterPage), "NewCrimePush"));
+			}
+			else
+			{
+				Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(CrimesNearMeView)));
+			}
 		}
 
-		public static void JumpToBlotter()
+		public void JumpToBlotter()
 		{
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				_instance.Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(BlotterPage)));
-				_instance.masterPage.ListView.SelectedItem = null;
-				_instance.IsPresented = false;
-			});
+			_instance.Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(BlotterPage)));
+			_instance.masterPage.ListView.SelectedItem = null;
+			_instance.IsPresented = false;
 		}
 
 		void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

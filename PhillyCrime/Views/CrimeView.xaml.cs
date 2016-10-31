@@ -6,9 +6,11 @@ using Plugin.Geolocator;
 using System.Diagnostics;
 using PhillyBlotter;
 using PhillyBlotter.Models;
+using Xamarin.Forms.Xaml;
 
 namespace PhillyBlotter
 {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CrimeView : ContentView
 	{
 

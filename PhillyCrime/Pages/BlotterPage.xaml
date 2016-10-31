@@ -11,9 +11,9 @@
 				</Button>
 			</StackLayout>
 			<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-				<ListView IsVisible="false" x:Name="blotterListView" IsPullToRefreshEnabled="true"
+				<ListView CachingStrategy="RecycleElement" IsVisible="false" x:Name="blotterListView" IsPullToRefreshEnabled="true"
 					HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding GroupName}"
-					ItemSelected="Handle_ItemSelected" Refreshing="Handle_Refreshing">
+					ItemTapped="Handle_ItemTapped" Refreshing="Handle_Refreshing">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>

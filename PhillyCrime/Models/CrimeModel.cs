@@ -111,6 +111,9 @@ namespace PhillyBlotter.Models
 		public string DCN { get; set; }
 		public Filter Filter { get; set; }
 		public bool OnlyArrests { get; set; }
+		public double? Longitude { get; set; }
+		public double? Latitutde { get; set; }
+		public double? Radius { get; set; }
 	}
 
 	public partial class crime_news
