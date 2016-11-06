@@ -41,12 +41,12 @@ namespace PhillyBlotter.iOS
 
 		public string GetClipboardData()
 		{
-			UIPasteboard clipboard = UIPasteboard.General;
-
-			if (clipboard.HasStrings)
+			try
 			{
-				return clipboard.String;
+				var pb = UIPasteboard.General.GetValue("public.utf8-plain-text");
+				return pb.ToString();
 			}
+			catch { }
 
 			return "";
 		}
