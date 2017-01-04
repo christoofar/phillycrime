@@ -31,7 +31,7 @@ namespace PhillyBlotter
 				// (except if this is January)
 				if (presetDate.Month == 1)
 				{
-					presetDate = new DateTime(presetDate.Year - 1, presetDate.Month - 1, 15);
+					presetDate = new DateTime(presetDate.Year - 1, 12, 15);
 				}
 				else
 				{
