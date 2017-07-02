@@ -8,9 +8,42 @@ using Plugin.Geolocator;
 using PhillyBlotter.Models;
 using PhillyBlotter.Helpers;
 using Xamarin.Forms.Xaml;
+using System.Threading;
 
 namespace PhillyBlotter
 {
+    internal sealed class Timer : CancellationTokenSource
+    {
+        internal Timer(Action<object> callback, object state, int millisecondsDueTime, int millisecondsPeriod, bool waitForCallbackBeforeNextPeriod = false)
+        {
+            //Contract.Assert(period == -1, "This stub implementation only supports dueTime.");
+
+            Task.Delay(millisecondsDueTime, Token).ContinueWith(async (t, s) =>
+            {
+                var tuple = (Tuple<Action<object>, object>)s;
+
+                while (!IsCancellationRequested)
+                {
+                    if (waitForCallbackBeforeNextPeriod)
+                        tuple.Item1(tuple.Item2);
+                    else
+                        Task.Run(() => tuple.Item1(tuple.Item2));
+
+                    await Task.Delay(millisecondsPeriod, Token).ConfigureAwait(false);
+                }
+
+            }, Tuple.Create(callback, state), CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.Default);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                Cancel();
+
+            base.Dispose(disposing);
+        }
+    }
+
 	public partial class CrimesNearMeView : ContentPage
 	{
 		// Testpoint: {Xamarin.Forms.Maps.Position}
@@ -83,23 +116,29 @@ namespace PhillyBlotter
 				MessagingCenter.Unsubscribe<App>(this, "WakingUp");
 			};
 
-			// User moved map.
+	            //bool _needsRefresh = false;
+	            //var timer = new Timer(delegate
+	            //{
+	            //    Debug.WriteLine("Writing a line with a timer");
+	            //}, _needsRefresh, 300, 300, true);
+
+            // User moved map.
 			MyMap.PropertyChanged += (sender, e) =>
-			{				
-				try
-				{
-					if (_initialized)
-					{
-						if (!(MyMap.VisibleRegion.Equals(lastPosition)) || lastPosition == null)
-						{
-							lastPosition = MyMap.VisibleRegion;
-							UpdateMap();
-							System.GC.Collect();
-						}
-					}
-				}
+			{
+                try
+                {
+                    if (_initialized)
+                    {
+                        if (!(MyMap.VisibleRegion.Equals(lastPosition)) || lastPosition == null)
+                        {
+                            lastPosition = MyMap.VisibleRegion;
+                            UpdateMap();
+                            System.GC.Collect();
+                        }
+                    }
+                }
 #pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
-				catch { }
+                catch (Exception mapex) { Debug.WriteLine($"Map PropertyChanged problem: {mapex.Message}"); }
 #pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
 			};
 

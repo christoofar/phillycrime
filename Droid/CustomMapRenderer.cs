@@ -16,17 +16,23 @@ namespace PhillyBlotter.Droid
 {
 	public class CustomMapRenderer : MapRenderer, GoogleMap.IInfoWindowAdapter, IOnMapReadyCallback
 	{
-		static GoogleMap map;
+        bool _isdrawn = false;
 		List<CustomPin> customPins;
 
 		public override void OnViewRemoved(Android.Views.View child)
 		{
 			base.OnViewRemoved(child);
-			if (map != null)
+            if (NativeMap != null)
 			{
 				customPins.Clear();
-				map.SetInfoWindowAdapter(null);
+				NativeMap.SetInfoWindowAdapter(null);
 			}
+
+            _isdrawn = false;
+            MessagingCenter.Unsubscribe<CrimesNearMeView>(this, "Clear");
+            MessagingCenter.Unsubscribe<CrimesNearMeView, CustomPin>(this, "DroidPin");
+            MessagingCenter.Unsubscribe<SearchResultsMap, CustomPin>(this, "DroidPin");
+
 		}
 
 		protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<Map> e)
@@ -35,7 +41,7 @@ namespace PhillyBlotter.Droid
 
 			if (e.OldElement != null)
 			{
-				map.InfoWindowClick -= OnInfoWindowClick;
+				NativeMap.InfoWindowClick -= OnInfoWindowClick;
 			}
 
 			if (e.NewElement != null)
@@ -51,7 +57,7 @@ namespace PhillyBlotter.Droid
 					{
 						if (customPins != null)
 							customPins.Clear();
-						map.Clear();
+						NativeMap.Clear();
 					});
 				});
 				// Register a command to add a droid pin to the map
@@ -137,14 +143,36 @@ namespace PhillyBlotter.Droid
 					break;
 			}
 
-			map.AddMarker(marker);
+            if (NativeMap != null)
+			    NativeMap.AddMarker(marker);
 		}
 
-		public void OnMapReady(GoogleMap googleMap)
+		//public void OnMapReady(GoogleMap googleMap)
+		//{
+		//	map = googleMap;
+		//	map.InfoWindowClick += OnInfoWindowClick;
+		//	map.SetInfoWindowAdapter(this);
+		//}
+
+		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			map = googleMap;
-			map.InfoWindowClick += OnInfoWindowClick;
-			map.SetInfoWindowAdapter(this);
+			base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName.Equals("VisibleRegion") && !_isdrawn)
+			{
+                _isdrawn = true;
+				//PopulateMap();
+				OnGoogleMapReady();
+			}
+		}
+
+		private void OnGoogleMapReady()
+		{
+            //if (_mapReady) return;
+			NativeMap.InfoWindowClick += OnInfoWindowClick;
+			NativeMap.SetInfoWindowAdapter(this);
+
+			//_mapReady = true;
 		}
 
 		void OnInfoWindowClick(object sender, GoogleMap.InfoWindowClickEventArgs e)
@@ -175,7 +203,7 @@ namespace PhillyBlotter.Droid
 				var customPin = GetCustomPin(marker);
 				if (customPin == null)
 				{
-					throw new Exception("Custom pin not found");
+					//throw new Exception("Custom pin not found");
 				}
 
 				if (customPin.Id == "Xamarin")

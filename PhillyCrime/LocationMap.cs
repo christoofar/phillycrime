@@ -17,7 +17,11 @@ namespace PhillyBlotter
 				if (_position != value)
 				{
 					_position = value;
-					MessagingCenter.Send<CustomCircle>(this, "CircleChanged");
+                    try
+                    {
+                        MessagingCenter.Send<CustomCircle>(this, "CircleChanged");
+                    } catch {}
+
 				}
 			}
 		}
@@ -30,7 +34,10 @@ namespace PhillyBlotter
 				if (_radius != value)				
 				{
 					_radius = value;
-					MessagingCenter.Send<CustomCircle>(this, "CircleChanged");
+                    try
+                    {
+                        MessagingCenter.Send<CustomCircle>(this, "CircleChanged");
+                    } catch {}
 				}
 			}
 		}

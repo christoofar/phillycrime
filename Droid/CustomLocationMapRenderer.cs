@@ -1,4 +1,5 @@
-﻿using Android.Gms.Maps;
+﻿using System.ComponentModel;
+using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Widget;
 using PhillyBlotter;
@@ -12,16 +13,20 @@ namespace PhillyBlotter.Droid
 {
 	public class CustomLocationMapRenderer : MapRenderer, GoogleMap.IInfoWindowAdapter, IOnMapReadyCallback
 	{
-		static GoogleMap map;
+		bool _isdrawn = false;
 		CustomCircle _circle;
 
 		public override void OnViewRemoved(Android.Views.View child)
 		{
 			base.OnViewRemoved(child);
-			if (map != null)
+			if (NativeMap != null)
 			{
-				map.SetInfoWindowAdapter(null);
+				NativeMap.SetInfoWindowAdapter(null);
 			}
+
+            _isdrawn = false;
+            MessagingCenter.Unsubscribe<CustomCircle>(this, "CircleChanged");
+
 		}
 
 		protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<Map> e)
@@ -30,7 +35,10 @@ namespace PhillyBlotter.Droid
 
 			if (e.OldElement != null)
 			{
-				map.InfoWindowClick -= OnInfoWindowClick;
+                if (NativeMap != null)
+                {
+                    NativeMap.InfoWindowClick -= OnInfoWindowClick;
+                }
 			}
 
 			if (e.NewElement != null)
@@ -41,11 +49,22 @@ namespace PhillyBlotter.Droid
 			}
 		}
 
-		public void OnMapReady(GoogleMap googleMap)
+		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			map = googleMap;
-			map.InfoWindowClick += OnInfoWindowClick;
-			map.SetInfoWindowAdapter(this);
+			base.OnElementPropertyChanged(sender, e);
+
+			if (e.PropertyName.Equals("VisibleRegion") && !_isdrawn)
+			{
+				_isdrawn = true;
+				//PopulateMap();
+				OnGoogleMapReady();
+			}
+		}
+
+		public void OnGoogleMapReady()
+		{
+			NativeMap.InfoWindowClick += OnInfoWindowClick;
+			NativeMap.SetInfoWindowAdapter(this);
 
 			var circleOpt = new CircleOptions();
 			circleOpt.InvokeCenter(new LatLng(_circle.Position.Latitude, _circle.Position.Longitude));
@@ -53,12 +72,12 @@ namespace PhillyBlotter.Droid
 			circleOpt.InvokeFillColor(0X66FF0000);
 			circleOpt.InvokeStrokeColor(0X66FF0000);
 			circleOpt.InvokeStrokeWidth(0);
-			map.AddCircle(circleOpt);
+			NativeMap.AddCircle(circleOpt);
 
 			/* Listen for circle change events */
 			MessagingCenter.Subscribe<CustomCircle>(this, "CircleChanged", (obj) =>
 			{
-				map.Clear();
+				NativeMap.Clear();
 
 				var circleOptions = new CircleOptions();
 				circleOptions.InvokeCenter(new LatLng(obj.Position.Latitude, obj.Position.Longitude));
@@ -66,7 +85,7 @@ namespace PhillyBlotter.Droid
 				circleOptions.InvokeFillColor(0X66FFFF00);
 				circleOptions.InvokeStrokeColor(0X66FFFF00);
 				circleOptions.InvokeStrokeWidth(0);
-				map.AddCircle(circleOptions);
+				NativeMap.AddCircle(circleOptions);
 			});
 		}
 
