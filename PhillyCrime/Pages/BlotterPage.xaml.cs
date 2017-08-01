@@ -18,6 +18,8 @@ namespace PhillyBlotter
 		bool _distanceFormat = false;  // Signifies that we're going to show a distance blotter
 		bool _searchResults = false;
 		bool _specialized = false; // This is for specific blotters that aren't going to go back to server.
+
+        int _selectedHood = -1;  // This is overridden if we want to display another neighborhood's blotter
 		CrimeSearchCriteria _crimeSearchCriteria = null;
 		CrimeReport[] _data = new CrimeReport[0];
 
@@ -26,6 +28,19 @@ namespace PhillyBlotter
 		public BlotterPage()
 		{
 			InitializeComponent();
+			this.ToolbarItems.Add(new ToolbarItem("buttonJump", "Images/searchhouse.png", SelectANeighborhood, ToolbarItemOrder.Primary));
+		}
+
+        public BlotterPage(int hood)
+        {
+            InitializeComponent();
+            _selectedHood = hood;
+        }
+
+		void SelectANeighborhood()
+		{
+            var selector = new SelectNeighborhood();
+			Navigation.PushAsync(selector);
 		}
 
 		public BlotterPage(bool distanceFormat = false)
@@ -175,7 +190,6 @@ namespace PhillyBlotter
 			//Look for neighborhoods user subscribes to.
 			var ids = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.ID);
 
-
 			// Set the title based on blotter/search result type
 			if (_distanceFormat)
 			{
@@ -198,9 +212,16 @@ namespace PhillyBlotter
 				}
 				else
 				{
-					var nameList = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.Name);
-					string hoodNames = string.Join("/", nameList);
-					Title = hoodNames;
+                    if (_selectedHood == -1)
+                    {
+                        var nameList = Global.Neighborhoods.Where(p => p.Selected).Select(p => p.Name);
+                        string hoodNames = string.Join("/", nameList);
+                        Title = hoodNames;
+                    } else {
+                        var nameList = Global.Neighborhoods.Where(p => p.ID.Equals(_selectedHood)).Select(p => p.Name);
+                        string hoodNames = string.Join("/", nameList);
+                        Title = hoodNames;
+                    }
 				}
 			}
 
@@ -239,9 +260,26 @@ namespace PhillyBlotter
 			}
 			else
 			{
-				var hoods = await Data.GetBlotter(ids.ToArray());
-				var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
-				blotterListView.ItemsSource = dategroup;
+                if (_selectedHood == -1)
+                {
+                    var hoods = await Data.GetBlotter(ids.ToArray());
+                    var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
+                    blotterListView.ItemsSource = dategroup;
+					if (dategroup.Count() == 0)
+					{
+						labelNoRecords.Text = "There's no crime information for the past 10 days.";
+					}
+                } else {
+                    int[] selhoodarray = new int[1];
+                    selhoodarray[0] = _selectedHood;
+                    var hoods = await Data.GetBlotter(selhoodarray);
+                    var dategroup = hoods.GroupBy(item => item.OccurredDateType, (key, group) => new Group(key, group.ToArray()));
+                    blotterListView.ItemsSource = dategroup;
+                    if (dategroup.Count() == 0 )
+                    {
+						labelNoRecords.Text = "There's no crime information for the past 10 days.";
+                    }
+                }
 			}
 
 			warningPanel.IsVisible = false;
