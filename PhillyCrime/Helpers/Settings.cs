@@ -188,7 +188,7 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-                var filter = AppSettings.GetValueOrDefault(FilterKey, Convert.ToInt32(FilterKeyDefault));
+                var filter = AppSettings.GetValueOrDefault(FilterKey, Convert.ToInt64(FilterKeyDefault));
 
                 return (Filter)filter;
 			}
