@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PhillyBlotter.StatsPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="0,0,0,0" Spacing="0">
+            <StackLayout x:Name="warningPanel" IsVisible="false">
+                <Label x:Name="labelNoRecords" TextColor="Gray" HorizontalOptions="Center" FontAttributes="Italic">You need to select your primary neighborhood(s) in the settings panel.</Label>
+                <Button HorizontalOptions="Center" x:Name="buttonSettings" Text="Select Neighborhoods..." Clicked="OnSettingsButtonClicked">
+                </Button>
+            </StackLayout>
+            <Grid Padding="2" RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20">
+                    </RowDefinition>
+                    <RowDefinition Height="20">
+                    </RowDefinition>
+                    <RowDefinition Height="20">
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Text="Year-To-Date Crime Counts" FontAttributes="Bold" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation">
+                </Label>
+                <Label x:Name="labelDate" Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="7" Text="As of September 4" FontAttributes="Bold" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation">
+                </Label>                
+                <Label x:Name="labelCurrentYear" Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Text="2017" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation">
+                </Label>
+                <Label x:Name="labelLastYear" Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Text="'16" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation">
+                </Label>
+                <Label x:Name="labelLastYear2" Grid.Row="2" Grid.RowSpan="1" Grid.Column="3" Text="'15" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation">
+                </Label>
+                <Label x:Name="labelLastYear3" Grid.Row="2" Grid.RowSpan="1" Grid.Column="4" Text="'14" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation">
+                </Label>
+                <Label x:Name="labelLastYear4" Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Text="'13" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation">
+                </Label>
+                <Label x:Name="labelLastYear5" Grid.Row="2" Grid.RowSpan="1" Grid.Column="6" Text="'12" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation">
+                </Label>
+            </Grid>
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ListView SeparatorVisibility="None" IsVisible="true" x:Name="ytdListView" IsPullToRefreshEnabled="false" HasUnevenRows="true">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="6" RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20">
+                                        </RowDefinition>
+                                        <RowDefinition Height="20">
+                                        </RowDefinition>
+                                        <RowDefinition Height="20">
+                                        </RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*">
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" Text="{Binding CrimeText}" FontAttributes="Bold" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation">
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Text="{Binding CurrentCount}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding CurrentCountColor}" TextColor="White" LineBreakMode="TailTruncation">
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Text="{Binding LastYear}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding LastYearColor}" TextColor="White" LineBreakMode="TailTruncation">
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Text="{Binding LastYear2}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding LastYearColor2}" TextColor="White" LineBreakMode="TailTruncation">
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Text="{Binding LastYear3}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding LastYearColor3}" TextColor="White" LineBreakMode="TailTruncation">
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Text="{Binding LastYear4}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding LastYearColor4}" TextColor="Black" LineBreakMode="TailTruncation">
+                                    </Label>
+                                    <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Text="{Binding LastYear5}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="{Binding LastYearColor5}" TextColor="Black" LineBreakMode="TailTruncation">
+                                    </Label>
+                                    <Image Scale=".9" VerticalOptions="End" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="{Binding ImageSource}" Aspect="AspectFit" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ActivityIndicator x:Name="activity" IsVisible="true" IsRunning="true" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

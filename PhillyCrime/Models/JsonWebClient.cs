@@ -15,6 +15,35 @@ namespace PhillyBlotter.Models
 
 	public class JsonWebClient
 	{
+		public async Task<System.IO.Stream> DoRequestStream(string url)
+		{
+			var resp = await Policy
+				.Handle<Exception>()
+				.WaitAndRetryAsync
+				(
+					retryCount: 5,
+					sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+					onRetry: (Exception arg1, TimeSpan arg2, Context arg3) =>
+					{
+						// Write why we're getting an exception
+						Debug.WriteLine($"Error transmitting to server {arg1.Message}\r\n{arg1.StackTrace}");
+					}
+				)
+				.ExecuteAsync(async () => {
+					var client = new HttpClient(new ClientCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
+					client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+					client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+
+					HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, url);
+					Debug.WriteLine($"Attempting to contact {url}");
+					return await client.SendAsync(message);
+				});
+
+            var tr = await resp.Content.ReadAsStreamAsync();
+			return tr;
+		}
+
+
 		public async Task<System.IO.TextReader> DoRequestAsync(HttpResponseMessage req)
 		{
 			var stream = await req.Content.ReadAsStreamAsync();

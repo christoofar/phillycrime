@@ -83,6 +83,12 @@ namespace PhillyBlotter
 			});
 			masterPageItems.Add(new MasterPageItem
 			{
+				Title = "Neighborhood Statistics",
+				IconSource = "Images/chart.png",
+				TargetType = typeof(StatsPage)
+			});
+			masterPageItems.Add(new MasterPageItem
+			{
 				Title = "Search Crimes",
 				IconSource = "Images/search.png",
 				TargetType = typeof(SearchPage)

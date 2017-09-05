@@ -24,6 +24,8 @@ namespace PhillyBlotter.Models
 		private static string ARRESTSEARCH = "ArrestSearch";
 		private static string NEWS = "News";
 
+        private static string GETYTD = "YTD";
+
 		public Data()
 		{
 			
@@ -208,6 +210,16 @@ namespace PhillyBlotter.Models
 			MapSpan span = new MapSpan(new Position(latitude, longitude), latDelta, longDelta);
 			return await Get30DayCrimeData(span, currentFilter);
 		}
+
+        public async static Task<YTD[]> GetYTD(int neighborhood)
+        {
+            JsonWebClient cli = new JsonWebClient();
+            Debug.WriteLine($"Requesting YTD crime totals for neighborhood ID: {neighborhood}");
+
+            string getUri = GetUri(GETYTD, string.Format("/{0}/", neighborhood));
+            var resp = await cli.DoRequestJsonAsync<YTD[]>(getUri);
+            return resp;
+        }
 
 		/// <summary>
 		/// Returns the 10 day crime blotter.

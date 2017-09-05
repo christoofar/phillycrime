@@ -48,23 +48,37 @@ namespace PhillyBlotter.Helpers
 		private static readonly string NeighborhoodKeyDefault = null;
 
 		private const string NeighborhoodIDKey = "neighborhoodid";
-		private static readonly int? NeighborhoodIDKeyDefault = null;
+		private static readonly int NeighborhoodIDKeyDefault = -1;
 
 		private const string FilterKey = "filter";
 		private static readonly Filter FilterKeyDefault = Filter.Homicide | Filter.Robbery | Filter.Rape | Filter.Burglary | Filter.Assault;
 
+        private const string StatsMultipleHoodsWarningKey = "statsMultipleHoods";
+        private static readonly bool StatsMultipleHoodsWarningDefault = false;
+
 		#endregion
 
+        public static bool StatsMultipleHoodsWarning
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(StatsMultipleHoodsWarningKey, StatsMultipleHoodsWarningDefault);    
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(StatsMultipleHoodsWarningKey, value);
+            }
+        }
 
 		public static string GeneralSettings
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
+				return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
+				AppSettings.AddOrUpdateValue(SettingsKey, value);
 			}
 		}
 
@@ -72,11 +86,11 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<DateTime>(LastPositionAskKey, LastPositionAskDefault);
+				return AppSettings.GetValueOrDefault(LastPositionAskKey, LastPositionAskDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<DateTime>(LastPositionAskKey, value);
+				AppSettings.AddOrUpdateValue(LastPositionAskKey, value);
 			}
 
 		}
@@ -85,11 +99,11 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<double>(PrimaryLatKey, PrimaryLatKeyDefault);
+				return AppSettings.GetValueOrDefault(PrimaryLatKey, PrimaryLatKeyDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<double>(PrimaryLatKey, value);
+				AppSettings.AddOrUpdateValue(PrimaryLatKey, value);
 			}
 		}
 
@@ -97,11 +111,11 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<double>(PrimaryLongKey, PrimaryLongKeyDefault);
+				return AppSettings.GetValueOrDefault(PrimaryLongKey, PrimaryLongKeyDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<double>(PrimaryLongKey, value);
+				AppSettings.AddOrUpdateValue(PrimaryLongKey, value);
 			}
 		}
 
@@ -109,11 +123,11 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<double>(CrimeRadiusKey, CrimeRadiusKeyDefault);
+				return AppSettings.GetValueOrDefault(CrimeRadiusKey, CrimeRadiusKeyDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<double>(CrimeRadiusKey, value);
+				AppSettings.AddOrUpdateValue(CrimeRadiusKey, value);
 			}
 		}
 
@@ -121,11 +135,11 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<string>(PrimaryDistrictKey, PrimaryDistrictKeyDefault);
+				return AppSettings.GetValueOrDefault(PrimaryDistrictKey, PrimaryDistrictKeyDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<string>(PrimaryDistrictKey, value);
+				AppSettings.AddOrUpdateValue(PrimaryDistrictKey, value);
 			}
 		}
 
@@ -133,11 +147,11 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<string>(PrimaryPSAKey, PrimaryPSAKeyDefault);
+				return AppSettings.GetValueOrDefault(PrimaryPSAKey, PrimaryPSAKeyDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<string>(PrimaryPSAKey, value);
+				AppSettings.AddOrUpdateValue(PrimaryPSAKey, value);
 			}
 		}
 
@@ -145,11 +159,11 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<string>(NeighborhoodKey, NeighborhoodKeyDefault);
+				return AppSettings.GetValueOrDefault(NeighborhoodKey, NeighborhoodKeyDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<string>(NeighborhoodKey, value);
+				AppSettings.AddOrUpdateValue(NeighborhoodKey, value);
 			}
 		}
 
@@ -157,11 +171,16 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<int?>(NeighborhoodIDKey, NeighborhoodIDKeyDefault);
+				int hood = AppSettings.GetValueOrDefault(NeighborhoodIDKey, NeighborhoodIDKeyDefault);
+                if (hood == -1) return null;
+                return hood;
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<int?>(NeighborhoodIDKey, value);
+                if (value != null)
+                {
+                    AppSettings.AddOrUpdateValue(NeighborhoodIDKey, (int)value);
+                }
 			}
 		}
 
@@ -169,11 +188,13 @@ namespace PhillyBlotter.Helpers
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<Filter>(FilterKey, FilterKeyDefault);
+                var filter = AppSettings.GetValueOrDefault(FilterKey, Convert.ToInt32(FilterKeyDefault));
+
+                return (Filter)filter;
 			}
 			set
-			{
-				AppSettings.AddOrUpdateValue<Filter>(FilterKey, value);
+			{                
+				AppSettings.AddOrUpdateValue(FilterKey, Convert.ToInt64(value));
 			}
 		}
 	}

@@ -76,6 +76,7 @@ namespace PhillyBlotter
 
 				textSuspectLivesIn.Text = string.Format("{0}", _report.DefendantZip);
 				_url = string.Format("https://docs.google.com/viewer?url={0}", _report.Url);
+                //_url = _report.Url;
 
 				DateTime birthday;
 				buttonMatches.IsVisible = DateTime.TryParse(_report.DateOfBirth, out birthday);
@@ -86,10 +87,11 @@ namespace PhillyBlotter
 
 		public void ButtonDocket_Clicked(object sender, EventArgs e)
 		{
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				Device.OpenUri(new Uri(_url));
-			});
+            Device.BeginInvokeOnMainThread(() =>
+            {
+            	Device.OpenUri(new Uri(_url));
+            });
+            //Navigation.PushAsync(new PdfPage(_url));
 		}
 
 		void ButtonFindMatches_Clicked(object sender, System.EventArgs e)
